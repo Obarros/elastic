@@ -43,11 +43,11 @@ use std::{
     io,
 };
 
-use elastic_responses::error::ResponseError;
+use crate::client::responses::error::ResponseError;
 use reqwest::Error as ReqwestError;
 use serde_json;
 
-pub use elastic_responses::error::ApiError;
+pub use crate::client::responses::error::ApiError;
 
 use http::StatusCode;
 
@@ -246,7 +246,7 @@ mod inner {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use tests::*;
+    use crate::types::tests::*;
 
     #[test]
     fn error_is_send_sync() {

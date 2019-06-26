@@ -9,22 +9,24 @@ use futures::{
     Poll,
 };
 
-use client::{
-    requests::{
-        endpoints::IndicesExistsRequest,
-        params::Index,
-        raw::RawRequestInner,
-        RequestBuilder,
+use crate::{
+    client::{
+        requests::{
+            endpoints::IndicesExistsRequest,
+            params::Index,
+            raw::RawRequestInner,
+            RequestBuilder,
+        },
+        responses::IndicesExistsResponse,
+        sender::{
+            AsyncSender,
+            Sender,
+            SyncSender,
+        },
+        IndexClient,
     },
-    responses::IndicesExistsResponse,
-    sender::{
-        AsyncSender,
-        Sender,
-        SyncSender,
-    },
-    IndexClient,
+    error::*,
 };
-use error::*;
 
 /**
 An [index exists request][docs-index-exists] builder that can be configured before sending.
@@ -178,7 +180,7 @@ impl IndexExistsRequestBuilder<AsyncSender> {
 
 /** A future returned by calling `send`. */
 pub struct Pending {
-    inner: Box<Future<Item = IndicesExistsResponse, Error = Error> + Send>,
+    inner: Box<dyn Future<Item = IndicesExistsResponse, Error = Error> + Send>,
 }
 
 impl Pending {
@@ -203,8 +205,10 @@ impl Future for Pending {
 
 #[cfg(test)]
 mod tests {
-    use prelude::*;
-    use tests::*;
+    use crate::{
+        prelude::*,
+        tests::*,
+    };
 
     #[test]
     fn is_send() {

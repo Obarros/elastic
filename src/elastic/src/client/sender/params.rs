@@ -14,8 +14,10 @@ use reqwest::{
 };
 use url::form_urlencoded::Serializer;
 
-use client::sender::NodeAddress;
-use http::Method;
+use crate::{
+    client::sender::NodeAddress,
+    http::Method,
+};
 
 pub const DEFAULT_NODE_ADDRESS: &'static str = "http://localhost:9200";
 
@@ -243,14 +245,16 @@ pub(crate) fn build_reqwest_method(method: Method) -> reqwest::Method {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use http::header::{
-        AUTHORIZATION,
-        CONTENT_TYPE,
-        REFERER,
-    };
-    use tests::{
-        assert_send,
-        assert_sync,
+    use crate::{
+        http::header::{
+            AUTHORIZATION,
+            CONTENT_TYPE,
+            REFERER,
+        },
+        tests::{
+            assert_send,
+            assert_sync,
+        },
     };
 
     #[test]

@@ -704,7 +704,7 @@ pub mod prelude {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use tests::*;
+    use crate::tests::*;
 
     #[test]
     fn client_is_send_sync() {

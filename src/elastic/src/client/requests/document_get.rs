@@ -11,34 +11,36 @@ use futures::{
 use serde::de::DeserializeOwned;
 use std::marker::PhantomData;
 
-use client::{
-    requests::{
-        endpoints::GetRequest,
-        params::{
-            Id,
-            Index,
-            Type,
+use crate::{
+    client::{
+        requests::{
+            endpoints::GetRequest,
+            params::{
+                Id,
+                Index,
+                Type,
+            },
+            raw::RawRequestInner,
+            RequestBuilder,
         },
-        raw::RawRequestInner,
-        RequestBuilder,
+        responses::GetResponse,
+        sender::{
+            AsyncSender,
+            Sender,
+            SyncSender,
+        },
+        DocumentClient,
     },
-    responses::GetResponse,
-    sender::{
-        AsyncSender,
-        Sender,
-        SyncSender,
+    error::{
+        Error,
+        Result,
     },
-    DocumentClient,
-};
-use error::{
-    Error,
-    Result,
-};
-use types::document::{
-    DocumentType,
-    StaticIndex,
-    StaticType,
-    DEFAULT_DOC_TYPE,
+    types::document::{
+        DocumentType,
+        StaticIndex,
+        StaticType,
+        DEFAULT_DOC_TYPE,
+    },
 };
 
 /**
@@ -332,7 +334,7 @@ where
 
 /** A future returned by calling `send`. */
 pub struct Pending<TDocument> {
-    inner: Box<Future<Item = GetResponse<TDocument>, Error = Error> + Send>,
+    inner: Box<dyn Future<Item = GetResponse<TDocument>, Error = Error> + Send>,
 }
 
 impl<TDocument> Pending<TDocument> {
@@ -360,8 +362,10 @@ where
 
 #[cfg(test)]
 mod tests {
-    use prelude::*;
-    use tests::*;
+    use crate::{
+        prelude::*,
+        tests::*,
+    };
 
     #[test]
     fn is_send() {

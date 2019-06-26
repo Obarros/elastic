@@ -20,38 +20,40 @@ use serde::{
     ser::Serialize,
 };
 
-use client::{
-    requests::{
-        endpoints::BulkRequest,
-        params::{
-            Index,
-            Type,
+use crate::{
+    client::{
+        requests::{
+            endpoints::BulkRequest,
+            params::{
+                Index,
+                Type,
+            },
+            raw::RawRequestInner,
+            RequestBuilder,
         },
-        raw::RawRequestInner,
-        RequestBuilder,
+        responses::{
+            parsing::IsOk,
+            BulkErrorsResponse,
+            BulkResponse,
+        },
+        sender::{
+            AsyncSender,
+            Sender,
+            SyncSender,
+        },
+        Client,
+        RequestParams,
     },
-    responses::{
-        parse::IsOk,
-        BulkErrorsResponse,
-        BulkResponse,
+    error::{
+        self,
+        Error,
     },
-    sender::{
-        AsyncSender,
-        Sender,
-        SyncSender,
+    http::{
+        AsyncBody,
+        SyncBody,
     },
-    Client,
-    RequestParams,
+    types::document::DEFAULT_DOC_TYPE,
 };
-use error::{
-    self,
-    Error,
-};
-use http::{
-    AsyncBody,
-    SyncBody,
-};
-use types::document::DEFAULT_DOC_TYPE;
 
 /**
 A [bulk request][docs-bulk] builder that can be configured before sending.
@@ -535,7 +537,9 @@ where
         match (self.index, self.ty) {
             (Some(index), ty) => match ty {
                 None => Ok(BulkRequest::for_index(index, body)),
-                Some(ref ty) if &ty[..] == DEFAULT_DOC_TYPE => Ok(BulkRequest::for_index(index, body)),
+                Some(ref ty) if &ty[..] == DEFAULT_DOC_TYPE => {
+                    Ok(BulkRequest::for_index(index, body))
+                }
                 Some(ty) => Ok(BulkRequest::for_index_ty(index, ty, body)),
             },
             (None, None) => Ok(BulkRequest::new(body)),
@@ -811,7 +815,7 @@ impl BulkBody for Vec<u8> {
 
 /** A future returned by calling `send`. */
 pub struct Pending<TResponse> {
-    inner: Box<Future<Item = TResponse, Error = Error> + Send>,
+    inner: Box<dyn Future<Item = TResponse, Error = Error> + Send>,
 }
 
 impl<TResponse> Pending<TResponse> {
@@ -877,8 +881,10 @@ impl<TIndex, TType, TId, TNewId> ChangeId<TNewId> for BulkErrorsResponse<TIndex,
 
 #[cfg(test)]
 mod tests {
-    use prelude::*;
-    use tests::*;
+    use crate::{
+        prelude::*,
+        tests::*,
+    };
 
     #[test]
     fn is_send() {

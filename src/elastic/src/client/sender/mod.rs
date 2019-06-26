@@ -21,13 +21,13 @@ use fluent_builder::{
 pub mod sniffed_nodes;
 pub mod static_nodes;
 
-mod async;
+mod asynchronous;
 mod params;
-mod sync;
+mod synchronous;
 pub use self::{
-    async::*,
+    asynchronous::*,
     params::*,
-    sync::*,
+    synchronous::*,
 };
 
 use std::{
@@ -43,8 +43,10 @@ use self::{
     },
     static_nodes::StaticNodes,
 };
-use client::requests::Endpoint;
-use private;
+use crate::{
+    client::requests::Endpoint,
+    private,
+};
 
 /**
 A sendable request.
@@ -194,7 +196,9 @@ impl NodeAddressesBuilder {
             NodeAddressesBuilder::Sniffed(fluent_builder) => {
                 NodeAddressesBuilder::Sniffed(fluent_builder.value(builder))
             }
-            _ => NodeAddressesBuilder::Sniffed(SharedStatefulFluentBuilder::from_value(builder.into())),
+            _ => NodeAddressesBuilder::Sniffed(SharedStatefulFluentBuilder::from_value(
+                builder.into(),
+            )),
         }
     }
 
@@ -204,11 +208,14 @@ impl NodeAddressesBuilder {
     {
         match self {
             NodeAddressesBuilder::Sniffed(fluent_builder) => NodeAddressesBuilder::Sniffed(
-                fluent_builder.fluent(address.into(), fleunt_method).shared(),
+                fluent_builder
+                    .fluent(address.into(), fleunt_method)
+                    .shared(),
             ),
-            _ => NodeAddressesBuilder::Sniffed(
-                SharedStatefulFluentBuilder::from_fluent(address.into(), fleunt_method),
-            ),
+            _ => NodeAddressesBuilder::Sniffed(SharedStatefulFluentBuilder::from_fluent(
+                address.into(),
+                fleunt_method,
+            )),
         }
     }
 }

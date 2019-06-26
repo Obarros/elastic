@@ -8,7 +8,7 @@ use fluent_builder::SharedFluentBuilder;
 use std::sync::Arc;
 use tokio_threadpool::ThreadPool;
 
-use client::{
+use crate::client::{
     sender::{
         AsyncSender,
         RequestParams,
@@ -17,7 +17,7 @@ use client::{
     Client,
 };
 
-pub use elastic_requests::{
+pub use self::raw::{
     empty_body,
     endpoints,
     params,
@@ -26,12 +26,12 @@ pub use elastic_requests::{
     UrlPath,
 };
 
-pub use self::{
+pub use self::raw::{
     endpoints::*,
     params::*,
 };
 
-pub mod raw;
+pub(crate) mod raw;
 pub use self::raw::RawRequestBuilder;
 
 // Search requests
@@ -117,7 +117,11 @@ where
         }
     }
 
-    fn new(client: Client<TSender>, builder: SharedFluentBuilder<RequestParams>, req: TRequest) -> Self {
+    fn new(
+        client: Client<TSender>,
+        builder: SharedFluentBuilder<RequestParams>,
+        req: TRequest,
+    ) -> Self {
         RequestBuilder {
             client: client,
             params_builder: builder,

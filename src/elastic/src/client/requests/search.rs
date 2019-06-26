@@ -11,32 +11,34 @@ use futures::{
 use serde::de::DeserializeOwned;
 use std::marker::PhantomData;
 
-use client::{
-    requests::{
-        empty_body,
-        endpoints::SearchRequest,
-        params::{
-            Index,
-            Type,
+use crate::{
+    client::{
+        requests::{
+            empty_body,
+            endpoints::SearchRequest,
+            params::{
+                Index,
+                Type,
+            },
+            raw::RawRequestInner,
+            DefaultBody,
+            RequestBuilder,
         },
-        raw::RawRequestInner,
-        DefaultBody,
-        RequestBuilder,
+        responses::SearchResponse,
+        sender::{
+            AsyncSender,
+            Sender,
+            SyncSender,
+        },
+        Client,
+        DocumentClient,
     },
-    responses::SearchResponse,
-    sender::{
-        AsyncSender,
-        Sender,
-        SyncSender,
+    error::{
+        Error,
+        Result,
     },
-    Client,
-    DocumentClient,
+    types::document::DocumentType,
 };
-use error::{
-    Error,
-    Result,
-};
-use types::document::DocumentType;
 
 /**
 A [search request][docs-search] builder that can be configured before sending.
@@ -424,7 +426,7 @@ where
 
 /** A future returned by calling `send`. */
 pub struct Pending<TDocument> {
-    inner: Box<Future<Item = SearchResponse<TDocument>, Error = Error> + Send>,
+    inner: Box<dyn Future<Item = SearchResponse<TDocument>, Error = Error> + Send>,
 }
 
 impl<TDocument> Pending<TDocument> {
@@ -454,8 +456,10 @@ where
 mod tests {
     use serde_json::Value;
 
-    use prelude::*;
-    use tests::*;
+    use crate::{
+        prelude::*,
+        tests::*,
+    };
 
     #[test]
     fn is_send() {

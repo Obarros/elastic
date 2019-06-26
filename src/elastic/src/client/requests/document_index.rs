@@ -13,33 +13,35 @@ use futures::{
 use serde::Serialize;
 use serde_json;
 
-use client::{
-    requests::{
-        endpoints::IndexRequest,
-        params::{
-            Id,
-            Index,
-            Type,
+use crate::{
+    client::{
+        requests::{
+            endpoints::IndexRequest,
+            params::{
+                Id,
+                Index,
+                Type,
+            },
+            raw::RawRequestInner,
+            RequestBuilder,
         },
-        raw::RawRequestInner,
-        RequestBuilder,
+        responses::IndexResponse,
+        sender::{
+            AsyncSender,
+            Sender,
+            SyncSender,
+        },
+        DocumentClient,
     },
-    responses::IndexResponse,
-    sender::{
-        AsyncSender,
-        Sender,
-        SyncSender,
+    error::{
+        self,
+        Error,
+        Result,
     },
-    DocumentClient,
-};
-use error::{
-    self,
-    Error,
-    Result,
-};
-use types::document::{
-    DocumentType,
-    DEFAULT_DOC_TYPE,
+    types::document::{
+        DocumentType,
+        DEFAULT_DOC_TYPE,
+    },
 };
 
 /**
@@ -385,7 +387,7 @@ where
 
 /** A future returned by calling `send`. */
 pub struct Pending {
-    inner: Box<Future<Item = IndexResponse, Error = Error> + Send>,
+    inner: Box<dyn Future<Item = IndexResponse, Error = Error> + Send>,
 }
 
 impl Pending {
@@ -410,8 +412,10 @@ impl Future for Pending {
 
 #[cfg(test)]
 mod tests {
-    use prelude::*;
-    use tests::*;
+    use crate::{
+        prelude::*,
+        tests::*,
+    };
 
     #[test]
     fn is_send() {

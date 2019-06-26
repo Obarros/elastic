@@ -9,7 +9,7 @@ use futures::{
     Poll,
 };
 
-use client::{
+use crate::client::{
     requests::{
         empty_body,
         endpoints::SqlQueryRequest,
@@ -26,7 +26,7 @@ use client::{
     Client,
 };
 
-use error::{
+use crate::error::{
     Error,
     Result,
 };
@@ -300,7 +300,7 @@ where
 
 /** A future returned by calling `send`. */
 pub struct Pending {
-    inner: Box<Future<Item = SqlResponse, Error = Error> + Send>,
+    inner: Box<dyn Future<Item = SqlResponse, Error = Error> + Send>,
 }
 
 impl Pending {
@@ -325,8 +325,10 @@ impl Future for Pending {
 
 #[cfg(test)]
 mod tests {
-    use prelude::*;
-    use tests::*;
+    use crate::{
+        prelude::*,
+        tests::*,
+    };
 
     #[test]
     fn is_send() {

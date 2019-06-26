@@ -14,22 +14,24 @@ use serde::ser::{
 };
 use serde_json;
 
-use client::requests::{
-    common::{
-        DefaultParams,
-        Doc,
-        Script,
-        ScriptBuilder,
+use crate::{
+    client::requests::{
+        common::{
+            DefaultParams,
+            Doc,
+            Script,
+            ScriptBuilder,
+        },
+        params::{
+            Id,
+            Index,
+            Type,
+        },
     },
-    params::{
-        Id,
-        Index,
-        Type,
-    },
+    types::document::DocumentType,
 };
-use types::document::DocumentType;
 
-pub use client::responses::bulk::Action;
+pub use crate::client::responses::bulk::Action;
 
 /**
 A bulk operation.

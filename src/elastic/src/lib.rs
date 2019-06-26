@@ -8,7 +8,7 @@ A modular and efficient native client for the Elasticsearch REST API.
  `elastic`          | Elasticsearch
  ------------------ | -------------
  `0.0.x` - `0.20.x` | `5.x`
- `0.21.x`           | `6.x`
+ `0.21.x`           | `7.x`
 
 This crate depends heavily on the following crates:
 
@@ -247,7 +247,7 @@ for hit in response.hits() {
 
 This crate is mostly a meta-package composed of a number of smaller pieces including:
 
-- `elastic_requests` API request builders
+- `crate::client::requests::raw` API request builders
 - `elastic_responses` API response parsers
 - `elastic_types` tools for document and mapping APIs
 
@@ -283,32 +283,20 @@ This crate glues these libraries together with some simple assumptions about how
 */
 
 //#![deny(warnings, missing_docs)]
-#![allow(unknown_lints)]
 
-extern crate bytes;
-extern crate elastic_requests;
-extern crate elastic_responses;
-extern crate elastic_types;
 #[macro_use]
 extern crate error_chain;
-extern crate fluent_builder;
 #[macro_use]
 extern crate futures;
-extern crate tokio_threadpool;
 #[macro_use]
 extern crate log;
 #[macro_use]
 extern crate quick_error;
 extern crate crossbeam_channel as channel;
-extern crate reqwest;
-extern crate serde;
 #[macro_use]
 extern crate serde_derive;
-#[cfg_attr(test, macro_use)]
+#[macro_use]
 extern crate serde_json;
-extern crate tokio;
-extern crate url;
-extern crate uuid;
 
 #[cfg(test)]
 #[macro_use]
@@ -328,18 +316,14 @@ pub mod types;
 pub mod prelude {
     /*! A glob import for convenience. */
 
-    pub use client::prelude::*;
-    pub use types::prelude::*;
+    pub use super::{
+        client::prelude::*,
+        types::prelude::*,
+    };
 }
 
 #[cfg(test)]
 mod tests {
     pub fn assert_send<T: Send>() {}
     pub fn assert_sync<T: Sync>() {}
-}
-
-// This is a simple workaround for paths needed by `elastic_derive`.
-#[cfg(test)]
-mod elastic {
-    pub use types;
 }

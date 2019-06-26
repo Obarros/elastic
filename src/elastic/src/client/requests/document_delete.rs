@@ -10,34 +10,36 @@ use futures::{
 };
 use std::marker::PhantomData;
 
-use client::{
-    requests::{
-        endpoints::DeleteRequest,
-        params::{
-            Id,
-            Index,
-            Type,
+use crate::{
+    client::{
+        requests::{
+            endpoints::DeleteRequest,
+            params::{
+                Id,
+                Index,
+                Type,
+            },
+            raw::RawRequestInner,
+            RequestBuilder,
         },
-        raw::RawRequestInner,
-        RequestBuilder,
+        responses::DeleteResponse,
+        sender::{
+            AsyncSender,
+            Sender,
+            SyncSender,
+        },
+        DocumentClient,
     },
-    responses::DeleteResponse,
-    sender::{
-        AsyncSender,
-        Sender,
-        SyncSender,
+    error::{
+        Error,
+        Result,
     },
-    DocumentClient,
-};
-use error::{
-    Error,
-    Result,
-};
-use types::document::{
-    DocumentType,
-    StaticIndex,
-    StaticType,
-    DEFAULT_DOC_TYPE,
+    types::document::{
+        DocumentType,
+        StaticIndex,
+        StaticType,
+        DEFAULT_DOC_TYPE,
+    },
 };
 
 /**
@@ -332,7 +334,7 @@ impl<TDocument> DeleteRequestBuilder<AsyncSender, TDocument> {
 
 /** A future returned by calling `send`. */
 pub struct Pending {
-    inner: Box<Future<Item = DeleteResponse, Error = Error> + Send>,
+    inner: Box<dyn Future<Item = DeleteResponse, Error = Error> + Send>,
 }
 
 impl Pending {
@@ -357,8 +359,10 @@ impl Future for Pending {
 
 #[cfg(test)]
 mod tests {
-    use prelude::*;
-    use tests::*;
+    use crate::{
+        prelude::*,
+        tests::*,
+    };
 
     #[test]
     fn is_send() {

@@ -7,23 +7,25 @@ use futures::{
     Poll,
 };
 
-use client::{
-    requests::{
-        endpoints::PingRequest,
-        raw::RawRequestInner,
-        RequestBuilder,
+use crate::{
+    client::{
+        requests::{
+            endpoints::PingRequest,
+            raw::RawRequestInner,
+            RequestBuilder,
+        },
+        responses::PingResponse,
+        sender::{
+            AsyncSender,
+            Sender,
+            SyncSender,
+        },
+        Client,
     },
-    responses::PingResponse,
-    sender::{
-        AsyncSender,
-        Sender,
-        SyncSender,
+    error::{
+        Error,
+        Result,
     },
-    Client,
-};
-use error::{
-    Error,
-    Result,
 };
 
 /**
@@ -191,7 +193,7 @@ impl PingRequestBuilder<AsyncSender> {
 
 /** A future returned by calling `send`. */
 pub struct Pending {
-    inner: Box<Future<Item = PingResponse, Error = Error> + Send>,
+    inner: Box<dyn Future<Item = PingResponse, Error = Error> + Send>,
 }
 
 impl Pending {
@@ -216,8 +218,10 @@ impl Future for Pending {
 
 #[cfg(test)]
 mod tests {
-    use prelude::*;
-    use tests::*;
+    use crate::{
+        prelude::*,
+        tests::*,
+    };
 
     #[test]
     fn is_send() {

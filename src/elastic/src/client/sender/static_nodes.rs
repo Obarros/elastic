@@ -1,16 +1,18 @@
 /*! Multiple static nodes that can be load balanced by some strategy. */
 
-use client::sender::{
-    NextParams,
-    NodeAddress,
-    PreRequestParams,
-    RequestParams,
+use crate::{
+    client::sender::{
+        NextParams,
+        NodeAddress,
+        PreRequestParams,
+        RequestParams,
+    },
+    error::{
+        self,
+        Error,
+    },
+    private,
 };
-use error::{
-    self,
-    Error,
-};
-use private;
 use std::sync::{
     atomic::{
         AtomicUsize,
@@ -134,7 +136,7 @@ impl Strategy for RoundRobin {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use client::sender::NextParams;
+    use crate::client::sender::NextParams;
 
     fn round_robin(addresses: Vec<&'static str>) -> StaticNodes<RoundRobin> {
         StaticNodes::round_robin(addresses, PreRequestParams::default())

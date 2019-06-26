@@ -9,7 +9,7 @@ This list should grow over time, and be updated as things change.
 
 ### Adding a new client method
 
-1. The raw request type should already exist in `elastic_requests` (the types are pre-generated).
+1. The raw request type should already exist in `crate::client::requests::raw` (the types are pre-generated).
 1. Add the response type to `elastic_responses`. The name should align with the generated name for the request, like `IndicesExistsRequest` and `IndicesExistsResponse`.
 1. Add a client method to `elastic` in a new module under the `src/elastic/src/client/requests` folder. The naming convention is `document_*` for document methods like `document_get`, `index_*` for index methods like `index_exists` and no prefix for other methods like `search`.
 1. Add the method to the table in the client docs under `src/elastic/src/client/mod.rs`.
@@ -67,9 +67,9 @@ The following is a simple set of guidelines that the codebase should follow. It'
 
 ### `elastic`
 
-This is the main crate that bundles up `elastic_requests`, `elastic_types`, `elastic_requests` and `elastic_responses`.
+This is the main crate that bundles up `crate::client::requests::raw`, `elastic_types`, `crate::client::requests::raw` and `elastic_responses`.
 
-### `elastic_requests`
+### `crate::client::requests::raw`
 
 Zero-copy request types for the REST API endpoints. These are automatically generated from the official spec.
 

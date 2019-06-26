@@ -12,37 +12,39 @@ use serde::ser::Serialize;
 use serde_json;
 use std::marker::PhantomData;
 
-use client::{
-    requests::{
-        endpoints::UpdateRequest,
-        params::{
-            Id,
-            Index,
-            Type,
+use crate::{
+    client::{
+        requests::{
+            endpoints::UpdateRequest,
+            params::{
+                Id,
+                Index,
+                Type,
+            },
+            raw::RawRequestInner,
+            RequestBuilder,
         },
-        raw::RawRequestInner,
-        RequestBuilder,
+        responses::UpdateResponse,
+        sender::{
+            AsyncSender,
+            Sender,
+            SyncSender,
+        },
+        DocumentClient,
     },
-    responses::UpdateResponse,
-    sender::{
-        AsyncSender,
-        Sender,
-        SyncSender,
+    error::{
+        self,
+        Error,
     },
-    DocumentClient,
-};
-use error::{
-    self,
-    Error,
-};
-use types::document::{
-    DocumentType,
-    StaticIndex,
-    StaticType,
-    DEFAULT_DOC_TYPE,
+    types::document::{
+        DocumentType,
+        StaticIndex,
+        StaticType,
+        DEFAULT_DOC_TYPE,
+    },
 };
 
-pub use client::requests::common::{
+pub use crate::client::requests::common::{
     DefaultParams,
     Doc,
     Script,
@@ -726,7 +728,7 @@ where
 
 /** A future returned by calling `send`. */
 pub struct Pending {
-    inner: Box<Future<Item = UpdateResponse, Error = Error> + Send>,
+    inner: Box<dyn Future<Item = UpdateResponse, Error = Error> + Send>,
 }
 
 impl Pending {
@@ -752,12 +754,14 @@ impl Future for Pending {
 #[cfg(test)]
 mod tests {
     use super::ScriptBuilder;
-    use prelude::*;
+    use crate::{
+        prelude::*,
+        tests::*,
+    };
     use serde_json::{
         self,
         Value,
     };
-    use tests::*;
 
     #[test]
     fn is_send() {

@@ -11,34 +11,36 @@ use futures::{
 use serde_json;
 use std::marker::PhantomData;
 
-use client::{
-    requests::{
-        endpoints::IndicesPutMappingRequest,
-        params::{
-            Index,
-            Type,
+use crate::{
+    client::{
+        requests::{
+            endpoints::IndicesPutMappingRequest,
+            params::{
+                Index,
+                Type,
+            },
+            raw::RawRequestInner,
+            RequestBuilder,
         },
-        raw::RawRequestInner,
-        RequestBuilder,
+        responses::CommandResponse,
+        sender::{
+            AsyncSender,
+            Sender,
+            SyncSender,
+        },
+        DocumentClient,
     },
-    responses::CommandResponse,
-    sender::{
-        AsyncSender,
-        Sender,
-        SyncSender,
+    error::{
+        self,
+        Error,
+        Result,
     },
-    DocumentClient,
-};
-use error::{
-    self,
-    Error,
-    Result,
-};
-use types::document::{
-    DEFAULT_DOC_TYPE,
-    DocumentType,
-    StaticIndex,
-    StaticType,
+    types::document::{
+        DocumentType,
+        StaticIndex,
+        StaticType,
+        DEFAULT_DOC_TYPE,
+    },
 };
 
 /**
@@ -137,9 +139,7 @@ where
         let body = serde_json::to_vec(&TDocument::index_mapping()).map_err(error::request)?;
 
         if &self.ty[..] == DEFAULT_DOC_TYPE {
-            Ok(IndicesPutMappingRequest::for_index(
-                self.index, body,
-            ))
+            Ok(IndicesPutMappingRequest::for_index(self.index, body))
         } else {
             Ok(IndicesPutMappingRequest::for_index_ty(
                 self.index, self.ty, body,
@@ -279,7 +279,7 @@ where
 
 /** A future returned by calling `send`. */
 pub struct Pending {
-    inner: Box<Future<Item = CommandResponse, Error = Error> + Send>,
+    inner: Box<dyn Future<Item = CommandResponse, Error = Error> + Send>,
 }
 
 impl Pending {
@@ -304,12 +304,14 @@ impl Future for Pending {
 
 #[cfg(test)]
 mod tests {
-    use prelude::*;
+    use crate::{
+        prelude::*,
+        tests::*,
+    };
     use serde_json::{
         self,
         Value,
     };
-    use tests::*;
 
     #[test]
     fn is_send() {

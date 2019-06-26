@@ -5,12 +5,12 @@ These types are re-exported from `reqwest` and used in parts of `elastic`s publi
 They may eventually be wrapped and made implementation details.
 */
 
-mod async;
-mod sync;
+mod asynchronous;
+mod synchronous;
 
 pub use self::{
-    async::*,
-    sync::*,
+    asynchronous::*,
+    synchronous::*,
 };
 
 pub use reqwest::{
@@ -18,8 +18,10 @@ pub use reqwest::{
     Url,
 };
 
-pub use elastic_requests::Method;
-pub use elastic_responses::StatusCode;
+pub use crate::client::{
+    requests::raw::Method,
+    responses::StatusCode,
+};
 
 use std::{
     fmt,
