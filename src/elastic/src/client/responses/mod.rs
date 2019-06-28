@@ -125,12 +125,6 @@ in a `GetResponse`.
 [parse]: parsing/fn.parse.html
 */
 
-mod asynchronous;
-mod synchronous;
-
-pub mod error;
-pub mod parsing;
-
 pub mod bulk;
 mod command;
 mod common;
@@ -145,11 +139,7 @@ mod sql;
 
 mod index_exists;
 
-pub use self::{
-    asynchronous::*,
-    synchronous::*,
-};
-
+#[doc(inline)]
 pub use self::{
     bulk::{
         BulkErrorsResponse,
@@ -169,8 +159,6 @@ pub use self::{
 
 pub use self::index_exists::*;
 
-pub use self::parsing::parse;
-
 /** Re-export of `serde_json::Value` for convenience. */
 pub use serde_json::Value;
 
@@ -181,7 +169,6 @@ pub mod prelude {
 
     pub use super::{
         bulk::Action as BulkAction,
-        AsyncResponseBuilder,
         BulkErrorsResponse,
         BulkResponse,
         CommandResponse,
@@ -193,7 +180,6 @@ pub mod prelude {
         SearchResponse,
         Shards,
         SqlResponse,
-        SyncResponseBuilder,
         UpdateResponse,
     };
 }

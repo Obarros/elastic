@@ -203,9 +203,9 @@ mod tests {
 
     #[test]
     fn serialise_mapping_default() {
-        let ser = serde_json::to_string(&field::serialize(DefaultIpMapping)).unwrap();
+        let ser = serde_json::to_value(&field::serialize(DefaultIpMapping)).unwrap();
 
-        let expected = json_str!({
+        let expected = json!({
             "type": "ip"
         });
 
@@ -214,9 +214,9 @@ mod tests {
 
     #[test]
     fn serialise_mapping_custom() {
-        let ser = serde_json::to_string(&field::serialize(MyIpMapping)).unwrap();
+        let ser = serde_json::to_value(&field::serialize(MyIpMapping)).unwrap();
 
-        let expected = json_str!({
+        let expected = json!({
             "type": "ip",
             "boost": 1.01,
             "doc_values": true,

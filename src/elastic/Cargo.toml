@@ -15,6 +15,8 @@ travis-ci = { repository = "elastic-rs/elastic" }
 appveyor = { repository = "elastic-rs/elastic" }
 
 [dependencies]
+elastic_derive = { version = "~0.21.0-pre.4", path = "../elastic_derive" }
+
 quick-error = "~1"
 error-chain = "~0.11"
 log = "~0.4"
@@ -37,7 +39,4 @@ geohash = "~0.9.0"
 geojson = "~0.16.0"
 
 [dev-dependencies]
-json_str = "~0.5"
-serde_derive = "~1"
-elastic_derive = { version = "~0.21.0-pre.4", path = "../elastic_derive" }
 env_logger = "~0.6"

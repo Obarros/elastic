@@ -24,11 +24,11 @@ use tokio_threadpool::{
 
 use crate::{
     client::{
-        requests::Endpoint,
-        responses::{
+        receiver::{
             async_response,
             AsyncResponseBuilder,
         },
+        requests::Endpoint,
         sender::{
             build_reqwest_method,
             build_url,
@@ -99,10 +99,10 @@ pub struct AsyncSender {
     pub(in crate::client) serde_pool: Option<Arc<ThreadPool>>,
     pre_send: Option<
         Arc<
-            Fn(
+            dyn Fn(
                     &mut AsyncHttpRequest,
                 )
-                    -> Box<dyn Future<Item = (), Error = Box<StdError + Send + Sync>> + Send>
+                    -> Box<dyn Future<Item = (), Error = Box<dyn StdError + Send + Sync>> + Send>
                 + Send
                 + Sync,
         >,
@@ -336,10 +336,10 @@ pub struct AsyncClientBuilder {
     params: SharedFluentBuilder<PreRequestParams>,
     pre_send: Option<
         Arc<
-            Fn(
+            dyn Fn(
                     &mut AsyncHttpRequest,
                 )
-                    -> Box<dyn Future<Item = (), Error = Box<StdError + Send + Sync>> + Send>
+                    -> Box<dyn Future<Item = (), Error = Box<dyn StdError + Send + Sync>> + Send>
                 + Send
                 + Sync,
         >,
@@ -536,7 +536,7 @@ impl AsyncClientBuilder {
         pre_send: impl Fn(
                 &mut AsyncHttpRequest,
             )
-                -> Box<dyn Future<Item = (), Error = Box<StdError + Send + Sync>> + Send>
+                -> Box<dyn Future<Item = (), Error = Box<dyn StdError + Send + Sync>> + Send>
             + Send
             + Sync
             + 'static,

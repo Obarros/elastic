@@ -2,7 +2,7 @@
 Response types for a cluster ping request.
 */
 
-use super::parsing::IsOkOnSuccess;
+use crate::client::receiver::IsOkOnSuccess;
 
 /** Response for a cluster ping request. */
 #[derive(Deserialize, Debug)]

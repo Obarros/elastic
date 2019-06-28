@@ -2,13 +2,12 @@
 Response types for an [index document request](https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-index_.html).
 */
 
-use super::{
-    common::{
-        DocumentResult,
-        Shards,
-    },
-    parsing::IsOkOnSuccess,
+use super::common::{
+    DocumentResult,
+    Shards,
 };
+
+use crate::client::receiver::IsOkOnSuccess;
 
 /** Response for an [index document request](https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-index_.html). */
 #[derive(Deserialize, Debug)]

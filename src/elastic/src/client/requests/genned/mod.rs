@@ -6879,12 +6879,11 @@ pub mod endpoints {
 }
 
 pub mod http {
+    pub use crate::http::Method;
     use std::{
         borrow::Cow,
         ops::Deref,
     };
-    extern crate http;
-    pub use self::http::Method;
 
     #[derive(Debug, PartialEq, Clone)]
     #[doc = r" A wrapper around an owned or borrowed url path."]

@@ -5,15 +5,13 @@ Response types for a [get document request](https://www.elastic.co/guide/en/elas
 use crate::http::StatusCode;
 use serde::de::DeserializeOwned;
 
-use super::{
-    error::*,
-    parsing::{
-        HttpResponseHead,
-        IsOk,
-        MaybeOkResponse,
-        ResponseBody,
-        Unbuffered,
-    },
+use crate::client::receiver::{
+    HttpResponseHead,
+    IsOk,
+    MaybeOkResponse,
+    ParseError,
+    ResponseBody,
+    Unbuffered,
 };
 
 /** Response for a [get document request](https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-get.html). */

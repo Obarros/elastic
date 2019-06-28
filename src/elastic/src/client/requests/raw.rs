@@ -193,42 +193,6 @@ where
     }
 }
 
-mod genned;
-
-/// Common url params like `Id` and `Index`.
-///
-/// The parameter types are basically just a wrapper around a maybe
-/// owned string.
-/// They can all be constructed from a `String` or an `&str`, but some
-/// parameters may have other implementations in the future.
-pub mod params {
-    pub use super::genned::params::*;
-}
-
-/// REST API endpoints.
-///
-/// Each type corresponds to a single HTTP method on a single endpoint.
-/// Request types have constructor functions that take the form
-/// `for_param_1_param_2_param_n`, and accept a `Body` parameter if the underlying
-/// method is a `POST` or `PUT`.
-/// Other request parameters accept any type that can be converted into the
-/// parameter type, usually a `String` or `&str`.
-///
-/// Request types don't take ownership of their inputs unless you pass in owned
-/// data.
-/// That means if some function expects a `SearchRequest<'static>` then you can
-/// either use a `SearchRequest` with owned `String` inputs, or one that uses only
-/// `'static` inputs.
-pub mod endpoints {
-    pub use super::genned::endpoints::*;
-}
-
-pub use self::{
-    endpoints::*,
-    params::*,
-};
-pub use genned::http::*;
-
 #[cfg(test)]
 mod tests {
     use super::*;

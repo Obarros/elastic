@@ -18,9 +18,9 @@ pub use reqwest::{
     Url,
 };
 
-pub use crate::client::{
-    requests::raw::Method,
-    responses::StatusCode,
+pub use http::{
+    Method,
+    StatusCode,
 };
 
 use std::{

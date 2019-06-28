@@ -1,6 +1,6 @@
 /*! Contains the `NodesInfoResponse` type for sniffing node addresses in the cluster. */
 
-use super::parsing::IsOkOnSuccess;
+use crate::client::receiver::IsOkOnSuccess;
 use serde::de::{
     Deserialize,
     Deserializer,

@@ -17,7 +17,7 @@ use serde::de::{
 };
 use serde_json::Value;
 
-use super::parsing::IsOkOnSuccess;
+use crate::client::receiver::IsOkOnSuccess;
 
 use std::{
     cmp,
@@ -549,7 +549,7 @@ where
         "bulk item failed"
     }
 
-    fn cause(&self) -> Option<&Error> {
+    fn cause(&self) -> Option<&dyn Error> {
         None
     }
 }

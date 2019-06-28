@@ -29,6 +29,60 @@ extern crate chrono;
 mod date_format;
 mod elastic_type;
 
+#[proc_macro_derive(ElasticType, attributes(elastic))]
+pub fn derive_elastic_type(input: proc_macro::TokenStream) -> proc_macro::TokenStream {
+    let mut expanded = quote::Tokens::new();
+    let ast = syn::parse_macro_input(&input.to_string()).unwrap();
+    let crate_root = get_crate_root(&ast).unwrap();
+
+    match elastic_type::expand_derive(crate_root, &ast) {
+        Ok(genned) => {
+            expanded.append_all(genned);
+
+            expanded.to_string().parse().unwrap()
+        }
+        Err(e) => panic!("{}", e),
+    }
+}
+
+#[proc_macro_derive(ElasticDateFormat, attributes(elastic))]
+pub fn derive_date_format(input: proc_macro::TokenStream) -> proc_macro::TokenStream {
+    let mut expanded = quote::Tokens::new();
+    let ast = syn::parse_macro_input(&input.to_string()).unwrap();
+    let crate_root = get_crate_root(&ast).unwrap();
+
+    match date_format::expand_derive(crate_root, &ast) {
+        Ok(genned) => {
+            expanded.append_all(genned);
+
+            expanded.to_string().parse().unwrap()
+        }
+        Err(e) => panic!("{}", e),
+    }
+}
+
+// Get the format string supplied by an #[elastic()] attribute
+fn get_crate_root<'a>(item: &'a syn::MacroInput) -> Result<quote::Tokens, String> {
+    let val = get_elastic_meta_items(&item.attrs);
+
+    let val = val
+        .iter()
+        .filter_map(|meta| expect_name_value("crate_root", &meta))
+        .next();
+
+    match val {
+        Some(crate_root) => {
+            let crate_root = get_str_from_lit(crate_root)?;
+
+            let mut tokens = quote::Tokens::new();
+            tokens.append(crate_root);
+
+            Ok(tokens)
+        }
+        None => Ok(quote!(elastic::types)),
+    }
+}
+
 fn get_elastic_meta_items<'a, I>(attrs: I) -> Vec<syn::NestedMetaItem>
 where
     I: IntoIterator<Item = &'a syn::Attribute> + 'a,
@@ -92,35 +146,5 @@ fn get_str_from_lit<'a>(lit: &'a syn::Lit) -> Result<&'a str, &'static str> {
         _ => {
             return Err("Unable to get str from lit");
         }
-    }
-}
-
-#[proc_macro_derive(ElasticType, attributes(elastic))]
-pub fn derive_elastic_type(input: proc_macro::TokenStream) -> proc_macro::TokenStream {
-    let mut expanded = quote::Tokens::new();
-    let ast = syn::parse_macro_input(&input.to_string()).unwrap();
-
-    match elastic_type::expand_derive(quote!(::elastic::types), &ast) {
-        Ok(genned) => {
-            expanded.append_all(genned);
-
-            expanded.to_string().parse().unwrap()
-        }
-        Err(e) => panic!("{}", e),
-    }
-}
-
-#[proc_macro_derive(ElasticDateFormat, attributes(elastic))]
-pub fn derive_date_format(input: proc_macro::TokenStream) -> proc_macro::TokenStream {
-    let mut expanded = quote::Tokens::new();
-    let ast = syn::parse_macro_input(&input.to_string()).unwrap();
-
-    match date_format::expand_derive(quote!(::elastic::types), &ast) {
-        Ok(genned) => {
-            expanded.append_all(genned);
-
-            expanded.to_string().parse().unwrap()
-        }
-        Err(e) => panic!("{}", e),
     }
 }

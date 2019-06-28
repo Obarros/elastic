@@ -149,10 +149,10 @@ mod tests {
         let shape =
             GeoShape::<DefaultGeoShapeMapping>::new(Geometry::new(Value::Point(vec![1.0, 1.0])));
 
-        let ser = serde_json::to_string(&shape).unwrap();
+        let ser = serde_json::to_value(&shape).unwrap();
 
         assert_eq!(
-            json_str!({
+            json!({
                 "coordinates": [ 1.0, 1.0 ],
                 "type": "Point"
             }),
@@ -162,7 +162,7 @@ mod tests {
 
     #[test]
     fn deserialise_elastic_geo_shape() {
-        let shape: GeoShape<DefaultGeoShapeMapping> = serde_json::from_str(&json_str!({
+        let shape: GeoShape<DefaultGeoShapeMapping> = serde_json::from_value(&json!({
             "coordinates": [ 1, 1 ],
             "type": "Point"
         }))

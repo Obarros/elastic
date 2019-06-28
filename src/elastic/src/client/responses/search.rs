@@ -8,10 +8,9 @@ use serde_json::{
     Value,
 };
 
-use super::{
-    common::Shards,
-    parsing::IsOkOnSuccess,
-};
+use super::common::Shards;
+
+use crate::client::receiver::IsOkOnSuccess;
 
 use std::{
     borrow::Cow,

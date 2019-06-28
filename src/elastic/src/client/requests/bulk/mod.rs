@@ -22,6 +22,7 @@ use serde::{
 
 use crate::{
     client::{
+        receiver::IsOk,
         requests::{
             endpoints::BulkRequest,
             params::{
@@ -32,7 +33,6 @@ use crate::{
             RequestBuilder,
         },
         responses::{
-            parsing::IsOk,
             BulkErrorsResponse,
             BulkResponse,
         },

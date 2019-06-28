@@ -249,12 +249,12 @@ mod tests {
 
     #[test]
     fn serialise_mapping_default() {
-        let ser = serde_json::to_string(&field::serialize(DefaultGeoPointMapping::<
+        let ser = serde_json::to_value(&field::serialize(DefaultGeoPointMapping::<
             DefaultGeoPointFormat,
         >::default()))
         .unwrap();
 
-        let expected = json_str!({
+        let expected = json!({
             "type": "geo_point"
         });
 
@@ -263,9 +263,9 @@ mod tests {
 
     #[test]
     fn serialise_mapping_custom() {
-        let ser = serde_json::to_string(&field::serialize(MyGeoPointMapping)).unwrap();
+        let ser = serde_json::to_value(&field::serialize(MyGeoPointMapping)).unwrap();
 
-        let expected = json_str!({
+        let expected = json!({
             "type": "geo_point",
             "geohash": false,
             "geohash_precision": "50m",

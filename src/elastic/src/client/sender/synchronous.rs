@@ -11,11 +11,11 @@ use std::{
 
 use crate::{
     client::{
-        requests::Endpoint,
-        responses::{
+        receiver::{
             sync_response,
             SyncResponseBuilder,
         },
+        requests::Endpoint,
         sender::{
             build_reqwest_method,
             build_url,
@@ -79,7 +79,11 @@ pub type SyncClient = Client<SyncSender>;
 pub struct SyncSender {
     pub(in crate::client) http: SyncHttpClient,
     pre_send: Option<
-        Arc<Fn(&mut SyncHttpRequest) -> Result<(), Box<StdError + Send + Sync>> + Send + Sync>,
+        Arc<
+            dyn Fn(&mut SyncHttpRequest) -> Result<(), Box<dyn StdError + Send + Sync>>
+                + Send
+                + Sync,
+        >,
     >,
 }
 
@@ -242,7 +246,7 @@ pub struct SyncClientBuilder {
     params: SharedFluentBuilder<PreRequestParams>,
     pre_send: Option<
         Arc<
-            Fn(&mut SyncHttpRequest) -> Result<(), Box<StdError + Send + Sync>>
+            dyn Fn(&mut SyncHttpRequest) -> Result<(), Box<dyn StdError + Send + Sync>>
                 + Send
                 + Sync
                 + 'static,
@@ -411,7 +415,7 @@ impl SyncClientBuilder {
     */
     pub fn pre_send_raw(
         mut self,
-        pre_send: impl Fn(&mut SyncHttpRequest) -> Result<(), Box<StdError + Send + Sync>>
+        pre_send: impl Fn(&mut SyncHttpRequest) -> Result<(), Box<dyn StdError + Send + Sync>>
             + Send
             + Sync
             + 'static,

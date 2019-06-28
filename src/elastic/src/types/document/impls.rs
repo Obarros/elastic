@@ -438,11 +438,13 @@ mod tests {
         #![allow(dead_code)]
 
         #[derive(Serialize, ElasticType)]
+        #[elastic(crate_root = "crate::types")]
         pub struct TypeWithNoPath {
             id: String,
         }
 
         #[derive(Default, ElasticDateFormat)]
+        #[elastic(crate_root = "crate::types")]
         #[elastic(date_format = "yyyy")]
         pub struct DateFormatWithNoPath;
     }
@@ -451,27 +453,32 @@ mod tests {
     #[allow(dead_code)]
     fn fn_scope() {
         #[derive(Serialize, ElasticType)]
+        #[elastic(crate_root = "crate::types")]
         pub struct TypeInFn {
             id: String,
         }
 
         #[derive(Default, ElasticDateFormat)]
+        #[elastic(crate_root = "crate::types")]
         #[elastic(date_format = "yyyy")]
         pub struct DateFormatInFn;
     }
 
     #[derive(Clone, Serialize, ElasticType)]
+    #[elastic(crate_root = "crate::types")]
     pub struct SimpleType {
         pub field1: Date<DefaultDateMapping<EpochMillis>>,
         pub field2: SimpleNestedType,
     }
 
     #[derive(Clone, Serialize, ElasticType)]
+    #[elastic(crate_root = "crate::types")]
     pub struct SimpleNestedType {
         pub field: i32,
     }
 
     #[derive(Serialize, ElasticType)]
+    #[elastic(crate_root = "crate::types")]
     #[elastic(
         index = "renamed_index",
         ty = "renamed_ty",
@@ -499,6 +506,7 @@ mod tests {
     }
 
     #[derive(Serialize, ElasticType)]
+    #[elastic(crate_root = "crate::types")]
     pub struct Wrapped {
         pub field1: Vec<i32>,
         pub field2: Option<bool>,
@@ -510,6 +518,7 @@ mod tests {
     }
 
     #[derive(Serialize, ElasticType)]
+    #[elastic(crate_root = "crate::types")]
     pub struct NoProps {}
 
     #[derive(Default, Serialize)]
@@ -575,9 +584,9 @@ mod tests {
 
     #[test]
     fn serialise_document() {
-        let ser = serde_json::to_string(&SimpleType::index_mapping()).unwrap();
+        let ser = serde_json::to_value(&SimpleType::index_mapping()).unwrap();
 
-        let expected = json_str!({
+        let expected = json!({
             "properties":{
                 "field1": {
                     "type": "date",
@@ -617,9 +626,9 @@ mod tests {
 
     #[test]
     fn serialise_document_with_no_props() {
-        let ser = serde_json::to_string(&NoProps::index_mapping()).unwrap();
+        let ser = serde_json::to_value(&NoProps::index_mapping()).unwrap();
 
-        let expected = json_str!({
+        let expected = json!({
             "properties": {}
         });
 
@@ -628,9 +637,9 @@ mod tests {
 
     #[test]
     fn serialise_document_for_custom_mapping() {
-        let ser = serde_json::to_string(&CustomType::index_mapping()).unwrap();
+        let ser = serde_json::to_value(&CustomType::index_mapping()).unwrap();
 
-        let expected = json_str!({
+        let expected = json!({
             "properties": {
                 "field": {
                     "type": "integer"
@@ -646,9 +655,9 @@ mod tests {
 
     #[test]
     fn serialise_mapping_with_wrapped_types() {
-        let ser = serde_json::to_string(&Wrapped::index_mapping()).unwrap();
+        let ser = serde_json::to_value(&Wrapped::index_mapping()).unwrap();
 
-        let expected = json_str!({
+        let expected = json!({
             "properties": {
                 "field1": {
                     "type": "integer"
@@ -696,9 +705,9 @@ mod tests {
 
     #[test]
     fn serialise_index_mapping() {
-        let ser = serde_json::to_string(&Index::default()).unwrap();
+        let ser = serde_json::to_value(&Index::default()).unwrap();
 
-        let expected = json_str!({
+        let expected = json!({
             "mappings": {
                 "simpletype": {
                     "properties": {

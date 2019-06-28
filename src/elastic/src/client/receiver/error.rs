@@ -34,7 +34,7 @@ mod inner {
 
     impl fmt::Display for UnknownApiError {
         fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-            (&self.0 as &fmt::Debug).fmt(f)
+            (&self.0 as &dyn fmt::Debug).fmt(f)
         }
     }
 
@@ -43,7 +43,7 @@ mod inner {
             "an unknown API error"
         }
 
-        fn cause(&self) -> Option<&StdError> {
+        fn cause(&self) -> Option<&dyn StdError> {
             None
         }
     }
@@ -61,7 +61,7 @@ A generic error parsing an API response.
 */
 #[derive(Debug)]
 pub struct ParseError {
-    inner: Box<StdError + Send + Sync>,
+    inner: Box<dyn StdError + Send + Sync>,
 }
 
 impl ParseError {
@@ -98,7 +98,7 @@ impl StdError for ParseError {
         self.inner.description()
     }
 
-    fn cause(&self) -> Option<&StdError> {
+    fn cause(&self) -> Option<&dyn StdError> {
         Some(&*self.inner)
     }
 }

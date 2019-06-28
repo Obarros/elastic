@@ -370,6 +370,7 @@ mod tests {
     }
 
     #[derive(ElasticType)]
+    #[elastic(crate_root = "crate::types")]
     struct TestDoc {}
 
     #[test]

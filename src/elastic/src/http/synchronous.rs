@@ -27,7 +27,7 @@ pub type SyncHttpRequest = HttpRequest<SyncBody>;
 pub struct SyncBody(SyncBodyInner);
 
 enum SyncBodyInner {
-    UnBuffered(Box<Read + Send>),
+    UnBuffered(Box<dyn Read + Send>),
     Buffered(BufferedSyncBodyInner<'static>),
 }
 
@@ -106,7 +106,7 @@ pub struct SyncBodyReader<'a> {
 }
 
 enum SyncBodyReaderState<'a> {
-    UnBuffered(&'a mut Box<Read + Send>),
+    UnBuffered(&'a mut Box<dyn Read + Send>),
     Buffered(Cursor<BufferedSyncBodyInner<'a>>),
 }
 

@@ -327,9 +327,9 @@ mod tests {
 
     #[test]
     fn serialise_mapping_default() {
-        let ser = serde_json::to_string(&field::serialize(DefaultGeoShapeMapping)).unwrap();
+        let ser = serde_json::to_value(&field::serialize(DefaultGeoShapeMapping)).unwrap();
 
-        let expected = json_str!({
+        let expected = json!({
             "type": "geo_shape"
         });
 
@@ -338,9 +338,9 @@ mod tests {
 
     #[test]
     fn serialise_mapping_custom() {
-        let ser = serde_json::to_string(&field::serialize(MyGeoShapeMapping)).unwrap();
+        let ser = serde_json::to_value(&field::serialize(MyGeoShapeMapping)).unwrap();
 
-        let expected = json_str!({
+        let expected = json!({
             "type": "geo_shape",
             "tree": "geohash",
             "precision": "50m",

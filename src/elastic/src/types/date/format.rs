@@ -315,7 +315,7 @@ impl Error for ParseError {
         }
     }
 
-    fn cause(&self) -> Option<&Error> {
+    fn cause(&self) -> Option<&dyn Error> {
         match self.kind {
             ParseErrorKind::Chrono(ref err) => Some(err),
             ParseErrorKind::Other(_) => None,

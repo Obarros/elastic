@@ -2,10 +2,9 @@
 Response types for a [update document request](https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-update.html).
 */
 
-use super::{
-    common::DocumentResult,
-    parsing::IsOkOnSuccess,
-};
+use super::common::DocumentResult;
+
+use crate::client::receiver::IsOkOnSuccess;
 
 /** Response for a [update document request](https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-update.html). */
 #[derive(Deserialize, Debug)]

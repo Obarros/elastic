@@ -43,6 +43,7 @@ use super::{
 };
 use crate::{
     client::{
+        receiver::IsOk,
         requests::{
             params::{
                 Index,
@@ -50,7 +51,6 @@ use crate::{
             },
             RequestBuilder,
         },
-        responses::parsing::IsOk,
         sender::AsyncSender,
         Client,
         RequestParams,

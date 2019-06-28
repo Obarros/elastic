@@ -1,11 +1,11 @@
 use reqwest::Response as RawResponse;
 use serde::de::DeserializeOwned;
 
-use super::parsing::{
-    parse,
-    IsOk,
-};
 use crate::{
+    client::receiver::{
+        parse,
+        IsOk,
+    },
     error::{
         self,
         Result,

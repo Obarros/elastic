@@ -43,11 +43,11 @@ use std::{
     io,
 };
 
-use crate::client::responses::error::ResponseError;
+use crate::client::receiver::ResponseError;
 use reqwest::Error as ReqwestError;
 use serde_json;
 
-pub use crate::client::responses::error::ApiError;
+pub use crate::client::receiver::ApiError;
 
 use http::StatusCode;
 
@@ -93,7 +93,7 @@ pub(crate) mod string_error {
     }
 }
 
-pub(crate) struct WrappedError(Box<StdError + Send + Sync>);
+pub(crate) struct WrappedError(Box<dyn StdError + Send + Sync>);
 
 impl fmt::Display for WrappedError {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
@@ -112,7 +112,7 @@ impl StdError for WrappedError {
         self.0.description()
     }
 
-    fn source(&self) -> Option<&(StdError + 'static)> {
+    fn source(&self) -> Option<&(dyn StdError + 'static)> {
         self.0.source()
     }
 }
@@ -128,7 +128,7 @@ impl StdError for ClientError {
         self.inner.description()
     }
 
-    fn source(&self) -> Option<&(StdError + 'static)> {
+    fn source(&self) -> Option<&(dyn StdError + 'static)> {
         self.inner.source()
     }
 }
@@ -148,7 +148,7 @@ where
     })
 }
 
-pub(crate) fn wrapped(err: Box<StdError + Send + Sync>) -> WrappedError {
+pub(crate) fn wrapped(err: Box<dyn StdError + Send + Sync>) -> WrappedError {
     WrappedError(err)
 }
 
@@ -246,7 +246,7 @@ mod inner {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use crate::types::tests::*;
+    use crate::tests::*;
 
     #[test]
     fn error_is_send_sync() {

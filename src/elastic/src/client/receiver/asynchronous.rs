@@ -10,11 +10,11 @@ use reqwest::r#async::Response as RawResponse;
 use serde::de::DeserializeOwned;
 use tokio_threadpool::ThreadPool;
 
-use super::parsing::{
-    parse,
-    IsOk,
-};
 use crate::{
+    client::receiver::{
+        parse,
+        IsOk,
+    },
     error::{
         self,
         Error,

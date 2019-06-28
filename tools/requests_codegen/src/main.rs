@@ -255,8 +255,7 @@ fn http_mod(tokens: &mut Tokens, derives: Tokens) {
         use std::borrow::Cow;
         use std::ops::Deref;
 
-        extern crate http;
-        pub use self::http::Method;
+        pub use crate::http::Method;
     );
 
     let http_req_item = gen::types::request::req_tokens();

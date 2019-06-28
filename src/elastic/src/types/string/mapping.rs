@@ -443,9 +443,9 @@ mod tests {
 
     #[test]
     fn serialise_string_mapping_default() {
-        let ser = serde_json::to_string(&field::serialize(DefaultStringMapping)).unwrap();
+        let ser = serde_json::to_value(&field::serialize(DefaultStringMapping)).unwrap();
 
-        let expected = json_str!({
+        let expected = json!({
             "type":"text",
             "fields":{
                 "keyword":{
@@ -460,9 +460,9 @@ mod tests {
 
     #[test]
     fn serialise_text_mapping_default() {
-        let ser = serde_json::to_string(&field::serialize(DefaultTextMapping)).unwrap();
+        let ser = serde_json::to_value(&field::serialize(DefaultTextMapping)).unwrap();
 
-        let expected = json_str!({
+        let expected = json!({
             "type": "text"
         });
 
@@ -471,9 +471,9 @@ mod tests {
 
     #[test]
     fn serialise_text_mapping_custom() {
-        let ser = serde_json::to_string(&field::serialize(MyTextMapping)).unwrap();
+        let ser = serde_json::to_value(&field::serialize(MyTextMapping)).unwrap();
 
-        let expected = json_str!({
+        let expected = json!({
             "type":"text",
             "boost":1.3,
             "analyzer":"my_analyzer",
@@ -512,9 +512,9 @@ mod tests {
 
     #[test]
     fn serialise_keyword_mapping_default() {
-        let ser = serde_json::to_string(&field::serialize(DefaultKeywordMapping)).unwrap();
+        let ser = serde_json::to_value(&field::serialize(DefaultKeywordMapping)).unwrap();
 
-        let expected = json_str!({
+        let expected = json!({
             "type": "keyword"
         });
 
@@ -523,9 +523,9 @@ mod tests {
 
     #[test]
     fn serialise_keyword_mapping_custom() {
-        let ser = serde_json::to_string(&field::serialize(MyKeywordMapping)).unwrap();
+        let ser = serde_json::to_value(&field::serialize(MyKeywordMapping)).unwrap();
 
-        let expected = json_str!({
+        let expected = json!({
             "type": "keyword",
             "boost": 1.03,
             "analyzer": "my_analyzer",
@@ -565,9 +565,9 @@ mod tests {
             min_segment_size: Some(500),
         };
 
-        let ser = serde_json::to_string(&filter).unwrap();
+        let ser = serde_json::to_value(&filter).unwrap();
 
-        let expected = json_str!({
+        let expected = json!({
             "min": 0.001,
             "max": 0.1,
             "min_segment_size": 500
@@ -585,7 +585,7 @@ mod tests {
             IndexOptions::Offsets,
         ]
         .iter()
-        .map(|i| serde_json::to_string(i).unwrap())
+        .map(|i| serde_json::to_value(i).unwrap())
         .collect();
 
         let expected_opts = vec![r#""docs""#, r#""freqs""#, r#""positions""#, r#""offsets""#];
@@ -611,7 +611,7 @@ mod tests {
             TermVector::WithPositionsOffsets,
         ]
         .iter()
-        .map(|i| serde_json::to_string(i).unwrap())
+        .map(|i| serde_json::to_value(i).unwrap())
         .collect();
 
         let expected_opts = vec![
@@ -648,9 +648,9 @@ mod tests {
             search_analyzer: Some("my_analyzer"),
             similarity: Some("my_analyzer"),
         });
-        let ser = serde_json::to_string(&mapping).unwrap();
+        let ser = serde_json::to_value(&mapping).unwrap();
 
-        let expected = json_str!({
+        let expected = json!({
             "type":"keyword",
             "analyzer":"my_analyzer",
             "doc_values":true,
@@ -690,9 +690,9 @@ mod tests {
             similarity: Some("BM25"),
             term_vector: Some(TermVector::No),
         });
-        let ser = serde_json::to_string(&mapping).unwrap();
+        let ser = serde_json::to_value(&mapping).unwrap();
 
-        let expected = json_str!({
+        let expected = json!({
             "type":"text",
             "analyzer":"my_analyzer",
             "eager_global_ordinals":true,
@@ -727,9 +727,9 @@ mod tests {
             precision_step: Some(15),
             store: Some(true),
         });
-        let ser = serde_json::to_string(&mapping).unwrap();
+        let ser = serde_json::to_value(&mapping).unwrap();
 
-        let expected = json_str!({
+        let expected = json!({
             "type": "token_count",
             "analyzer": "my_analyzer",
             "boost": 1.3,
@@ -753,9 +753,9 @@ mod tests {
             preserve_position_increments: Some(true),
             max_input_length: Some(512),
         });
-        let ser = serde_json::to_string(&mapping).unwrap();
+        let ser = serde_json::to_value(&mapping).unwrap();
 
-        let expected = json_str!({
+        let expected = json!({
             "type": "completion",
             "analyzer": "my_analyzer",
             "search_analyzer": "my_analyzer",

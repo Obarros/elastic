@@ -4,16 +4,15 @@ Response types for a [delete document request](https://www.elastic.co/guide/en/e
 
 use crate::http::StatusCode;
 
-use super::{
-    common::DocumentResult,
-    error::*,
-    parsing::{
-        HttpResponseHead,
-        IsOk,
-        MaybeOkResponse,
-        ResponseBody,
-        Unbuffered,
-    },
+use super::common::DocumentResult;
+
+use crate::client::receiver::{
+    HttpResponseHead,
+    IsOk,
+    MaybeOkResponse,
+    ParseError,
+    ResponseBody,
+    Unbuffered,
 };
 
 /** Response for a [delete document request](https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-delete.html). */

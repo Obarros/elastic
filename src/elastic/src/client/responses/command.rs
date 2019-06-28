@@ -2,7 +2,7 @@
 Response types for a standard command.
 */
 
-use super::parsing::IsOkOnSuccess;
+use crate::client::receiver::IsOkOnSuccess;
 
 /** A standard command acknowledgement response. */
 #[derive(Deserialize, Debug, Clone)]

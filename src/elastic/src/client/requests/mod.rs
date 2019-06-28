@@ -17,29 +17,57 @@ use crate::client::{
     Client,
 };
 
-pub use self::raw::{
-    empty_body,
-    endpoints,
-    params,
-    DefaultBody,
-    Endpoint,
-    UrlPath,
-};
+mod genned;
 
-pub use self::raw::{
+/// Common url params like `Id` and `Index`.
+///
+/// The parameter types are basically just a wrapper around a maybe
+/// owned string.
+/// They can all be constructed from a `String` or an `&str`, but some
+/// parameters may have other implementations in the future.
+pub mod params {
+    pub use super::genned::params::*;
+}
+
+/// REST API endpoints.
+///
+/// Each type corresponds to a single HTTP method on a single endpoint.
+/// Request types have constructor functions that take the form
+/// `for_param_1_param_2_param_n`, and accept a `Body` parameter if the underlying
+/// method is a `POST` or `PUT`.
+/// Other request parameters accept any type that can be converted into the
+/// parameter type, usually a `String` or `&str`.
+///
+/// Request types don't take ownership of their inputs unless you pass in owned
+/// data.
+/// That means if some function expects a `SearchRequest<'static>` then you can
+/// either use a `SearchRequest` with owned `String` inputs, or one that uses only
+/// `'static` inputs.
+pub mod endpoints {
+    pub use super::genned::endpoints::*;
+}
+
+pub use self::{
     endpoints::*,
+    genned::http::*,
     params::*,
 };
 
-pub(crate) mod raw;
+pub mod raw;
+
+#[doc(inline)]
 pub use self::raw::RawRequestBuilder;
 
 // Search requests
 pub mod search;
+
+#[doc(inline)]
 pub use self::search::SearchRequestBuilder;
 
 // Sql requests
 pub mod sql;
+
+#[doc(inline)]
 pub use self::sql::SqlRequestBuilder;
 
 // Document requests
@@ -48,6 +76,8 @@ pub mod document_get;
 pub mod document_index;
 pub mod document_put_mapping;
 pub mod document_update;
+
+#[doc(inline)]
 pub use self::{
     document_delete::DeleteRequestBuilder,
     document_get::GetRequestBuilder,
@@ -62,6 +92,8 @@ pub mod index_create;
 pub mod index_delete;
 pub mod index_exists;
 pub mod index_open;
+
+#[doc(inline)]
 pub use self::{
     index_close::IndexCloseRequestBuilder,
     index_create::IndexCreateRequestBuilder,
@@ -73,6 +105,8 @@ pub use self::{
 // Misc requests
 pub mod bulk;
 pub mod ping;
+
+#[doc(inline)]
 pub use self::{
     bulk::BulkRequestBuilder,
     ping::PingRequestBuilder,

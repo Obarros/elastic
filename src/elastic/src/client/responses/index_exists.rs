@@ -2,16 +2,15 @@
 Response types for an [index exists request](https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-exists.html).
 */
 
-use super::{
-    error::*,
-    parsing::{
-        HttpResponseHead,
-        IsOk,
-        MaybeOkResponse,
-        ResponseBody,
-        Unbuffered,
-    },
+use crate::client::receiver::{
+    HttpResponseHead,
+    IsOk,
+    MaybeOkResponse,
+    ParseError,
+    ResponseBody,
+    Unbuffered,
 };
+
 use crate::http::StatusCode;
 
 /** Response for an [index exists request](https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-exists.html). */

@@ -2,7 +2,7 @@
 Response types for a [sql request](https://www.elastic.co/guide/en/elasticsearch/reference/current/sql-rest.html)
 */
 
-use super::parsing::IsOkOnSuccess;
+use crate::client::receiver::IsOkOnSuccess;
 use serde_json::Value;
 
 /** Response for a [sql request][sql-request]. */

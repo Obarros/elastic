@@ -28,7 +28,7 @@ This will produce the following mapping:
 
 ```
 # #[macro_use]
-# extern crate json_str;
+# extern crate json;
 # #[macro_use]
 # extern crate elastic_types;
 # extern crate serde;
@@ -44,7 +44,7 @@ This will produce the following mapping:
 #   }
 # }
 # fn main() {
-# let json = json_str!(
+# let json = json!(
 {
     "type": "integer",
     "null_value": 42
@@ -495,9 +495,9 @@ mod tests {
 
     #[test]
     fn serialise_mapping_integer_default() {
-        let ser = serde_json::to_string(&field::serialize(DefaultIntegerMapping)).unwrap();
+        let ser = serde_json::to_value(&field::serialize(DefaultIntegerMapping)).unwrap();
 
-        let expected = json_str!({
+        let expected = json!({
             "type": "integer"
         });
 
@@ -506,9 +506,9 @@ mod tests {
 
     #[test]
     fn serialise_mapping_integer_custom() {
-        let ser = serde_json::to_string(&field::serialize(MyIntegerMapping)).unwrap();
+        let ser = serde_json::to_value(&field::serialize(MyIntegerMapping)).unwrap();
 
-        let expected = json_str!({
+        let expected = json!({
             "type": "integer",
             "coerce": true,
             "boost": 1.1,
@@ -524,9 +524,9 @@ mod tests {
 
     #[test]
     fn serialise_mapping_long_default() {
-        let ser = serde_json::to_string(&field::serialize(DefaultLongMapping)).unwrap();
+        let ser = serde_json::to_value(&field::serialize(DefaultLongMapping)).unwrap();
 
-        let expected = json_str!({
+        let expected = json!({
             "type": "long"
         });
 
@@ -535,9 +535,9 @@ mod tests {
 
     #[test]
     fn serialise_mapping_long_custom() {
-        let ser = serde_json::to_string(&field::serialize(MyLongMapping)).unwrap();
+        let ser = serde_json::to_value(&field::serialize(MyLongMapping)).unwrap();
 
-        let expected = json_str!({
+        let expected = json!({
             "type": "long",
             "coerce": true,
             "boost": 1.1,
@@ -553,9 +553,9 @@ mod tests {
 
     #[test]
     fn serialise_mapping_short_default() {
-        let ser = serde_json::to_string(&field::serialize(DefaultShortMapping)).unwrap();
+        let ser = serde_json::to_value(&field::serialize(DefaultShortMapping)).unwrap();
 
-        let expected = json_str!({
+        let expected = json!({
             "type": "short"
         });
 
@@ -564,9 +564,9 @@ mod tests {
 
     #[test]
     fn serialise_mapping_short_custom() {
-        let ser = serde_json::to_string(&field::serialize(MyShortMapping)).unwrap();
+        let ser = serde_json::to_value(&field::serialize(MyShortMapping)).unwrap();
 
-        let expected = json_str!({
+        let expected = json!({
             "type": "short",
             "coerce": true,
             "boost": 1.1,
@@ -582,9 +582,9 @@ mod tests {
 
     #[test]
     fn serialise_mapping_byte_default() {
-        let ser = serde_json::to_string(&field::serialize(DefaultByteMapping)).unwrap();
+        let ser = serde_json::to_value(&field::serialize(DefaultByteMapping)).unwrap();
 
-        let expected = json_str!({
+        let expected = json!({
             "type": "byte"
         });
 
@@ -593,9 +593,9 @@ mod tests {
 
     #[test]
     fn serialise_mapping_byte_custom() {
-        let ser = serde_json::to_string(&field::serialize(MyByteMapping)).unwrap();
+        let ser = serde_json::to_value(&field::serialize(MyByteMapping)).unwrap();
 
-        let expected = json_str!({
+        let expected = json!({
             "type": "byte",
             "coerce": true,
             "boost": 1.1,
@@ -611,9 +611,9 @@ mod tests {
 
     #[test]
     fn serialise_mapping_double_default() {
-        let ser = serde_json::to_string(&field::serialize(DefaultDoubleMapping)).unwrap();
+        let ser = serde_json::to_value(&field::serialize(DefaultDoubleMapping)).unwrap();
 
-        let expected = json_str!({
+        let expected = json!({
             "type": "double"
         });
 
@@ -622,9 +622,9 @@ mod tests {
 
     #[test]
     fn serialise_mapping_double_custom() {
-        let ser = serde_json::to_string(&field::serialize(MyDoubleMapping)).unwrap();
+        let ser = serde_json::to_value(&field::serialize(MyDoubleMapping)).unwrap();
 
-        let expected = json_str!({
+        let expected = json!({
             "type": "double",
             "coerce": true,
             "boost": 1.1,
@@ -640,9 +640,9 @@ mod tests {
 
     #[test]
     fn serialise_mapping_float_default() {
-        let ser = serde_json::to_string(&field::serialize(DefaultFloatMapping)).unwrap();
+        let ser = serde_json::to_value(&field::serialize(DefaultFloatMapping)).unwrap();
 
-        let expected = json_str!({
+        let expected = json!({
             "type": "float"
         });
 
@@ -651,9 +651,9 @@ mod tests {
 
     #[test]
     fn serialise_mapping_float_custom() {
-        let ser = serde_json::to_string(&field::serialize(MyFloatMapping)).unwrap();
+        let ser = serde_json::to_value(&field::serialize(MyFloatMapping)).unwrap();
 
-        let expected = json_str!({
+        let expected = json!({
             "type": "float",
             "coerce": true,
             "boost": 1.1,

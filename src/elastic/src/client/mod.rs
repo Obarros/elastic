@@ -555,6 +555,7 @@ For more details see the [`responses`][responses-mod] module.
 [documents-mod]: ../types/documents/index.html
 */
 
+pub mod receiver;
 pub mod requests;
 pub mod responses;
 pub mod sender;

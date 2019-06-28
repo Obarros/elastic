@@ -201,9 +201,9 @@ mod tests {
 
     #[test]
     fn serialise_mapping_default() {
-        let ser = serde_json::to_string(&field::serialize(DefaultBooleanMapping)).unwrap();
+        let ser = serde_json::to_value(&field::serialize(DefaultBooleanMapping)).unwrap();
 
-        let expected = json_str!({
+        let expected = json!({
             "type": "boolean"
         });
 
@@ -212,9 +212,9 @@ mod tests {
 
     #[test]
     fn serialise_mapping_custom() {
-        let ser = serde_json::to_string(&field::serialize(MyBooleanMapping)).unwrap();
+        let ser = serde_json::to_value(&field::serialize(MyBooleanMapping)).unwrap();
 
-        let expected = json_str!({
+        let expected = json!({
             "type": "boolean",
             "boost": 1.01,
             "doc_values": true,
