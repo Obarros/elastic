@@ -49,7 +49,7 @@ impl BooleanFieldType<DefaultBooleanMapping> for MyBooleanField {}
 
 # Links
 
-- [Elasticsearch Doc](https://www.elastic.co/guide/en/elasticsearch/reference/current/boolean.html)
+- [Elasticsearch Doc](https://www.elastic.co/guide/en/elasticsearch/reference/master/boolean.html)
 */
 pub mod mapping;
 

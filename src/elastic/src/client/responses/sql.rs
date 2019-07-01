@@ -1,5 +1,5 @@
 /*!
-Response types for a [sql request](https://www.elastic.co/guide/en/elasticsearch/reference/current/sql-rest.html)
+Response types for a [sql request](https://www.elastic.co/guide/en/elasticsearch/reference/master/sql-rest.html)
 */
 
 use crate::client::receiver::IsOkOnSuccess;

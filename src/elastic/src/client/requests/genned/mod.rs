@@ -1643,7 +1643,7 @@ pub mod endpoints {
         }
     }
     #[derive(Debug, Clone, PartialEq)]
-    #[doc = "`Post: /_delete_by_query/{task_id}/_rethrottle`\n\n[Elasticsearch Documentation](https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-delete-by-query.html)"]
+    #[doc = "`Post: /_delete_by_query/{task_id}/_rethrottle`\n\n[Elasticsearch Documentation](https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-delete-by-query.html)"]
     pub struct DeleteByQueryRethrottleRequest<'a, B> {
         pub url: UrlPath<'a>,
         pub body: B,
@@ -3531,7 +3531,8 @@ pub mod endpoints {
         pub fn url(self) -> UrlPath<'a> {
             match self {
                 IndicesPutMappingUrlParams::Index(ref index) => {
-                    let mut url = String::with_capacity(9usize + index.len());
+                    let mut url = String::with_capacity(10usize + index.len());
+                    url.push_str("/");
                     url.push_str(index.as_ref());
                     url.push_str("/_mapping");
                     UrlPath::from(url)
@@ -3560,7 +3561,7 @@ pub mod endpoints {
         pub body: B,
     }
     impl<'a, B> IndicesPutMappingRequest<'a, B> {
-        #[doc = "Request to: `{index}/_mapping`"]
+        #[doc = "Request to: `/{index}/_mapping`"]
         pub fn for_index<IIndex>(index: IIndex, body: B) -> Self
         where
             IIndex: Into<Index<'a>>,
@@ -4737,7 +4738,7 @@ pub mod endpoints {
         }
     }
     #[derive(Debug, Clone, PartialEq)]
-    #[doc = "`Post: /_msearch/template`\n\n[Elasticsearch Documentation](http://www.elastic.co/guide/en/elasticsearch/reference/current/search-multi-search.html)"]
+    #[doc = "`Post: /_msearch/template`\n\n[Elasticsearch Documentation](http://www.elastic.co/guide/en/elasticsearch/reference/master/search-multi-search.html)"]
     pub struct MsearchTemplateRequest<'a, B> {
         pub url: UrlPath<'a>,
         pub body: B,
@@ -5904,7 +5905,7 @@ pub mod endpoints {
         }
     }
     #[derive(Debug, Clone, PartialEq)]
-    #[doc = "`Post: /_search/template`\n\n[Elasticsearch Documentation](http://www.elastic.co/guide/en/elasticsearch/reference/current/search-template.html)"]
+    #[doc = "`Post: /_search/template`\n\n[Elasticsearch Documentation](http://www.elastic.co/guide/en/elasticsearch/reference/master/search-template.html)"]
     pub struct SearchTemplateRequest<'a, B> {
         pub url: UrlPath<'a>,
         pub body: B,
@@ -6851,7 +6852,7 @@ pub mod endpoints {
         }
     }
     #[derive(Debug, Clone, PartialEq)]
-    #[doc = "`Post: /_update_by_query/{task_id}/_rethrottle`\n\n[Elasticsearch Documentation](https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-update-by-query.html)"]
+    #[doc = "`Post: /_update_by_query/{task_id}/_rethrottle`\n\n[Elasticsearch Documentation](https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-update-by-query.html)"]
     pub struct UpdateByQueryRethrottleRequest<'a, B> {
         pub url: UrlPath<'a>,
         pub body: B,

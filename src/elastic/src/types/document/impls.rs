@@ -103,8 +103,8 @@ A wrapper type for serialising user types.
 
 Serialising `Document` will produce the mapping for the given type,
 suitable as the mapping for
-[Put Mapping](https://www.elastic.co/guide/en/elasticsearch/reference/current/indices-put-mapping.html)
-or [Create Index](https://www.elastic.co/guide/en/elasticsearch/reference/current/indices-create-index.html).
+[Put Mapping](https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-put-mapping.html)
+or [Create Index](https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-create-index.html).
 
 # Examples
 

@@ -27,7 +27,7 @@ use std::{
     str::FromStr,
 };
 
-fn hash_request(request: &mut SyncHttpRequest) -> Result<(), Box<Error + Send + Sync>> {
+fn hash_request(request: &mut SyncHttpRequest) -> Result<(), Box<dyn Error + Send + Sync>> {
     // Read the body into a temporary buffer
     let mut buffered = Vec::new();
     if let Some(ref mut body) = request.body_mut() {

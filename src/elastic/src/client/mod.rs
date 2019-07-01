@@ -478,18 +478,18 @@ future.and_then(|body| {
 `AsyncHttpResponse` implements the async `Stream` trait so you can buffer out the raw response data.
 For more details see the [`responses`][responses-mod] module.
 
-[docs-bulk]: http://www.elastic.co/guide/en/elasticsearch/reference/current/docs-bulk.html
-[docs-search]: http://www.elastic.co/guide/en/elasticsearch/reference/current/search-search.html
-[docs-get]: http://www.elastic.co/guide/en/elasticsearch/reference/current/docs-get.html
-[docs-update]: http://www.elastic.co/guide/en/elasticsearch/reference/current/docs-update.html
-[docs-delete]: http://www.elastic.co/guide/en/elasticsearch/reference/current/docs-delete.html
-[docs-index]: https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-index_.html
-[docs-mapping]: https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping.html
-[docs-create-index]: https://www.elastic.co/guide/en/elasticsearch/reference/current/indices-create-index.html
-[docs-close-index]: https://www.elastic.co/guide/en/elasticsearch/reference/current/indices-open-close.html
-[docs-open-index]: https://www.elastic.co/guide/en/elasticsearch/reference/current/indices-open-close.html
-[docs-index-exists]: https://www.elastic.co/guide/en/elasticsearch/reference/current/indices-exists.html
-[docs-delete-index]: https://www.elastic.co/guide/en/elasticsearch/reference/current/indices-delete-index.html
+[docs-bulk]: http://www.elastic.co/guide/en/elasticsearch/reference/master/docs-bulk.html
+[docs-search]: http://www.elastic.co/guide/en/elasticsearch/reference/master/search-search.html
+[docs-get]: http://www.elastic.co/guide/en/elasticsearch/reference/master/docs-get.html
+[docs-update]: http://www.elastic.co/guide/en/elasticsearch/reference/master/docs-update.html
+[docs-delete]: http://www.elastic.co/guide/en/elasticsearch/reference/master/docs-delete.html
+[docs-index]: https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-index_.html
+[docs-mapping]: https://www.elastic.co/guide/en/elasticsearch/reference/master/mapping.html
+[docs-create-index]: https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-create-index.html
+[docs-close-index]: https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-open-close.html
+[docs-open-index]: https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-open-close.html
+[docs-index-exists]: https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-exists.html
+[docs-delete-index]: https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-delete-index.html
 
 [tokio]: https://tokio.rs
 

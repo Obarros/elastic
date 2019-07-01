@@ -1,6 +1,6 @@
 {
-    "_index": "test-idx",
-    "_type": "test-doc",
+    "_index": "testindex",
+    "_type": "testtype",
     "_id": "1",
     "_version": 5,
     "result": "updated",

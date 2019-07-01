@@ -50,7 +50,7 @@ impl IpFieldType<DefaultIpMapping> for MyIpField {}
 
 # Links
 
-- [Elasticsearch Doc](https://www.elastic.co/guide/en/elasticsearch/reference/current/ip.html)
+- [Elasticsearch Doc](https://www.elastic.co/guide/en/elasticsearch/reference/master/ip.html)
 */
 
 pub mod mapping;

@@ -1,7 +1,7 @@
 /*!
 Builders for [sql queries][sql].
 
-[sql]: https://www.elastic.co/guide/en/elasticsearch/reference/current/sql-rest.html
+[sql]: https://www.elastic.co/guide/en/elasticsearch/reference/master/sql-rest.html
 */
 
 use futures::{
@@ -38,7 +38,7 @@ A [sql query request][sql] builder that can be configured before sending.
 Call [`Client.sql`][Client.sql] to get a `SqlRequestBuilder`.
 The `send` method will either send the request [synchronously][send-sync] or [asynchronously][send-async], depending on the `Client` it was created from.
 
-[sql]: https://www.elastic.co/guide/en/elasticsearch/reference/current/sql-rest.html[docs-delete]: http://www.elastic.co/guide/en/elasticsearch/reference/current/docs-delete.html
+[sql]: https://www.elastic.co/guide/en/elasticsearch/reference/master/sql-rest.html[docs-delete]: http://www.elastic.co/guide/en/elasticsearch/reference/master/docs-delete.html
 [send-sync]: #send-synchronously
 [send-async]: #send-asynchronously
 [Client.sql]: ../../struct.Client.html#sql-request
@@ -97,7 +97,7 @@ where
     [builder-methods]: requests/sql/type.SqlRequestBuilder.html#builder-methods
     [send-sync]: requests/sql/type.SqlRequestBuilder.html#send-synchronously
     [send-async]: requests/sql/type.SqlRequestBuilder.html#send-asynchronously
-    [docs-querystring]: https://www.elastic.co/guide/en/elasticsearch/reference/current/sql-commands.html
+    [docs-querystring]: https://www.elastic.co/guide/en/elasticsearch/reference/master/sql-commands.html
     */
     pub fn sql(&self) -> SqlRequestBuilder<TSender, DefaultBody> {
         RequestBuilder::initial(self.clone(), SqlRequestInner::new(empty_body()))
@@ -136,7 +136,7 @@ where
 
     [send-sync]: requests/sql/type.SqlRequestBuilder.html#send-synchronously
     [send-async]: requests/sql/type.SqlRequestBuilder.html#send-asynchronously
-    [docs-querystring]: https://www.elastic.co/guide/en/elasticsearch/reference/current/sql-commands.html
+    [docs-querystring]: https://www.elastic.co/guide/en/elasticsearch/reference/master/sql-commands.html
     */
     pub fn sql_query(&self, query: &str) -> SqlRequestBuilder<TSender, serde_json::Value> {
         self.sql().query(query)
@@ -228,7 +228,7 @@ where
     ```
 
     [SyncClient]: ../../type.SyncClient.html
-    [docs-querystring]: https://www.elastic.co/guide/en/elasticsearch/reference/current/sql-commands.html
+    [docs-querystring]: https://www.elastic.co/guide/en/elasticsearch/reference/master/sql-commands.html
      */
     pub fn send(self) -> Result<SqlResponse, Error> {
         let req = self.inner.into_request();
@@ -282,7 +282,7 @@ where
     ```
 
     [AsyncClient]: ../../type.AsyncClient.html
-    [docs-querystring]: https://www.elastic.co/guide/en/elasticsearch/reference/current/sql-commands.html
+    [docs-querystring]: https://www.elastic.co/guide/en/elasticsearch/reference/master/sql-commands.html
     */
 
     pub fn send(self) -> Pending {

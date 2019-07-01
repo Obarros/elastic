@@ -1,4 +1,9 @@
+use serde::{
+    Deserialize,
+    Deserializer,
+};
 use serde_json::Value;
+
 use std::{
     collections::BTreeMap,
     fmt,
@@ -123,8 +128,22 @@ impl Default for TypeKind {
     }
 }
 
-#[derive(Debug, PartialEq, Deserialize, Clone)]
-pub struct Path(pub String);
+#[derive(Debug, Deserialize, PartialEq, Clone)]
+pub struct Path(#[serde(deserialize_with = "rooted_path_string")] pub String);
+
+// Ensure all deserialized paths have a leading `/`
+fn rooted_path_string<'de, D>(deserializer: D) -> Result<String, D::Error>
+where
+    D: Deserializer<'de>,
+{
+    let s = String::deserialize(deserializer)?;
+
+    if !s.starts_with('/') {
+        Ok(format!("/{}", s))
+    } else {
+        Ok(s)
+    }
+}
 
 impl fmt::Display for Path {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {

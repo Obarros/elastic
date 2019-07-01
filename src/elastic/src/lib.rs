@@ -264,9 +264,9 @@ This crate glues these libraries together with some simple assumptions about how
 [crates-io]: https://crates.io/crates/elastic
 [github]: https://github.com/elastic-rs/elastic
 
-[docs-root]: https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html
-[docs-mapping]: https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping.html
-[docs-search]: http://www.elastic.co/guide/en/elasticsearch/reference/current/search-search.html
+[docs-root]: https://www.elastic.co/guide/en/elasticsearch/reference/master/index.html
+[docs-mapping]: https://www.elastic.co/guide/en/elasticsearch/reference/master/mapping.html
+[docs-search]: http://www.elastic.co/guide/en/elasticsearch/reference/master/search-search.html
 
 [SyncClient]: client/type.SyncClient.html
 [SyncClientBuilder]: client/struct.SyncClientBuilder.html

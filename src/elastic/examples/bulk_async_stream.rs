@@ -63,7 +63,7 @@ fn run() -> Result<(), Box<dyn Error>> {
         Ok(())
     });
 
-    tokio::executor::current_thread::block_on_all(req_future.join(res_future))?;
+    let _ = tokio::executor::current_thread::block_on_all(req_future.join(res_future))?;
 
     Ok(())
 }

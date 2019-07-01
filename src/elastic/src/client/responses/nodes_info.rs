@@ -7,35 +7,76 @@ use serde::de::{
     MapAccess,
     Visitor,
 };
-use std::fmt;
 
 use std::{
+    fmt,
     iter::IntoIterator,
+    slice::Iter,
     vec::IntoIter,
 };
 
+/** Response for a [nodes info request](http://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-nodes-info.html). */
 #[derive(Debug, PartialEq, Deserialize)]
 pub struct NodesInfoResponse {
     #[serde(deserialize_with = "deserialize_nodes")]
-    pub nodes: Vec<SniffedNode>,
+    nodes: Vec<SniffedNode>,
 }
 
 #[derive(Debug, PartialEq, Deserialize)]
-pub struct SniffedNode {
-    pub http: Option<SniffedNodeHttp>,
+struct SniffedNode {
+    http: Option<SniffedNodeHttp>,
 }
 
 #[derive(Debug, PartialEq, Deserialize)]
-pub struct SniffedNodeHttp {
-    pub publish_address: Option<String>,
+struct SniffedNodeHttp {
+    publish_address: Option<String>,
 }
 
-impl IntoIterator for NodesInfoResponse {
-    type Item = SniffedNode;
-    type IntoIter = IntoIter<SniffedNode>;
+impl NodesInfoResponse {
+    /** Iterate over borrowed publish addresses in the cluster. */
+    pub fn iter_addrs(&self) -> IterAddrs {
+        IterAddrs(self.nodes.iter())
+    }
 
-    fn into_iter(self) -> Self::IntoIter {
-        self.nodes.into_iter()
+    /** Iterate over owned publish addresses in the cluster. */
+    pub fn into_iter_addrs(self) -> IntoIterAddrs {
+        IntoIterAddrs(self.nodes.into_iter())
+    }
+}
+
+pub struct IterAddrs<'a>(Iter<'a, SniffedNode>);
+
+impl<'a> Iterator for IterAddrs<'a> {
+    type Item = &'a str;
+
+    fn next(&mut self) -> Option<Self::Item> {
+        while let Some(node) = self.0.next() {
+            if let Some(addr) = node
+                .http
+                .as_ref()
+                .and_then(|http| http.publish_address.as_ref())
+            {
+                return Some(addr);
+            }
+        }
+
+        None
+    }
+}
+
+pub struct IntoIterAddrs(IntoIter<SniffedNode>);
+
+impl Iterator for IntoIterAddrs {
+    type Item = String;
+
+    fn next(&mut self) -> Option<Self::Item> {
+        while let Some(node) = self.0.next() {
+            if let Some(addr) = node.http.and_then(|http| http.publish_address) {
+                return Some(addr);
+            }
+        }
+
+        None
     }
 }
 
@@ -84,62 +125,4 @@ where
     let nodes = SniffedNodeSet::deserialize(deserializer)?;
 
     Ok(nodes.0)
-}
-
-#[cfg(test)]
-mod tests {
-    use super::*;
-    use serde_json;
-
-    #[test]
-    fn deserialise_nodes() {
-        let nodes = json!({
-            "nodes": {
-                "node1": {
-                    "http": {
-                        "publish_address": "1.1.1.1:9200"
-                    }
-                },
-                "node2": {
-                    "http": {
-                        "publish_address": "1.1.1.2:9200"
-                    }
-                }
-            }
-        })
-        .to_string();
-
-        let expected = NodesInfoResponse {
-            nodes: vec![
-                SniffedNode {
-                    http: Some(SniffedNodeHttp {
-                        publish_address: Some("1.1.1.1:9200".to_owned()),
-                    }),
-                },
-                SniffedNode {
-                    http: Some(SniffedNodeHttp {
-                        publish_address: Some("1.1.1.2:9200".to_owned()),
-                    }),
-                },
-            ],
-        };
-
-        let actual: NodesInfoResponse = serde_json::from_str(&nodes).unwrap();
-
-        assert_eq!(expected, actual);
-    }
-
-    #[test]
-    fn deserialise_nodes_empty() {
-        let nodes = json!({
-            "nodes": { }
-        })
-        .to_string();
-
-        let expected = NodesInfoResponse { nodes: vec![] };
-
-        let actual: NodesInfoResponse = serde_json::from_str(&nodes).unwrap();
-
-        assert_eq!(expected, actual);
-    }
 }

@@ -58,7 +58,7 @@ impl GeoPointFieldType<DefaultGeoPointMapping<GeoPointObject>> for MyGeoPointFie
 
 # Links
 
-- [Elasticsearch Doc](https://www.elastic.co/guide/en/elasticsearch/reference/current/geo-point.html)
+- [Elasticsearch Doc](https://www.elastic.co/guide/en/elasticsearch/reference/master/geo-point.html)
 */
 
 use geo::{

@@ -116,7 +116,7 @@ impl DateFormat for Rfc3339Format {
 ```
 
 # Links
-- [Elasticsearch Doc](https://www.elastic.co/guide/en/elasticsearch/reference/current/date.html)
+- [Elasticsearch Doc](https://www.elastic.co/guide/en/elasticsearch/reference/master/date.html)
 */
 
 pub mod mapping;

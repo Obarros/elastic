@@ -120,8 +120,8 @@ in a `GetResponse`.
 
 [elastic-reqwest]: https://github.com/elastic-rs/elastic-reqwest/
 [crates-io]: https://crates.io/crates/elastic_responses
-[query-dsl]: https://www.elastic.co/guide/en/elasticsearch/reference/current/search.html
-[get-document]: https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-get.html
+[query-dsl]: https://www.elastic.co/guide/en/elasticsearch/reference/master/search.html
+[get-document]: https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-get.html
 [parse]: parsing/fn.parse.html
 */
 

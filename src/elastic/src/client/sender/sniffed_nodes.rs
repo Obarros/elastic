@@ -75,7 +75,7 @@ The base url for the node is obtained by the `http.publish_address` field on a [
 Nodes are refreshed on the next request after the specified timeout.
 If updating the nodes fails for some reason then the request itself will also fail.
 
-[node info request]: https://www.elastic.co/guide/en/elasticsearch/reference/current/cluster-nodes-info.html
+[node info request]: https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-nodes-info.html
 */
 #[derive(Clone)]
 pub struct SniffedNodes<TSender> {
@@ -328,15 +328,8 @@ impl SniffedNodesInner {
         scheme: &str,
     ) -> Result<RequestParams, Error> {
         let nodes: Vec<_> = parsed
-            .into_iter()
-            .filter_map(|node| {
-                node.http
-                    .and_then(|http| http.publish_address)
-                    .map(|publish_address| {
-                        // NOTE: Nasty hack to include the correct scheme since `publish_address` is a `host:port`
-                        format!("{}://{}", scheme, publish_address).into()
-                    })
-            })
+            .into_iter_addrs()
+            .map(|publish_address| format!("{}://{}", scheme, publish_address).into())
             .collect();
 
         self.nodes.set(nodes)?;
@@ -373,39 +366,37 @@ impl NextParams for SniffedNodes<SyncSender> {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use crate::client::responses::nodes_info::{
-        SniffedNode,
-        SniffedNodeHttp,
-    };
     use futures::Future;
+    use serde_json;
 
     fn sender() -> SniffedNodes<()> {
         SniffedNodesBuilder::new(initial_address()).build(PreRequestParams::default(), ())
     }
 
     fn expected_nodes() -> NodesInfoResponse {
-        NodesInfoResponse {
-            nodes: publish_addresses()
-                .into_iter()
-                .map(|address| SniffedNode {
-                    http: Some(SniffedNodeHttp {
-                        publish_address: Some(address.to_owned()),
-                    }),
-                })
-                .collect(),
-        }
+        serde_json::from_value(json!({
+            "nodes": {
+                "node1": {
+                    "http": {
+                        "publish_address": "a:9200"
+                    }
+                },
+                "node2": {
+                    "http": {
+                        "publish_address": "127.0.0.1:9200"
+                    }
+                }
+            }
+        }))
+        .unwrap()
     }
 
     fn empty_nodes() -> NodesInfoResponse {
-        NodesInfoResponse { nodes: vec![] }
+        serde_json::from_value(json!({ "nodes": { } })).unwrap()
     }
 
     fn initial_address() -> &'static str {
         "http://initial:9200"
-    }
-
-    fn publish_addresses() -> Vec<&'static str> {
-        vec!["a:9200", "127.0.0.1:9200"]
     }
 
     fn expected_addresses() -> Vec<&'static str> {
