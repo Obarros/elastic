@@ -7,7 +7,6 @@ The API is targeting the Elastic Stack `7.x`.
 
 Quick reference:
 
-- [crates](#crates)
 - [simple examples](https://github.com/elastic-rs/elastic/tree/master/src/elastic/examples)
 - [example apps](https://github.com/elastic-rs/elastic/tree/master/examples)
 

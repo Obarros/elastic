@@ -2,7 +2,6 @@
 Response type parsing.
 */
 
-use crate::http::StatusCode;
 use serde::de::DeserializeOwned;
 use serde_json::{
     self,
@@ -17,6 +16,9 @@ use std::{
 };
 
 use super::error::*;
+
+#[doc(inline)]
+pub use crate::http::StatusCode;
 
 /** A parser that separates taking a response type from the readable body type. */
 pub struct Parse<T> {
@@ -39,11 +41,8 @@ but provide the concrete response type in cases it can't be inferred.
 Provide an explicit response type in the `parse` function:
 
 ```no_run
-# #[macro_use] extern crate serde_json;
-# extern crate elastic_responses;
-# use serde_json::*;
-# use crate::client::responses::*;
-# use crate::client::responses::error::*;
+# use serde_json::Value;
+# use elastic::client::receiver::parse;
 # fn do_request() -> (StatusCode, Vec<u8>) { unimplemented!() }
 # fn main() {
 # let (response_status, response_body) = do_request();
@@ -54,11 +53,8 @@ let get_response = parse::<GetResponse<Value>>().from_slice(response_status, res
 Provide an explicit response type on the result ident:
 
 ```no_run
-# #[macro_use] extern crate serde_json;
-# extern crate elastic_responses;
 # use serde_json::Value;
-# use crate::client::responses::*;
-# use crate::client::responses::error::*;
+# use elastic::client::receiver::parse;
 # fn do_request() -> (StatusCode, Vec<u8>) { unimplemented!() }
 # fn main() {
 # let (response_status, response_body) = do_request();
@@ -69,11 +65,8 @@ let get_response: Result<GetResponse<Value>, ParseError> = parse().from_slice(re
 If Rust can infer the concrete response type then you can avoid specifying it at all:
 
 ```no_run
-# #[macro_use] extern crate serde_json;
-# extern crate elastic_responses;
 # use serde_json::Value;
-# use crate::client::responses::*;
-# use crate::client::responses::error::*;
+# use elastic::client::receiver::parse;
 # fn do_request() -> (StatusCode, Vec<u8>) { unimplemented!() }
 # fn main() {
 # fn parse_response() -> Result<GetResponse<Value>, ParseError> {
@@ -262,10 +255,7 @@ Implement `IsOk` for a custom response type, where a http `404` might still cont
 
 ```
 # #[macro_use] extern crate serde_derive;
-# extern crate elastic_responses;
-# use crate::client::responses::*;
-# use crate::client::responses::parsing::*;
-# use crate::client::responses::error::*;
+# use elastic::client::receiver::{parse, IsOk, StatusCode, ResponseBody, HttpResponseHead, Unbuffered, MaybeOkResponse, ParseError};
 # fn main() {}
 # #[derive(Deserialize)]
 # struct MyResponse;

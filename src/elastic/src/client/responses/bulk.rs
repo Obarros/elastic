@@ -42,8 +42,7 @@ The `is_ok` and `is_err` methods on `BulkResponse` make it easier to assert ther
 Send a bulk request and iterate through the results:
 
 ```no_run
-# extern crate elastic_responses;
-# use crate::client::responses::*;
+# use elastic::prelude::*;
 # fn do_request() -> BulkResponse { unimplemented!() }
 # fn main() {
 let response: BulkResponse = do_request();
@@ -72,8 +71,7 @@ for item in response {
 Use `iter` to iterate over individual items without taking ownership of them:
 
 ```no_run
-# extern crate elastic_responses;
-# use crate::client::responses::*;
+# use elastic::prelude::*;
 # fn do_request() -> BulkResponse { unimplemented!() }
 # fn main() {
 let response: BulkResponse = do_request();
@@ -105,8 +103,7 @@ and an index called `myindex`:
 ```no_run
 # #[macro_use] extern crate serde_derive;
 # #[macro_use] extern crate serde_json;
-# extern crate elastic_responses;
-# use crate::client::responses::*;
+# use elastic::prelude::*;
 # fn main() {
 # fn do_request() -> BulkResponse<Index, Type> { unimplemented!() }
 #[derive(Deserialize)]
@@ -138,7 +135,7 @@ If you need to accept a `BulkResponse` as a function argument, you should specif
 Otherwise the function will only accept a default `BulkResponse`:
 
 ```
-# use crate::client::responses::*;
+# use elastic::prelude::*;
 // Do: Supports any BulkResponse
 fn takes_any_response<TIndex, TType, TId>(res: BulkResponse<TIndex, TType, TId>) {
 
@@ -194,8 +191,7 @@ impl<TIndex, TType, TId> BulkResponse<TIndex, TType, TId> {
     Iterate through the individual items in a `BulkResponse`:
 
     ```no_run
-    # extern crate elastic_responses;
-    # use crate::client::responses::*;
+    # use elastic::prelude::*;
     # fn do_request() -> BulkResponse { unimplemented!() }
     # fn main() {
     let response: BulkResponse = do_request();
@@ -264,9 +260,8 @@ Individual bulk items are [`ErrorItem`](struct.ErrorItem.html) and can be iterat
 Send a bulk request and iterate through the errors:
 
 ```no_run
-# extern crate elastic_responses;
-# use crate::client::responses::*;
-# use crate::client::responses::bulk::Action;
+# use elastic::prelude::*;
+# use elastic::client::responses::bulk::Action;
 # fn do_request() -> BulkErrorsResponse { unimplemented!() }
 # fn main() {
 let response: BulkErrorsResponse = do_request();
@@ -284,8 +279,7 @@ for item in response {
 Use `iter` to iterate over individual errors without taking ownership of them:
 
 ```no_run
-# extern crate elastic_responses;
-# use crate::client::responses::*;
+# use elastic::prelude::*;
 # fn do_request() -> BulkErrorsResponse { unimplemented!() }
 # fn main() {
 let response: BulkErrorsResponse = do_request();
@@ -307,7 +301,7 @@ If you need to accept a `BulkErrorsResponse` as a function argument, you should 
 Otherwise the function will only accept a default `BulkErrorsResponse`:
 
 ```
-# use crate::client::responses::*;
+# use elastic::prelude::*;
 // Do: Supports any BulkErrorsResponse
 fn takes_any_response<TIndex, TType, TId>(res: BulkErrorsResponse<TIndex, TType, TId>) {
 
@@ -391,8 +385,7 @@ impl<TIndex, TType, TId> BulkErrorsResponse<TIndex, TType, TId> {
     Iterate through the individual items in a `BulkErrorsResponse`:
 
     ```no_run
-    # extern crate elastic_responses;
-    # use crate::client::responses::*;
+    # use elastic::prelude::*;
     # fn do_request() -> BulkErrorsResponse { unimplemented!() }
     # fn main() {
     let response: BulkErrorsResponse = do_request();

@@ -43,8 +43,8 @@ Aggregations currently have the following limitations:
 Iterate over the hits in a search response:
 
 ```no_run
-# extern crate elastic_responses;
-# use crate::client::responses::{SearchResponse, Value};
+# use serde_json::Value;
+# use elastic::prelude::*;
 # fn do_request() -> SearchResponse<Value> { unimplemented!() }
 # fn main() {
 let response: SearchResponse<Value> = do_request();
