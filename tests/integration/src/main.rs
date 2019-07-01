@@ -6,21 +6,14 @@ They should ensure that `elastic` behaves as expected when making requests, inde
 They should also provide a way to inspect how the client behaves under load and where memory is being allocated.
 */
 
-extern crate clap;
-extern crate elastic;
+#![allow(non_upper_case_globals)]
+
 #[macro_use]
 extern crate elastic_derive;
-extern crate env_logger;
-extern crate futures;
-extern crate serde;
 #[macro_use]
 extern crate serde_derive;
 #[macro_use]
 extern crate serde_json;
-extern crate term_painter;
-extern crate tokio;
-extern crate tokio_threadpool;
-extern crate tokio_timer;
 
 use clap::{
     App,
@@ -32,14 +25,10 @@ use term_painter::{
     ToStyle,
 };
 
+mod tests;
 mod build_client;
 mod build_container;
-mod bulk;
-mod document;
-mod index;
 mod run_tests;
-mod search;
-mod sql;
 mod wait_until_ready;
 
 fn main() {

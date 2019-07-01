@@ -32,7 +32,7 @@ impl Names {
 
 pub fn start(run: &str) -> Result<(), Box<dyn Error>> {
     let names = Names::from_run(run);
-    let containers_path = "tests/run/containers";
+    let containers_path = "tests/integration/containers";
 
     let mut dockerfile_path = PathBuf::from(containers_path);
     dockerfile_path.push(&names.dockerfile_name);

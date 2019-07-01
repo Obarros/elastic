@@ -20,11 +20,11 @@ use term_painter::{
 pub type TestResult = bool;
 pub type Test = Box<dyn Fn(AsyncClient) -> Box<dyn Future<Item = TestResult, Error = ()>>>;
 
-pub trait IntegrationTest: Debug {
-    type Response: Debug;
+pub trait IntegrationTest {
+    const kind: &'static str;
+    const description: &'static str;
 
-    fn kind() -> &'static str;
-    fn name() -> &'static str;
+    type Response: Debug;
 
     /// Pre-test preparation.
     fn prepare(&self, client: AsyncClient) -> Box<dyn Future<Item = (), Error = Error>>;
@@ -56,7 +56,7 @@ pub fn test<T>(client: AsyncClient, test: T) -> Box<dyn Future<Item = TestResult
 where
     T: IntegrationTest + Send + 'static,
 {
-    let prefix = format!("{}: {} (`{:?}`):", T::kind(), T::name(), test);
+    let prefix = format!("{} ({}):", T::kind, T::description);
 
     let prep_failed = format!("{} prepare failed:", prefix);
     let assert_ok_failed = format!("{} unexpected response:", prefix);
@@ -104,24 +104,10 @@ fn call_future(
     client: AsyncClient,
     max_concurrent_tests: usize,
 ) -> Box<dyn Future<Item = Vec<TestResult>, Error = ()>> {
-    use bulk;
-    use document;
-    use index;
-    use search;
-    use sql;
+    
+    let all_tests = crate::tests::all().into_iter().map(move |t| t(client.clone()));
 
-    let document_tests = document::tests().into_iter();
-    let search_tests = search::tests().into_iter();
-    let index_tests = index::tests().into_iter();
-    let bulk_tests = bulk::tests().into_iter();
-    let sql_tests = sql::tests().into_iter();
-
-    let all_tests = document_tests
-        .chain(search_tests)
-        .chain(index_tests)
-        .chain(bulk_tests)
-        .chain(sql_tests)
-        .map(move |t| t(client.clone()));
+    println!("Running {} tests", all_tests.len());
 
     let test_stream = stream::futures_unordered(all_tests)
         .map(|r| Ok(r))
