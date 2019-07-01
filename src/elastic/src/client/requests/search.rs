@@ -219,8 +219,8 @@ where
     where
         TDocument: DeserializeOwned + DocumentType,
     {
-        let index = TDocument::partial_static_index().map(|idx| Index::from(idx));
-        let ty = TDocument::partial_static_ty().map(|ty| Type::from(ty));
+        let index = TDocument::partial_static_index().map(|idx| idx.to_owned());
+        let ty = TDocument::partial_static_ty().map(|ty| ty.to_owned());
 
         RequestBuilder::initial(
             self.inner,

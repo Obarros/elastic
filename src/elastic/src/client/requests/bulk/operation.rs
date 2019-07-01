@@ -199,9 +199,9 @@ where
         BulkOperation {
             action: Action::Index,
             header: BulkHeader {
-                index: Some(doc.index()),
-                ty: Some(doc.ty()),
-                id: doc.partial_id(),
+                index: Some(doc.index().to_owned()),
+                ty: Some(doc.ty().to_owned()),
+                id: doc.partial_id().map(|id| id.to_owned()),
             },
             inner: Some(doc),
         }
@@ -211,9 +211,9 @@ where
         BulkOperation {
             action: Action::Update,
             header: BulkHeader {
-                index: Some(doc.index()),
-                ty: Some(doc.ty()),
-                id: doc.partial_id(),
+                index: Some(doc.index().to_owned()),
+                ty: Some(doc.ty().to_owned()),
+                id: doc.partial_id().map(|id| id.to_owned()),
             },
             inner: Some(Doc::value(doc)),
         }
@@ -266,9 +266,9 @@ where
         BulkOperation {
             action: Action::Create,
             header: BulkHeader {
-                index: Some(doc.index()),
-                ty: Some(doc.ty()),
-                id: doc.partial_id(),
+                index: Some(doc.index().to_owned()),
+                ty: Some(doc.ty().to_owned()),
+                id: doc.partial_id().map(|id| id.to_owned()),
             },
             inner: Some(doc),
         }

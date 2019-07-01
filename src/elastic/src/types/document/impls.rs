@@ -552,17 +552,17 @@ mod tests {
 
     #[test]
     fn get_default_type_index() {
-        assert_eq!("simpletype", SimpleType::static_index());
+        assert_eq!("simpletype", SimpleType::static_index().as_ref());
     }
 
     #[test]
     fn get_custom_type_index() {
-        assert_eq!("renamed_index", CustomType::static_index());
+        assert_eq!("renamed_index", CustomType::static_index().as_ref());
     }
 
     #[test]
     fn get_default_type() {
-        assert_eq!("_doc", SimpleType::static_ty());
+        assert_eq!("_doc", SimpleType::static_ty().as_ref());
     }
 
     #[test]

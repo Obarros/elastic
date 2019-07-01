@@ -45,8 +45,6 @@ fn main() {
     let mut params_to_emit = BTreeMap::new();
     params_to_emit.insert(String::from("vertices"), false);
 
-    let derives = quote!(#[derive(Debug, PartialEq, Clone)]);
-
     let mut tokens = quote::Tokens::new();
 
     let mut endpoints = from_dir(dir)
@@ -63,21 +61,15 @@ fn main() {
     let http_mod_name = "http";
 
     build_mod("endpoints", &mut tokens, |ref mut tokens| {
-        endpoints_mod(
-            tokens,
-            derives.clone(),
-            http_mod_name,
-            endpoints,
-            &mut params_to_emit,
-        )
+        endpoints_mod(tokens, http_mod_name, endpoints, &mut params_to_emit)
     });
 
     build_mod(http_mod_name, &mut tokens, |ref mut tokens| {
-        http_mod(tokens, derives.clone())
+        http_mod(tokens)
     });
 
     build_mod("params", &mut tokens, |ref mut tokens| {
-        params_mod(tokens, derives.clone(), params_to_emit)
+        params_mod(tokens, params_to_emit)
     });
 
     end_comment_block_for_logging();
@@ -201,7 +193,6 @@ impl CustomEndpoints for Vec<(String, Endpoint)> {
 
 fn endpoints_mod(
     tokens: &mut Tokens,
-    derives: Tokens,
     http_mod: &'static str,
     endpoints: Vec<(String, Endpoint)>,
     params_to_emit: &mut BTreeMap<String, bool>,
@@ -238,10 +229,8 @@ fn endpoints_mod(
                 .build();
 
         tokens.append_all(vec![
-            derives.clone(),
             quote!(#url_params_item),
             quote!(#url_method_item),
-            derives.clone(),
             quote!(#req_params_item),
             quote!(#req_ctors_item),
             quote!(#req_into_http_item),
@@ -249,7 +238,7 @@ fn endpoints_mod(
     }
 }
 
-fn http_mod(tokens: &mut Tokens, derives: Tokens) {
+fn http_mod(tokens: &mut Tokens) {
     let url_tokens = gen::types::url::tokens();
 
     let body_tokens = gen::types::body::tokens();
@@ -267,21 +256,10 @@ fn http_mod(tokens: &mut Tokens, derives: Tokens) {
 
     tokens.append("\n\n");
 
-    tokens.append_all(vec![
-        derives.clone(),
-        url_tokens,
-        derives.clone(),
-        http_req_item,
-        body_tokens,
-    ]);
+    tokens.append_all(vec![url_tokens, http_req_item, body_tokens]);
 }
 
-fn params_mod(tokens: &mut Tokens, derives: Tokens, params_to_emit: BTreeMap<String, bool>) {
-    let uses = quote!(
-        use std::borrow::Cow;
-    );
-
-    tokens.append(uses.to_string());
+fn params_mod(tokens: &mut Tokens, params_to_emit: BTreeMap<String, bool>) {
     tokens.append("\n\n");
 
     tokens.append(r#"include!("genned.params.rs");"#);
@@ -292,7 +270,7 @@ fn params_mod(tokens: &mut Tokens, derives: Tokens, params_to_emit: BTreeMap<Str
     for (ty, _) in params_to_emit {
         let ty_item = gen::types::wrapped_ty::item(ty);
 
-        tokens.append_all(vec![derives.clone(), quote!(#ty_item)]);
+        tokens.append(quote!(#ty_item));
 
         tokens.append("\n\n");
     }

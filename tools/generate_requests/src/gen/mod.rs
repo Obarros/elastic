@@ -27,6 +27,7 @@ pub mod types {
 
             quote!(
                 /// A wrapper around an owned or borrowed url path.
+                #[derive(Debug, Clone, PartialEq, Eq, Hash)]
                 pub struct #url(Cow<'a, str>);
 
                 impl <'a> From<&'a str> for #url {
@@ -127,6 +128,7 @@ pub mod types {
 
             quote!(
                 /// A general request type that all endpoints can be converted into.
+                #[derive(Debug, Clone, PartialEq)]
                 pub struct #request_ty<'a, #body_ty> {
                     pub url: #url_ty,
                     pub method: #method_ty,
@@ -151,27 +153,58 @@ pub mod types {
             let ty_fn = helpers::ident(ty_fn);
 
             quote!(
-                pub struct #ty(pub Cow<'a, str>);
+                #[derive(Debug, Clone, PartialEq, Eq, Hash)]
+                pub struct #ty(pub ::std::borrow::Cow<'a, str>);
 
                 pub fn #ty_fn<'a, I>(value: I) -> #ty where I: Into<#ty> {
                     value.into()
                 }
 
+                impl<'a> #ty {
+                    pub fn to_owned(&self) -> #ident<'static> {
+                        #ident(::std::borrow::Cow::Owned(match self.0 {
+                            ::std::borrow::Cow::Owned(ref value) => value.clone(),
+                            ::std::borrow::Cow::Borrowed(value) => value.to_owned(),
+                        }))
+                    }
+                }
+
+                impl <'a> ::std::fmt::Display for #ty {
+                    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                        match self.0 {
+                            ::std::borrow::Cow::Owned(ref value) => ::std::fmt::Display::fmt(value, f),
+                            ::std::borrow::Cow::Borrowed(value) => ::std::fmt::Display::fmt(value, f),
+                        }
+                    }
+                }
+
                 impl <'a> From<&'a str> for #ty {
                     fn from(value: &'a str) -> #ty {
-                        #ident(Cow::Borrowed(value))
+                        #ident(::std::borrow::Cow::Borrowed(value))
                     }
                 }
 
                 impl <'a> From<String> for #ty {
                     fn from(value: String) -> #ty {
-                        #ident(Cow::Owned(value))
+                        #ident(::std::borrow::Cow::Owned(value))
                     }
                 }
 
-                impl <'a> From<#ty> for Cow<'a, str> {
-                    fn from(value: #ty) -> Cow<'a, str> {
+                impl <'a> From<&'a String> for #ty {
+                    fn from(value: &'a String) -> #ty {
+                        #ident(::std::borrow::Cow::Borrowed(&**value))
+                    }
+                }
+
+                impl <'a> From<#ty> for ::std::borrow::Cow<'a, str> {
+                    fn from(value: #ty) -> ::std::borrow::Cow<'a, str> {
                         value.0
+                    }
+                }
+
+                impl <'a> From<#ty> for String {
+                    fn from(value: #ty) -> String {
+                        value.0.into_owned()
                     }
                 }
 
@@ -207,8 +240,8 @@ pub mod helpers {
     }
 
     /// Build a literal
-    pub fn lit(lit: String) -> syn::Lit {
-        syn::Lit::Str(lit, syn::StrStyle::Cooked)
+    pub fn lit<I: Into<String>>(lit: I) -> syn::Lit {
+        syn::Lit::Str(lit.into(), syn::StrStyle::Cooked)
     }
 
     /// A standard `'a` lifetime.

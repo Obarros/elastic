@@ -5,13 +5,20 @@ Response types for a [get document request](https://www.elastic.co/guide/en/elas
 use crate::http::StatusCode;
 use serde::de::DeserializeOwned;
 
-use crate::client::receiver::{
-    HttpResponseHead,
-    IsOk,
-    MaybeOkResponse,
-    ParseError,
-    ResponseBody,
-    Unbuffered,
+use crate::client::{
+    receiver::{
+        HttpResponseHead,
+        IsOk,
+        MaybeOkResponse,
+        ParseError,
+        ResponseBody,
+        Unbuffered,
+    },
+    requests::params::{
+        Id,
+        Index,
+        Type,
+    },
 };
 
 /** Response for a [get document request](https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-get.html). */
@@ -49,18 +56,18 @@ impl<T> GetResponse<T> {
     }
 
     /** The index for the document. */
-    pub fn index(&self) -> &str {
-        &self.index
+    pub fn index(&self) -> Index {
+        Index::from(&self.index)
     }
 
     /** The type of the document. */
-    pub fn ty(&self) -> &str {
-        &self.ty
+    pub fn ty(&self) -> Type {
+        Type::from(&self.ty)
     }
 
     /** The id of the document. */
-    pub fn id(&self) -> &str {
-        &self.id
+    pub fn id(&self) -> Id {
+        Id::from(&self.id)
     }
 
     /** The version of the document. */

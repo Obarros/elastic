@@ -235,7 +235,7 @@ fn get_doc_ty_impl_block(
         let (partial_static_index, static_index_block) = if index_is_static {
             let method = quote!(
                 fn partial_static_index() -> ::std::option::Option<#crate_root::derive::Index<'static>> {
-                    Some(#index)
+                    Some((#index).into())
                 }
             );
 
@@ -257,7 +257,7 @@ fn get_doc_ty_impl_block(
         let (partial_static_ty, static_ty_block) = if ty_is_static {
             let method = quote!(
                 fn partial_static_ty() -> ::std::option::Option<#crate_root::derive::Type<'static>> {
-                    Some(#ty)
+                    Some((#ty).into())
                 }
             );
 

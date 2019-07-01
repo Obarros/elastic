@@ -27,11 +27,6 @@ pub struct Account {
     pub state: State,
 }
 
-/// Get the indexed document type name.
-pub fn name() -> &'static str {
-    Account::static_ty()
-}
-
 // We're using type aliases to make the `Account` definition more ergonomic.
 
 pub type Address = Text<DefaultTextMapping>;

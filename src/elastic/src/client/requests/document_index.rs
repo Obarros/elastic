@@ -4,8 +4,6 @@ Builders for [index requests][docs-index].
 [docs-index]: https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-index_.html
 */
 
-use std::borrow::Cow;
-
 use futures::{
     Future,
     Poll,
@@ -133,9 +131,9 @@ where
         RequestBuilder::initial(
             self.inner,
             IndexRequestInner {
-                index: doc.index(),
-                ty: doc.ty(),
-                id: doc.partial_id(),
+                index: doc.index().to_owned(),
+                ty: doc.ty().to_owned(),
+                id: doc.partial_id().map(|id| id.to_owned()),
                 doc: doc,
             },
         )

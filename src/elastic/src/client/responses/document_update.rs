@@ -4,7 +4,14 @@ Response types for a [update document request](https://www.elastic.co/guide/en/e
 
 use super::common::DocumentResult;
 
-use crate::client::receiver::IsOkOnSuccess;
+use crate::client::{
+    receiver::IsOkOnSuccess,
+    requests::params::{
+        Id,
+        Index,
+        Type,
+    },
+};
 
 /** Response for a [update document request](https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-update.html). */
 #[derive(Deserialize, Debug)]
@@ -32,18 +39,18 @@ impl UpdateResponse {
     }
 
     /** The index for the document. */
-    pub fn index(&self) -> &str {
-        &self.index
+    pub fn index(&self) -> Index {
+        Index::from(&self.index)
     }
 
     /** The type of the document. */
-    pub fn ty(&self) -> &str {
-        &self.ty
+    pub fn ty(&self) -> Type {
+        Type::from(&self.ty)
     }
 
     /** The id of the document. */
-    pub fn id(&self) -> &str {
-        &self.id
+    pub fn id(&self) -> Id {
+        Id::from(&self.id)
     }
 
     /** The version of the document. */

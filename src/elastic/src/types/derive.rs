@@ -36,8 +36,11 @@ pub use crate::types::{
             PropertiesMapping,
         },
         DocumentType,
+        Id,
+        Index,
         StaticIndex,
         StaticType,
+        Type,
         DEFAULT_DOC_TYPE,
     },
 };

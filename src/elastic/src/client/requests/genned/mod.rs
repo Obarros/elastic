@@ -7,7 +7,7 @@ pub mod endpoints {
         params::*,
     };
 
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     enum BulkUrlParams<'a> {
         None,
         Index(Index<'a>),
@@ -36,7 +36,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     #[doc = "`Post: /_bulk`\n\n[Elasticsearch Documentation](http://www.elastic.co/guide/en/elasticsearch/reference/master/docs-bulk.html)"]
     pub struct BulkRequest<'a, B> {
         pub url: UrlPath<'a>,
@@ -81,7 +81,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     enum CatAliasesUrlParams<'a> {
         None,
         Name(Name<'a>),
@@ -99,7 +99,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     #[doc = "`Get: /_cat/aliases`\n\n[Elasticsearch Documentation](http://www.elastic.co/guide/en/elasticsearch/reference/master/cat-alias.html)"]
     pub struct CatAliasesRequest<'a> {
         pub url: UrlPath<'a>,
@@ -130,7 +130,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     enum CatAllocationUrlParams<'a> {
         None,
         NodeId(NodeId<'a>),
@@ -148,7 +148,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     #[doc = "`Get: /_cat/allocation`\n\n[Elasticsearch Documentation](http://www.elastic.co/guide/en/elasticsearch/reference/master/cat-allocation.html)"]
     pub struct CatAllocationRequest<'a> {
         pub url: UrlPath<'a>,
@@ -179,7 +179,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     enum CatCountUrlParams<'a> {
         None,
         Index(Index<'a>),
@@ -197,7 +197,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     #[doc = "`Get: /_cat/count`\n\n[Elasticsearch Documentation](http://www.elastic.co/guide/en/elasticsearch/reference/master/cat-count.html)"]
     pub struct CatCountRequest<'a> {
         pub url: UrlPath<'a>,
@@ -228,7 +228,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     enum CatFielddataUrlParams<'a> {
         None,
         Fields(Fields<'a>),
@@ -246,7 +246,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     #[doc = "`Get: /_cat/fielddata`\n\n[Elasticsearch Documentation](http://www.elastic.co/guide/en/elasticsearch/reference/master/cat-fielddata.html)"]
     pub struct CatFielddataRequest<'a> {
         pub url: UrlPath<'a>,
@@ -277,7 +277,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     enum CatHealthUrlParams {
         None,
     }
@@ -288,7 +288,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     #[doc = "`Get: /_cat/health`\n\n[Elasticsearch Documentation](http://www.elastic.co/guide/en/elasticsearch/reference/master/cat-health.html)"]
     pub struct CatHealthRequest<'a> {
         pub url: UrlPath<'a>,
@@ -310,7 +310,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     enum CatHelpUrlParams {
         None,
     }
@@ -321,7 +321,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     #[doc = "`Get: /_cat`\n\n[Elasticsearch Documentation](http://www.elastic.co/guide/en/elasticsearch/reference/master/cat.html)"]
     pub struct CatHelpRequest<'a> {
         pub url: UrlPath<'a>,
@@ -343,7 +343,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     enum CatIndicesUrlParams<'a> {
         None,
         Index(Index<'a>),
@@ -361,7 +361,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     #[doc = "`Get: /_cat/indices`\n\n[Elasticsearch Documentation](http://www.elastic.co/guide/en/elasticsearch/reference/master/cat-indices.html)"]
     pub struct CatIndicesRequest<'a> {
         pub url: UrlPath<'a>,
@@ -392,7 +392,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     enum CatMasterUrlParams {
         None,
     }
@@ -403,7 +403,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     #[doc = "`Get: /_cat/master`\n\n[Elasticsearch Documentation](http://www.elastic.co/guide/en/elasticsearch/reference/master/cat-master.html)"]
     pub struct CatMasterRequest<'a> {
         pub url: UrlPath<'a>,
@@ -425,7 +425,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     enum CatNodeattrsUrlParams {
         None,
     }
@@ -436,7 +436,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     #[doc = "`Get: /_cat/nodeattrs`\n\n[Elasticsearch Documentation](http://www.elastic.co/guide/en/elasticsearch/reference/master/cat-nodeattrs.html)"]
     pub struct CatNodeattrsRequest<'a> {
         pub url: UrlPath<'a>,
@@ -458,7 +458,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     enum CatNodesUrlParams {
         None,
     }
@@ -469,7 +469,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     #[doc = "`Get: /_cat/nodes`\n\n[Elasticsearch Documentation](http://www.elastic.co/guide/en/elasticsearch/reference/master/cat-nodes.html)"]
     pub struct CatNodesRequest<'a> {
         pub url: UrlPath<'a>,
@@ -491,7 +491,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     enum CatPendingTasksUrlParams {
         None,
     }
@@ -502,7 +502,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     #[doc = "`Get: /_cat/pending_tasks`\n\n[Elasticsearch Documentation](http://www.elastic.co/guide/en/elasticsearch/reference/master/cat-pending-tasks.html)"]
     pub struct CatPendingTasksRequest<'a> {
         pub url: UrlPath<'a>,
@@ -524,7 +524,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     enum CatPluginsUrlParams {
         None,
     }
@@ -535,7 +535,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     #[doc = "`Get: /_cat/plugins`\n\n[Elasticsearch Documentation](http://www.elastic.co/guide/en/elasticsearch/reference/master/cat-plugins.html)"]
     pub struct CatPluginsRequest<'a> {
         pub url: UrlPath<'a>,
@@ -557,7 +557,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     enum CatRecoveryUrlParams<'a> {
         None,
         Index(Index<'a>),
@@ -575,7 +575,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     #[doc = "`Get: /_cat/recovery`\n\n[Elasticsearch Documentation](http://www.elastic.co/guide/en/elasticsearch/reference/master/cat-recovery.html)"]
     pub struct CatRecoveryRequest<'a> {
         pub url: UrlPath<'a>,
@@ -606,7 +606,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     enum CatRepositoriesUrlParams {
         None,
     }
@@ -617,7 +617,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     #[doc = "`Get: /_cat/repositories`\n\n[Elasticsearch Documentation](http://www.elastic.co/guide/en/elasticsearch/reference/master/cat-repositories.html)"]
     pub struct CatRepositoriesRequest<'a> {
         pub url: UrlPath<'a>,
@@ -639,7 +639,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     enum CatSegmentsUrlParams<'a> {
         None,
         Index(Index<'a>),
@@ -657,7 +657,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     #[doc = "`Get: /_cat/segments`\n\n[Elasticsearch Documentation](http://www.elastic.co/guide/en/elasticsearch/reference/master/cat-segments.html)"]
     pub struct CatSegmentsRequest<'a> {
         pub url: UrlPath<'a>,
@@ -688,7 +688,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     enum CatShardsUrlParams<'a> {
         None,
         Index(Index<'a>),
@@ -706,7 +706,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     #[doc = "`Get: /_cat/shards`\n\n[Elasticsearch Documentation](http://www.elastic.co/guide/en/elasticsearch/reference/master/cat-shards.html)"]
     pub struct CatShardsRequest<'a> {
         pub url: UrlPath<'a>,
@@ -737,7 +737,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     enum CatSnapshotsUrlParams<'a> {
         None,
         Repository(Repository<'a>),
@@ -755,7 +755,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     #[doc = "`Get: /_cat/snapshots`\n\n[Elasticsearch Documentation](http://www.elastic.co/guide/en/elasticsearch/reference/master/cat-snapshots.html)"]
     pub struct CatSnapshotsRequest<'a> {
         pub url: UrlPath<'a>,
@@ -786,7 +786,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     enum CatTasksUrlParams {
         None,
     }
@@ -797,7 +797,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     #[doc = "`Get: /_cat/tasks`\n\n[Elasticsearch Documentation](http://www.elastic.co/guide/en/elasticsearch/reference/master/tasks.html)"]
     pub struct CatTasksRequest<'a> {
         pub url: UrlPath<'a>,
@@ -819,7 +819,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     enum CatTemplatesUrlParams<'a> {
         None,
         Name(Name<'a>),
@@ -837,7 +837,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     #[doc = "`Get: /_cat/templates`\n\n[Elasticsearch Documentation](http://www.elastic.co/guide/en/elasticsearch/reference/master/cat-templates.html)"]
     pub struct CatTemplatesRequest<'a> {
         pub url: UrlPath<'a>,
@@ -868,7 +868,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     enum CatThreadPoolUrlParams<'a> {
         None,
         ThreadPoolPatterns(ThreadPoolPatterns<'a>),
@@ -886,7 +886,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     #[doc = "`Get: /_cat/thread_pool`\n\n[Elasticsearch Documentation](http://www.elastic.co/guide/en/elasticsearch/reference/master/cat-thread-pool.html)"]
     pub struct CatThreadPoolRequest<'a> {
         pub url: UrlPath<'a>,
@@ -919,7 +919,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     enum ClearScrollUrlParams<'a> {
         None,
         ScrollId(ScrollId<'a>),
@@ -937,7 +937,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     #[doc = "`Delete: /_search/scroll/{scroll_id}`\n\n[Elasticsearch Documentation](http://www.elastic.co/guide/en/elasticsearch/reference/master/search-request-scroll.html)"]
     pub struct ClearScrollRequest<'a, B> {
         pub url: UrlPath<'a>,
@@ -971,7 +971,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     enum ClusterAllocationExplainUrlParams {
         None,
     }
@@ -984,7 +984,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     #[doc = "`Post: /_cluster/allocation/explain`\n\n[Elasticsearch Documentation](http://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-allocation-explain.html)"]
     pub struct ClusterAllocationExplainRequest<'a, B> {
         pub url: UrlPath<'a>,
@@ -1008,7 +1008,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     enum ClusterGetSettingsUrlParams {
         None,
     }
@@ -1019,7 +1019,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     #[doc = "`Get: /_cluster/settings`\n\n[Elasticsearch Documentation](http://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-update-settings.html)"]
     pub struct ClusterGetSettingsRequest<'a> {
         pub url: UrlPath<'a>,
@@ -1041,7 +1041,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     enum ClusterHealthUrlParams<'a> {
         None,
         Index(Index<'a>),
@@ -1059,7 +1059,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     #[doc = "`Get: /_cluster/health`\n\n[Elasticsearch Documentation](http://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-health.html)"]
     pub struct ClusterHealthRequest<'a> {
         pub url: UrlPath<'a>,
@@ -1090,7 +1090,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     enum ClusterPendingTasksUrlParams {
         None,
     }
@@ -1101,7 +1101,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     #[doc = "`Get: /_cluster/pending_tasks`\n\n[Elasticsearch Documentation](http://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-pending.html)"]
     pub struct ClusterPendingTasksRequest<'a> {
         pub url: UrlPath<'a>,
@@ -1123,7 +1123,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     enum ClusterPutSettingsUrlParams {
         None,
     }
@@ -1134,7 +1134,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     #[doc = "`Put: /_cluster/settings`\n\n[Elasticsearch Documentation](http://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-update-settings.html)"]
     pub struct ClusterPutSettingsRequest<'a, B> {
         pub url: UrlPath<'a>,
@@ -1158,7 +1158,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     enum ClusterRemoteInfoUrlParams {
         None,
     }
@@ -1169,7 +1169,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     #[doc = "`Get: /_remote/info`\n\n[Elasticsearch Documentation](http://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-remote-info.html)"]
     pub struct ClusterRemoteInfoRequest<'a> {
         pub url: UrlPath<'a>,
@@ -1191,7 +1191,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     enum ClusterRerouteUrlParams {
         None,
     }
@@ -1202,7 +1202,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     #[doc = "`Post: /_cluster/reroute`\n\n[Elasticsearch Documentation](http://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-reroute.html)"]
     pub struct ClusterRerouteRequest<'a, B> {
         pub url: UrlPath<'a>,
@@ -1226,7 +1226,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     enum ClusterStateUrlParams<'a> {
         None,
         Metric(Metric<'a>),
@@ -1253,7 +1253,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     #[doc = "`Get: /_cluster/state`\n\n[Elasticsearch Documentation](http://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-state.html)"]
     pub struct ClusterStateRequest<'a> {
         pub url: UrlPath<'a>,
@@ -1294,7 +1294,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     enum ClusterStatsUrlParams<'a> {
         None,
         NodeId(NodeId<'a>),
@@ -1312,7 +1312,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     #[doc = "`Get: /_cluster/stats`\n\n[Elasticsearch Documentation](http://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-stats.html)"]
     pub struct ClusterStatsRequest<'a> {
         pub url: UrlPath<'a>,
@@ -1343,7 +1343,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     enum CountUrlParams<'a> {
         None,
         Index(Index<'a>),
@@ -1372,7 +1372,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     #[doc = "`Post: /_count`\n\n[Elasticsearch Documentation](http://www.elastic.co/guide/en/elasticsearch/reference/master/search-count.html)"]
     pub struct CountRequest<'a, B> {
         pub url: UrlPath<'a>,
@@ -1417,7 +1417,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     enum CreateUrlParams<'a> {
         IndexId(Index<'a>, Id<'a>),
         IndexTypeId(Index<'a>, Type<'a>, Id<'a>),
@@ -1448,7 +1448,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     #[doc = "`Post: /{index}/_create/{id}`\n\n[Elasticsearch Documentation](http://www.elastic.co/guide/en/elasticsearch/reference/master/docs-index_.html)"]
     pub struct CreateRequest<'a, B> {
         pub url: UrlPath<'a>,
@@ -1493,7 +1493,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     enum DeleteUrlParams<'a> {
         IndexId(Index<'a>, Id<'a>),
         IndexTypeId(Index<'a>, Type<'a>, Id<'a>),
@@ -1522,7 +1522,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     #[doc = "`Delete: /{index}/_doc/{id}`\n\n[Elasticsearch Documentation](http://www.elastic.co/guide/en/elasticsearch/reference/master/docs-delete.html)"]
     pub struct DeleteRequest<'a> {
         pub url: UrlPath<'a>,
@@ -1559,7 +1559,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     enum DeleteByQueryUrlParams<'a> {
         Index(Index<'a>),
         IndexType(Index<'a>, Type<'a>),
@@ -1586,7 +1586,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     #[doc = "`Post: /{index}/_delete_by_query`\n\n[Elasticsearch Documentation](https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-delete-by-query.html)"]
     pub struct DeleteByQueryRequest<'a, B> {
         pub url: UrlPath<'a>,
@@ -1624,7 +1624,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     enum DeleteByQueryRethrottleUrlParams<'a> {
         TaskId(TaskId<'a>),
     }
@@ -1641,7 +1641,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     #[doc = "`Post: /_delete_by_query/{task_id}/_rethrottle`\n\n[Elasticsearch Documentation](https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-delete-by-query.html)"]
     pub struct DeleteByQueryRethrottleRequest<'a, B> {
         pub url: UrlPath<'a>,
@@ -1668,7 +1668,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     enum DeleteScriptUrlParams<'a> {
         Id(Id<'a>),
     }
@@ -1684,7 +1684,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     #[doc = "`Delete: /_scripts/{id}`\n\n[Elasticsearch Documentation](http://www.elastic.co/guide/en/elasticsearch/reference/master/modules-scripting.html)"]
     pub struct DeleteScriptRequest<'a> {
         pub url: UrlPath<'a>,
@@ -1709,7 +1709,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     enum ExistsUrlParams<'a> {
         IndexId(Index<'a>, Id<'a>),
         IndexTypeId(Index<'a>, Type<'a>, Id<'a>),
@@ -1738,7 +1738,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     #[doc = "`Head: /{index}/_doc/{id}`\n\n[Elasticsearch Documentation](http://www.elastic.co/guide/en/elasticsearch/reference/master/docs-get.html)"]
     pub struct ExistsRequest<'a> {
         pub url: UrlPath<'a>,
@@ -1775,7 +1775,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     enum ExistsSourceUrlParams<'a> {
         IndexId(Index<'a>, Id<'a>),
         IndexTypeId(Index<'a>, Type<'a>, Id<'a>),
@@ -1806,7 +1806,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     #[doc = "`Head: /{index}/_source/{id}`\n\n[Elasticsearch Documentation](http://www.elastic.co/guide/en/elasticsearch/reference/master/docs-get.html)"]
     pub struct ExistsSourceRequest<'a> {
         pub url: UrlPath<'a>,
@@ -1843,7 +1843,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     enum ExplainUrlParams<'a> {
         IndexId(Index<'a>, Id<'a>),
         IndexTypeId(Index<'a>, Type<'a>, Id<'a>),
@@ -1874,7 +1874,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     #[doc = "`Post: /{index}/_explain/{id}`\n\n[Elasticsearch Documentation](http://www.elastic.co/guide/en/elasticsearch/reference/master/search-explain.html)"]
     pub struct ExplainRequest<'a, B> {
         pub url: UrlPath<'a>,
@@ -1919,7 +1919,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     enum FieldCapsUrlParams<'a> {
         None,
         Index(Index<'a>),
@@ -1938,7 +1938,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     #[doc = "`Post: /_field_caps`\n\n[Elasticsearch Documentation](http://www.elastic.co/guide/en/elasticsearch/reference/master/search-field-caps.html)"]
     pub struct FieldCapsRequest<'a, B> {
         pub url: UrlPath<'a>,
@@ -1972,7 +1972,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     enum GetUrlParams<'a> {
         IndexId(Index<'a>, Id<'a>),
         IndexTypeId(Index<'a>, Type<'a>, Id<'a>),
@@ -2001,7 +2001,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     #[doc = "`Get: /{index}/_doc/{id}`\n\n[Elasticsearch Documentation](http://www.elastic.co/guide/en/elasticsearch/reference/master/docs-get.html)"]
     pub struct GetRequest<'a> {
         pub url: UrlPath<'a>,
@@ -2038,7 +2038,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     enum GetScriptUrlParams<'a> {
         Id(Id<'a>),
     }
@@ -2054,7 +2054,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     #[doc = "`Get: /_scripts/{id}`\n\n[Elasticsearch Documentation](http://www.elastic.co/guide/en/elasticsearch/reference/master/modules-scripting.html)"]
     pub struct GetScriptRequest<'a> {
         pub url: UrlPath<'a>,
@@ -2079,7 +2079,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     enum GetSourceUrlParams<'a> {
         IndexId(Index<'a>, Id<'a>),
         IndexTypeId(Index<'a>, Type<'a>, Id<'a>),
@@ -2110,7 +2110,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     #[doc = "`Get: /{index}/_source/{id}`\n\n[Elasticsearch Documentation](http://www.elastic.co/guide/en/elasticsearch/reference/master/docs-get.html)"]
     pub struct GetSourceRequest<'a> {
         pub url: UrlPath<'a>,
@@ -2147,7 +2147,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     enum IndexUrlParams<'a> {
         Index(Index<'a>),
         IndexId(Index<'a>, Id<'a>),
@@ -2193,7 +2193,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     #[doc = "`Post: /{index}/_doc`\n\n[Elasticsearch Documentation](http://www.elastic.co/guide/en/elasticsearch/reference/master/docs-index_.html)"]
     pub struct IndexRequest<'a, B> {
         pub url: UrlPath<'a>,
@@ -2259,7 +2259,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     enum IndicesAnalyzeUrlParams<'a> {
         None,
         Index(Index<'a>),
@@ -2278,7 +2278,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     #[doc = "`Post: /_analyze`\n\n[Elasticsearch Documentation](http://www.elastic.co/guide/en/elasticsearch/reference/master/indices-analyze.html)"]
     pub struct IndicesAnalyzeRequest<'a, B> {
         pub url: UrlPath<'a>,
@@ -2312,7 +2312,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     enum IndicesClearCacheUrlParams<'a> {
         None,
         Index(Index<'a>),
@@ -2331,7 +2331,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     #[doc = "`Post: /_cache/clear`\n\n[Elasticsearch Documentation](http://www.elastic.co/guide/en/elasticsearch/reference/master/indices-clearcache.html)"]
     pub struct IndicesClearCacheRequest<'a, B> {
         pub url: UrlPath<'a>,
@@ -2365,7 +2365,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     enum IndicesCloseUrlParams<'a> {
         Index(Index<'a>),
     }
@@ -2382,7 +2382,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     #[doc = "`Post: /{index}/_close`\n\n[Elasticsearch Documentation](http://www.elastic.co/guide/en/elasticsearch/reference/master/indices-open-close.html)"]
     pub struct IndicesCloseRequest<'a, B> {
         pub url: UrlPath<'a>,
@@ -2409,7 +2409,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     enum IndicesCreateUrlParams<'a> {
         Index(Index<'a>),
     }
@@ -2425,7 +2425,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     #[doc = "`Put: /{index}`\n\n[Elasticsearch Documentation](http://www.elastic.co/guide/en/elasticsearch/reference/master/indices-create-index.html)"]
     pub struct IndicesCreateRequest<'a, B> {
         pub url: UrlPath<'a>,
@@ -2452,7 +2452,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     enum IndicesDeleteUrlParams<'a> {
         Index(Index<'a>),
     }
@@ -2468,7 +2468,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     #[doc = "`Delete: /{index}`\n\n[Elasticsearch Documentation](http://www.elastic.co/guide/en/elasticsearch/reference/master/indices-delete-index.html)"]
     pub struct IndicesDeleteRequest<'a> {
         pub url: UrlPath<'a>,
@@ -2493,7 +2493,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     enum IndicesDeleteAliasUrlParams<'a> {
         IndexName(Index<'a>, Name<'a>),
     }
@@ -2511,7 +2511,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     #[doc = "`Delete: /{index}/_alias/{name}`\n\n[Elasticsearch Documentation](http://www.elastic.co/guide/en/elasticsearch/reference/master/indices-aliases.html)"]
     pub struct IndicesDeleteAliasRequest<'a> {
         pub url: UrlPath<'a>,
@@ -2537,7 +2537,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     enum IndicesDeleteTemplateUrlParams<'a> {
         Name(Name<'a>),
     }
@@ -2553,7 +2553,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     #[doc = "`Delete: /_template/{name}`\n\n[Elasticsearch Documentation](http://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html)"]
     pub struct IndicesDeleteTemplateRequest<'a> {
         pub url: UrlPath<'a>,
@@ -2578,7 +2578,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     enum IndicesExistsUrlParams<'a> {
         Index(Index<'a>),
     }
@@ -2594,7 +2594,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     #[doc = "`Head: /{index}`\n\n[Elasticsearch Documentation](http://www.elastic.co/guide/en/elasticsearch/reference/master/indices-exists.html)"]
     pub struct IndicesExistsRequest<'a> {
         pub url: UrlPath<'a>,
@@ -2619,7 +2619,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     enum IndicesExistsAliasUrlParams<'a> {
         IndexName(Index<'a>, Name<'a>),
         Name(Name<'a>),
@@ -2644,7 +2644,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     #[doc = "`Head: /_alias/{name}`\n\n[Elasticsearch Documentation](http://www.elastic.co/guide/en/elasticsearch/reference/master/indices-aliases.html)"]
     pub struct IndicesExistsAliasRequest<'a> {
         pub url: UrlPath<'a>,
@@ -2679,7 +2679,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     enum IndicesExistsTemplateUrlParams<'a> {
         Name(Name<'a>),
     }
@@ -2695,7 +2695,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     #[doc = "`Head: /_template/{name}`\n\n[Elasticsearch Documentation](http://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html)"]
     pub struct IndicesExistsTemplateRequest<'a> {
         pub url: UrlPath<'a>,
@@ -2720,7 +2720,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     enum IndicesExistsTypeUrlParams<'a> {
         IndexType(Index<'a>, Type<'a>),
     }
@@ -2738,7 +2738,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     #[doc = "`Head: /{index}/_mapping/{type}`\n\n[Elasticsearch Documentation](http://www.elastic.co/guide/en/elasticsearch/reference/master/indices-types-exists.html)"]
     pub struct IndicesExistsTypeRequest<'a> {
         pub url: UrlPath<'a>,
@@ -2764,7 +2764,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     enum IndicesFlushUrlParams<'a> {
         None,
         Index(Index<'a>),
@@ -2783,7 +2783,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     #[doc = "`Post: /_flush`\n\n[Elasticsearch Documentation](http://www.elastic.co/guide/en/elasticsearch/reference/master/indices-flush.html)"]
     pub struct IndicesFlushRequest<'a, B> {
         pub url: UrlPath<'a>,
@@ -2817,7 +2817,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     enum IndicesFlushSyncedUrlParams<'a> {
         None,
         Index(Index<'a>),
@@ -2836,7 +2836,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     #[doc = "`Post: /_flush/synced`\n\n[Elasticsearch Documentation](http://www.elastic.co/guide/en/elasticsearch/reference/master/indices-synced-flush.html)"]
     pub struct IndicesFlushSyncedRequest<'a, B> {
         pub url: UrlPath<'a>,
@@ -2870,7 +2870,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     enum IndicesForcemergeUrlParams<'a> {
         None,
         Index(Index<'a>),
@@ -2889,7 +2889,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     #[doc = "`Post: /_forcemerge`\n\n[Elasticsearch Documentation](http://www.elastic.co/guide/en/elasticsearch/reference/master/indices-forcemerge.html)"]
     pub struct IndicesForcemergeRequest<'a, B> {
         pub url: UrlPath<'a>,
@@ -2923,7 +2923,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     enum IndicesGetUrlParams<'a> {
         Index(Index<'a>),
     }
@@ -2939,7 +2939,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     #[doc = "`Get: /{index}`\n\n[Elasticsearch Documentation](http://www.elastic.co/guide/en/elasticsearch/reference/master/indices-get-index.html)"]
     pub struct IndicesGetRequest<'a> {
         pub url: UrlPath<'a>,
@@ -2964,7 +2964,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     enum IndicesGetAliasUrlParams<'a> {
         None,
         Index(Index<'a>),
@@ -2999,7 +2999,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     #[doc = "`Get: /_alias/`\n\n[Elasticsearch Documentation](http://www.elastic.co/guide/en/elasticsearch/reference/master/indices-aliases.html)"]
     pub struct IndicesGetAliasRequest<'a> {
         pub url: UrlPath<'a>,
@@ -3049,7 +3049,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     enum IndicesGetFieldMappingUrlParams<'a> {
         Fields(Fields<'a>),
         IndexFields(Index<'a>, Fields<'a>),
@@ -3095,7 +3095,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     #[doc = "`Get: /_mapping/field/{fields}`\n\n[Elasticsearch Documentation](http://www.elastic.co/guide/en/elasticsearch/reference/master/indices-get-field-mapping.html)"]
     pub struct IndicesGetFieldMappingRequest<'a> {
         pub url: UrlPath<'a>,
@@ -3161,7 +3161,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     enum IndicesGetMappingUrlParams<'a> {
         None,
         Index(Index<'a>),
@@ -3196,7 +3196,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     #[doc = "`Get: /_mapping`\n\n[Elasticsearch Documentation](http://www.elastic.co/guide/en/elasticsearch/reference/master/indices-get-mapping.html)"]
     pub struct IndicesGetMappingRequest<'a> {
         pub url: UrlPath<'a>,
@@ -3246,7 +3246,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     enum IndicesGetSettingsUrlParams<'a> {
         None,
         Index(Index<'a>),
@@ -3281,7 +3281,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     #[doc = "`Get: /_settings`\n\n[Elasticsearch Documentation](http://www.elastic.co/guide/en/elasticsearch/reference/master/indices-get-settings.html)"]
     pub struct IndicesGetSettingsRequest<'a> {
         pub url: UrlPath<'a>,
@@ -3331,7 +3331,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     enum IndicesGetTemplateUrlParams<'a> {
         None,
         Name(Name<'a>),
@@ -3349,7 +3349,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     #[doc = "`Get: /_template/{name}`\n\n[Elasticsearch Documentation](http://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html)"]
     pub struct IndicesGetTemplateRequest<'a> {
         pub url: UrlPath<'a>,
@@ -3380,7 +3380,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     enum IndicesGetUpgradeUrlParams<'a> {
         None,
         Index(Index<'a>),
@@ -3399,7 +3399,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     #[doc = "`Get: /_upgrade`\n\n[Elasticsearch Documentation](http://www.elastic.co/guide/en/elasticsearch/reference/master/indices-upgrade.html)"]
     pub struct IndicesGetUpgradeRequest<'a> {
         pub url: UrlPath<'a>,
@@ -3430,7 +3430,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     enum IndicesOpenUrlParams<'a> {
         Index(Index<'a>),
     }
@@ -3447,7 +3447,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     #[doc = "`Post: /{index}/_open`\n\n[Elasticsearch Documentation](http://www.elastic.co/guide/en/elasticsearch/reference/master/indices-open-close.html)"]
     pub struct IndicesOpenRequest<'a, B> {
         pub url: UrlPath<'a>,
@@ -3474,7 +3474,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     enum IndicesPutAliasUrlParams<'a> {
         IndexName(Index<'a>, Name<'a>),
     }
@@ -3492,7 +3492,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     #[doc = "`Post: /{index}/_alias/{name}`\n\n[Elasticsearch Documentation](http://www.elastic.co/guide/en/elasticsearch/reference/master/indices-aliases.html)"]
     pub struct IndicesPutAliasRequest<'a, B> {
         pub url: UrlPath<'a>,
@@ -3520,7 +3520,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     enum IndicesPutMappingUrlParams<'a> {
         Index(Index<'a>),
         IndexType(Index<'a>, Type<'a>),
@@ -3552,7 +3552,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     #[doc = "`Post: /{index}/{type}/_mapping`\n\n[Elasticsearch Documentation](http://www.elastic.co/guide/en/elasticsearch/reference/master/indices-put-mapping.html)"]
     pub struct IndicesPutMappingRequest<'a, B> {
         pub url: UrlPath<'a>,
@@ -3600,7 +3600,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     enum IndicesPutSettingsUrlParams<'a> {
         None,
         Index(Index<'a>),
@@ -3619,7 +3619,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     #[doc = "`Put: /_settings`\n\n[Elasticsearch Documentation](http://www.elastic.co/guide/en/elasticsearch/reference/master/indices-update-settings.html)"]
     pub struct IndicesPutSettingsRequest<'a, B> {
         pub url: UrlPath<'a>,
@@ -3653,7 +3653,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     enum IndicesPutTemplateUrlParams<'a> {
         Name(Name<'a>),
     }
@@ -3669,7 +3669,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     #[doc = "`Post: /_template/{name}`\n\n[Elasticsearch Documentation](http://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html)"]
     pub struct IndicesPutTemplateRequest<'a, B> {
         pub url: UrlPath<'a>,
@@ -3696,7 +3696,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     enum IndicesRecoveryUrlParams<'a> {
         None,
         Index(Index<'a>),
@@ -3715,7 +3715,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     #[doc = "`Get: /_recovery`\n\n[Elasticsearch Documentation](http://www.elastic.co/guide/en/elasticsearch/reference/master/indices-recovery.html)"]
     pub struct IndicesRecoveryRequest<'a> {
         pub url: UrlPath<'a>,
@@ -3746,7 +3746,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     enum IndicesRefreshUrlParams<'a> {
         None,
         Index(Index<'a>),
@@ -3765,7 +3765,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     #[doc = "`Post: /_refresh`\n\n[Elasticsearch Documentation](http://www.elastic.co/guide/en/elasticsearch/reference/master/indices-refresh.html)"]
     pub struct IndicesRefreshRequest<'a, B> {
         pub url: UrlPath<'a>,
@@ -3799,7 +3799,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     enum IndicesRolloverUrlParams<'a> {
         Alias(Alias<'a>),
         AliasNewIndex(Alias<'a>, NewIndex<'a>),
@@ -3825,7 +3825,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     #[doc = "`Post: /{alias}/_rollover`\n\n[Elasticsearch Documentation](http://www.elastic.co/guide/en/elasticsearch/reference/master/indices-rollover-index.html)"]
     pub struct IndicesRolloverRequest<'a, B> {
         pub url: UrlPath<'a>,
@@ -3867,7 +3867,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     enum IndicesSegmentsUrlParams<'a> {
         None,
         Index(Index<'a>),
@@ -3886,7 +3886,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     #[doc = "`Get: /_segments`\n\n[Elasticsearch Documentation](http://www.elastic.co/guide/en/elasticsearch/reference/master/indices-segments.html)"]
     pub struct IndicesSegmentsRequest<'a> {
         pub url: UrlPath<'a>,
@@ -3917,7 +3917,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     enum IndicesShardStoresUrlParams<'a> {
         None,
         Index(Index<'a>),
@@ -3936,7 +3936,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     #[doc = "`Get: /_shard_stores`\n\n[Elasticsearch Documentation](http://www.elastic.co/guide/en/elasticsearch/reference/master/indices-shards-stores.html)"]
     pub struct IndicesShardStoresRequest<'a> {
         pub url: UrlPath<'a>,
@@ -3967,7 +3967,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     enum IndicesShrinkUrlParams<'a> {
         IndexTarget(Index<'a>, Target<'a>),
     }
@@ -3985,7 +3985,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     #[doc = "`Post: /{index}/_shrink/{target}`\n\n[Elasticsearch Documentation](http://www.elastic.co/guide/en/elasticsearch/reference/master/indices-shrink-index.html)"]
     pub struct IndicesShrinkRequest<'a, B> {
         pub url: UrlPath<'a>,
@@ -4013,7 +4013,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     enum IndicesSplitUrlParams<'a> {
         IndexTarget(Index<'a>, Target<'a>),
     }
@@ -4031,7 +4031,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     #[doc = "`Post: /{index}/_split/{target}`\n\n[Elasticsearch Documentation](http://www.elastic.co/guide/en/elasticsearch/reference/master/indices-split-index.html)"]
     pub struct IndicesSplitRequest<'a, B> {
         pub url: UrlPath<'a>,
@@ -4059,7 +4059,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     enum IndicesStatsUrlParams<'a> {
         None,
         Index(Index<'a>),
@@ -4094,7 +4094,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     #[doc = "`Get: /_stats`\n\n[Elasticsearch Documentation](http://www.elastic.co/guide/en/elasticsearch/reference/master/indices-stats.html)"]
     pub struct IndicesStatsRequest<'a> {
         pub url: UrlPath<'a>,
@@ -4144,7 +4144,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     enum IndicesUpdateAliasesUrlParams {
         None,
     }
@@ -4155,7 +4155,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     #[doc = "`Post: /_aliases`\n\n[Elasticsearch Documentation](http://www.elastic.co/guide/en/elasticsearch/reference/master/indices-aliases.html)"]
     pub struct IndicesUpdateAliasesRequest<'a, B> {
         pub url: UrlPath<'a>,
@@ -4179,7 +4179,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     enum IndicesUpgradeUrlParams<'a> {
         None,
         Index(Index<'a>),
@@ -4198,7 +4198,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     #[doc = "`Post: /_upgrade`\n\n[Elasticsearch Documentation](http://www.elastic.co/guide/en/elasticsearch/reference/master/indices-upgrade.html)"]
     pub struct IndicesUpgradeRequest<'a, B> {
         pub url: UrlPath<'a>,
@@ -4232,7 +4232,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     enum IndicesValidateQueryUrlParams<'a> {
         None,
         Index(Index<'a>),
@@ -4261,7 +4261,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     #[doc = "`Post: /_validate/query`\n\n[Elasticsearch Documentation](http://www.elastic.co/guide/en/elasticsearch/reference/master/search-validate.html)"]
     pub struct IndicesValidateQueryRequest<'a, B> {
         pub url: UrlPath<'a>,
@@ -4306,7 +4306,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     enum InfoUrlParams {
         None,
     }
@@ -4317,7 +4317,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     #[doc = "`Get: /`\n\n[Elasticsearch Documentation](http://www.elastic.co/guide/)"]
     pub struct InfoRequest<'a> {
         pub url: UrlPath<'a>,
@@ -4339,7 +4339,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     enum IngestDeletePipelineUrlParams<'a> {
         Id(Id<'a>),
     }
@@ -4355,7 +4355,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     #[doc = "`Delete: /_ingest/pipeline/{id}`\n\n[Elasticsearch Documentation](https://www.elastic.co/guide/en/elasticsearch/reference/master/delete-pipeline-api.html)"]
     pub struct IngestDeletePipelineRequest<'a> {
         pub url: UrlPath<'a>,
@@ -4380,7 +4380,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     enum IngestGetPipelineUrlParams<'a> {
         None,
         Id(Id<'a>),
@@ -4398,7 +4398,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     #[doc = "`Get: /_ingest/pipeline/{id}`\n\n[Elasticsearch Documentation](https://www.elastic.co/guide/en/elasticsearch/reference/master/get-pipeline-api.html)"]
     pub struct IngestGetPipelineRequest<'a> {
         pub url: UrlPath<'a>,
@@ -4429,7 +4429,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     enum IngestProcessorGrokUrlParams {
         None,
     }
@@ -4440,7 +4440,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     #[doc = "`Get: /_ingest/processor/grok`\n\n[Elasticsearch Documentation](https://www.elastic.co/guide/en/elasticsearch/reference/master/grok-processor.html#grok-processor-rest-get)"]
     pub struct IngestProcessorGrokRequest<'a> {
         pub url: UrlPath<'a>,
@@ -4462,7 +4462,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     enum IngestPutPipelineUrlParams<'a> {
         Id(Id<'a>),
     }
@@ -4478,7 +4478,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     #[doc = "`Put: /_ingest/pipeline/{id}`\n\n[Elasticsearch Documentation](https://www.elastic.co/guide/en/elasticsearch/reference/master/put-pipeline-api.html)"]
     pub struct IngestPutPipelineRequest<'a, B> {
         pub url: UrlPath<'a>,
@@ -4505,7 +4505,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     enum IngestSimulateUrlParams<'a> {
         None,
         Id(Id<'a>),
@@ -4524,7 +4524,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     #[doc = "`Post: /_ingest/pipeline/_simulate`\n\n[Elasticsearch Documentation](https://www.elastic.co/guide/en/elasticsearch/reference/master/simulate-pipeline-api.html)"]
     pub struct IngestSimulateRequest<'a, B> {
         pub url: UrlPath<'a>,
@@ -4558,7 +4558,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     enum MgetUrlParams<'a> {
         None,
         Index(Index<'a>),
@@ -4587,7 +4587,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     #[doc = "`Post: /_mget`\n\n[Elasticsearch Documentation](http://www.elastic.co/guide/en/elasticsearch/reference/master/docs-multi-get.html)"]
     pub struct MgetRequest<'a, B> {
         pub url: UrlPath<'a>,
@@ -4632,7 +4632,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     enum MsearchUrlParams<'a> {
         None,
         Index(Index<'a>),
@@ -4661,7 +4661,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     #[doc = "`Post: /_msearch`\n\n[Elasticsearch Documentation](http://www.elastic.co/guide/en/elasticsearch/reference/master/search-multi-search.html)"]
     pub struct MsearchRequest<'a, B> {
         pub url: UrlPath<'a>,
@@ -4706,7 +4706,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     enum MsearchTemplateUrlParams<'a> {
         None,
         Index(Index<'a>),
@@ -4735,7 +4735,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     #[doc = "`Post: /_msearch/template`\n\n[Elasticsearch Documentation](http://www.elastic.co/guide/en/elasticsearch/reference/current/search-multi-search.html)"]
     pub struct MsearchTemplateRequest<'a, B> {
         pub url: UrlPath<'a>,
@@ -4780,7 +4780,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     enum MtermvectorsUrlParams<'a> {
         None,
         Index(Index<'a>),
@@ -4809,7 +4809,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     #[doc = "`Post: /_mtermvectors`\n\n[Elasticsearch Documentation](http://www.elastic.co/guide/en/elasticsearch/reference/master/docs-multi-termvectors.html)"]
     pub struct MtermvectorsRequest<'a, B> {
         pub url: UrlPath<'a>,
@@ -4854,7 +4854,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     enum NodesHotThreadsUrlParams<'a> {
         None,
         NodeId(NodeId<'a>),
@@ -4873,7 +4873,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     #[doc = "`Get: /_nodes/hot_threads`\n\n[Elasticsearch Documentation](http://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-nodes-hot-threads.html)"]
     pub struct NodesHotThreadsRequest<'a> {
         pub url: UrlPath<'a>,
@@ -4904,7 +4904,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     enum NodesInfoUrlParams<'a> {
         None,
         Metric(Metric<'a>),
@@ -4938,7 +4938,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     #[doc = "`Get: /_nodes`\n\n[Elasticsearch Documentation](http://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-nodes-info.html)"]
     pub struct NodesInfoRequest<'a> {
         pub url: UrlPath<'a>,
@@ -4988,7 +4988,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     enum NodesReloadSecureSettingsUrlParams<'a> {
         None,
         NodeId(NodeId<'a>),
@@ -5009,7 +5009,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     #[doc = "`Post: /_nodes/reload_secure_settings`\n\n[Elasticsearch Documentation](https://www.elastic.co/guide/en/elasticsearch/reference/master/secure-settings.html#reloadable-secure-settings)"]
     pub struct NodesReloadSecureSettingsRequest<'a, B> {
         pub url: UrlPath<'a>,
@@ -5043,7 +5043,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     enum NodesStatsUrlParams<'a> {
         None,
         Metric(Metric<'a>),
@@ -5105,7 +5105,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     #[doc = "`Get: /_nodes/stats`\n\n[Elasticsearch Documentation](http://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-nodes-stats.html)"]
     pub struct NodesStatsRequest<'a> {
         pub url: UrlPath<'a>,
@@ -5189,7 +5189,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     enum NodesUsageUrlParams<'a> {
         None,
         Metric(Metric<'a>),
@@ -5224,7 +5224,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     #[doc = "`Get: /_nodes/usage`\n\n[Elasticsearch Documentation](http://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-nodes-usage.html)"]
     pub struct NodesUsageRequest<'a> {
         pub url: UrlPath<'a>,
@@ -5274,7 +5274,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     enum PingUrlParams {
         None,
     }
@@ -5285,7 +5285,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     #[doc = "`Get: /`\n\n[Elasticsearch Documentation](http://www.elastic.co/guide/)"]
     pub struct PingRequest<'a> {
         pub url: UrlPath<'a>,
@@ -5307,7 +5307,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     enum PingHeadUrlParams {
         None,
     }
@@ -5318,7 +5318,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     #[doc = "`Head: /`\n\n[Elasticsearch Documentation](http://www.elastic.co/guide/)"]
     pub struct PingHeadRequest<'a> {
         pub url: UrlPath<'a>,
@@ -5340,7 +5340,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     enum PutScriptUrlParams<'a> {
         Id(Id<'a>),
         IdContext(Id<'a>, Context<'a>),
@@ -5365,7 +5365,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     #[doc = "`Post: /_scripts/{id}`\n\n[Elasticsearch Documentation](http://www.elastic.co/guide/en/elasticsearch/reference/master/modules-scripting.html)"]
     pub struct PutScriptRequest<'a, B> {
         pub url: UrlPath<'a>,
@@ -5403,7 +5403,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     enum RankEvalUrlParams<'a> {
         None,
         Index(Index<'a>),
@@ -5422,7 +5422,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     #[doc = "`Post: /_rank_eval`\n\n[Elasticsearch Documentation](https://www.elastic.co/guide/en/elasticsearch/reference/master/search-rank-eval.html)"]
     pub struct RankEvalRequest<'a, B> {
         pub url: UrlPath<'a>,
@@ -5456,7 +5456,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     enum ReindexUrlParams {
         None,
     }
@@ -5467,7 +5467,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     #[doc = "`Post: /_reindex`\n\n[Elasticsearch Documentation](https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-reindex.html)"]
     pub struct ReindexRequest<'a, B> {
         pub url: UrlPath<'a>,
@@ -5491,7 +5491,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     enum ReindexRethrottleUrlParams<'a> {
         TaskId(TaskId<'a>),
     }
@@ -5508,7 +5508,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     #[doc = "`Post: /_reindex/{task_id}/_rethrottle`\n\n[Elasticsearch Documentation](https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-reindex.html)"]
     pub struct ReindexRethrottleRequest<'a, B> {
         pub url: UrlPath<'a>,
@@ -5535,7 +5535,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     enum RenderSearchTemplateUrlParams<'a> {
         None,
         Id(Id<'a>),
@@ -5553,7 +5553,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     #[doc = "`Post: /_render/template`\n\n[Elasticsearch Documentation](http://www.elasticsearch.org/guide/en/elasticsearch/reference/master/search-template.html)"]
     pub struct RenderSearchTemplateRequest<'a, B> {
         pub url: UrlPath<'a>,
@@ -5587,7 +5587,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     enum ScriptsPainlessExecuteUrlParams {
         None,
     }
@@ -5600,7 +5600,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     #[doc = "`Post: /_scripts/painless/_execute`\n\n[Elasticsearch Documentation](https://www.elastic.co/guide/en/elasticsearch/painless/master/painless-execute-api.html)"]
     pub struct ScriptsPainlessExecuteRequest<'a, B> {
         pub url: UrlPath<'a>,
@@ -5624,7 +5624,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     enum ScrollUrlParams<'a> {
         None,
         ScrollId(ScrollId<'a>),
@@ -5642,7 +5642,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     #[doc = "`Post: /_search/scroll`\n\n[Elasticsearch Documentation](http://www.elastic.co/guide/en/elasticsearch/reference/master/search-request-scroll.html)"]
     pub struct ScrollRequest<'a, B> {
         pub url: UrlPath<'a>,
@@ -5676,7 +5676,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     enum SimpleSearchUrlParams<'a> {
         None,
         Index(Index<'a>),
@@ -5705,7 +5705,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     #[doc = "`Get: /_search`\n\n[Elasticsearch Documentation](http://www.elastic.co/guide/en/elasticsearch/reference/master/search-search.html)"]
     pub struct SimpleSearchRequest<'a> {
         pub url: UrlPath<'a>,
@@ -5746,7 +5746,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     enum SearchUrlParams<'a> {
         None,
         Index(Index<'a>),
@@ -5775,7 +5775,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     #[doc = "`Post: /_search`\n\n[Elasticsearch Documentation](http://www.elastic.co/guide/en/elasticsearch/reference/master/search-search.html)"]
     pub struct SearchRequest<'a, B> {
         pub url: UrlPath<'a>,
@@ -5820,7 +5820,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     enum SearchShardsUrlParams<'a> {
         None,
         Index(Index<'a>),
@@ -5839,7 +5839,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     #[doc = "`Post: /{index}/_search_shards`\n\n[Elasticsearch Documentation](http://www.elastic.co/guide/en/elasticsearch/reference/master/search-shards.html)"]
     pub struct SearchShardsRequest<'a, B> {
         pub url: UrlPath<'a>,
@@ -5873,7 +5873,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     enum SearchTemplateUrlParams<'a> {
         None,
         Index(Index<'a>),
@@ -5902,7 +5902,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     #[doc = "`Post: /_search/template`\n\n[Elasticsearch Documentation](http://www.elastic.co/guide/en/elasticsearch/reference/current/search-template.html)"]
     pub struct SearchTemplateRequest<'a, B> {
         pub url: UrlPath<'a>,
@@ -5947,7 +5947,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     enum SnapshotCreateUrlParams<'a> {
         RepositorySnapshot(Repository<'a>, Snapshot<'a>),
     }
@@ -5966,7 +5966,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     #[doc = "`Post: /_snapshot/{repository}/{snapshot}`\n\n[Elasticsearch Documentation](http://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html)"]
     pub struct SnapshotCreateRequest<'a, B> {
         pub url: UrlPath<'a>,
@@ -6002,7 +6002,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     enum SnapshotCreateRepositoryUrlParams<'a> {
         Repository(Repository<'a>),
     }
@@ -6018,7 +6018,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     #[doc = "`Post: /_snapshot/{repository}`\n\n[Elasticsearch Documentation](http://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html)"]
     pub struct SnapshotCreateRepositoryRequest<'a, B> {
         pub url: UrlPath<'a>,
@@ -6045,7 +6045,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     enum SnapshotDeleteUrlParams<'a> {
         RepositorySnapshot(Repository<'a>, Snapshot<'a>),
     }
@@ -6064,7 +6064,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     #[doc = "`Delete: /_snapshot/{repository}/{snapshot}`\n\n[Elasticsearch Documentation](http://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html)"]
     pub struct SnapshotDeleteRequest<'a> {
         pub url: UrlPath<'a>,
@@ -6097,7 +6097,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     enum SnapshotDeleteRepositoryUrlParams<'a> {
         Repository(Repository<'a>),
     }
@@ -6113,7 +6113,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     #[doc = "`Delete: /_snapshot/{repository}`\n\n[Elasticsearch Documentation](http://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html)"]
     pub struct SnapshotDeleteRepositoryRequest<'a> {
         pub url: UrlPath<'a>,
@@ -6138,7 +6138,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     enum SnapshotGetUrlParams<'a> {
         RepositorySnapshot(Repository<'a>, Snapshot<'a>),
     }
@@ -6157,7 +6157,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     #[doc = "`Get: /_snapshot/{repository}/{snapshot}`\n\n[Elasticsearch Documentation](http://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html)"]
     pub struct SnapshotGetRequest<'a> {
         pub url: UrlPath<'a>,
@@ -6187,7 +6187,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     enum SnapshotGetRepositoryUrlParams<'a> {
         None,
         Repository(Repository<'a>),
@@ -6205,7 +6205,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     #[doc = "`Get: /_snapshot`\n\n[Elasticsearch Documentation](http://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html)"]
     pub struct SnapshotGetRepositoryRequest<'a> {
         pub url: UrlPath<'a>,
@@ -6236,7 +6236,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     enum SnapshotRestoreUrlParams<'a> {
         RepositorySnapshot(Repository<'a>, Snapshot<'a>),
     }
@@ -6256,7 +6256,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     #[doc = "`Post: /_snapshot/{repository}/{snapshot}/_restore`\n\n[Elasticsearch Documentation](http://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html)"]
     pub struct SnapshotRestoreRequest<'a, B> {
         pub url: UrlPath<'a>,
@@ -6292,7 +6292,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     enum SnapshotStatusUrlParams<'a> {
         None,
         Repository(Repository<'a>),
@@ -6322,7 +6322,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     #[doc = "`Get: /_snapshot/_status`\n\n[Elasticsearch Documentation](http://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html)"]
     pub struct SnapshotStatusRequest<'a> {
         pub url: UrlPath<'a>,
@@ -6370,7 +6370,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     enum SnapshotVerifyRepositoryUrlParams<'a> {
         Repository(Repository<'a>),
     }
@@ -6387,7 +6387,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     #[doc = "`Post: /_snapshot/{repository}/_verify`\n\n[Elasticsearch Documentation](http://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html)"]
     pub struct SnapshotVerifyRepositoryRequest<'a, B> {
         pub url: UrlPath<'a>,
@@ -6414,7 +6414,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     enum SqlQueryUrlParams {
         None,
     }
@@ -6425,7 +6425,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     #[doc = "`Post: /_xpack/sql`\n\n[Elasticsearch Documentation](Execute SQL)"]
     pub struct SqlQueryRequest<'a, B> {
         pub url: UrlPath<'a>,
@@ -6449,7 +6449,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     enum TasksCancelUrlParams<'a> {
         None,
         TaskId(TaskId<'a>),
@@ -6468,7 +6468,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     #[doc = "`Post: /_tasks`\n\n[Elasticsearch Documentation](http://www.elastic.co/guide/en/elasticsearch/reference/master/tasks.html)"]
     pub struct TasksCancelRequest<'a, B> {
         pub url: UrlPath<'a>,
@@ -6502,7 +6502,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     enum TasksGetUrlParams<'a> {
         TaskId(TaskId<'a>),
     }
@@ -6518,7 +6518,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     #[doc = "`Get: /_tasks/{task_id}`\n\n[Elasticsearch Documentation](http://www.elastic.co/guide/en/elasticsearch/reference/master/tasks.html)"]
     pub struct TasksGetRequest<'a> {
         pub url: UrlPath<'a>,
@@ -6543,7 +6543,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     enum TasksListUrlParams {
         None,
     }
@@ -6554,7 +6554,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     #[doc = "`Get: /_tasks`\n\n[Elasticsearch Documentation](http://www.elastic.co/guide/en/elasticsearch/reference/master/tasks.html)"]
     pub struct TasksListRequest<'a> {
         pub url: UrlPath<'a>,
@@ -6576,7 +6576,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     enum TermvectorsUrlParams<'a> {
         Index(Index<'a>),
         IndexId(Index<'a>, Id<'a>),
@@ -6625,7 +6625,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     #[doc = "`Post: /{index}/_termvectors/{id}`\n\n[Elasticsearch Documentation](http://www.elastic.co/guide/en/elasticsearch/reference/master/docs-termvectors.html)"]
     pub struct TermvectorsRequest<'a, B> {
         pub url: UrlPath<'a>,
@@ -6691,7 +6691,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     enum UpdateUrlParams<'a> {
         IndexId(Index<'a>, Id<'a>),
         IndexTypeId(Index<'a>, Type<'a>, Id<'a>),
@@ -6722,7 +6722,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     #[doc = "`Post: /{index}/_update/{id}`\n\n[Elasticsearch Documentation](http://www.elastic.co/guide/en/elasticsearch/reference/master/docs-update.html)"]
     pub struct UpdateRequest<'a, B> {
         pub url: UrlPath<'a>,
@@ -6767,7 +6767,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     enum UpdateByQueryUrlParams<'a> {
         Index(Index<'a>),
         IndexType(Index<'a>, Type<'a>),
@@ -6794,7 +6794,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     #[doc = "`Post: /{index}/_update_by_query`\n\n[Elasticsearch Documentation](https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-update-by-query.html)"]
     pub struct UpdateByQueryRequest<'a, B> {
         pub url: UrlPath<'a>,
@@ -6832,7 +6832,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     enum UpdateByQueryRethrottleUrlParams<'a> {
         TaskId(TaskId<'a>),
     }
@@ -6849,7 +6849,7 @@ pub mod endpoints {
             }
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
+    #[derive(Debug, Clone, PartialEq)]
     #[doc = "`Post: /_update_by_query/{task_id}/_rethrottle`\n\n[Elasticsearch Documentation](https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-update-by-query.html)"]
     pub struct UpdateByQueryRethrottleRequest<'a, B> {
         pub url: UrlPath<'a>,
@@ -6885,8 +6885,8 @@ pub mod http {
         ops::Deref,
     };
 
-    #[derive(Debug, PartialEq, Clone)]
     #[doc = r" A wrapper around an owned or borrowed url path."]
+    #[derive(Debug, Clone, PartialEq, Eq, Hash)]
     pub struct UrlPath<'a>(Cow<'a, str>);
     impl<'a> From<&'a str> for UrlPath<'a> {
         fn from(value: &'a str) -> UrlPath<'a> {
@@ -6904,8 +6904,8 @@ pub mod http {
             &self.0
         }
     }
-    #[derive(Debug, PartialEq, Clone)]
     #[doc = r" A general request type that all endpoints can be converted into."]
+    #[derive(Debug, Clone, PartialEq)]
     pub struct Endpoint<'a, B> {
         pub url: UrlPath<'a>,
         pub method: Method,
@@ -6921,31 +6921,56 @@ pub mod http {
 }
 
 pub mod params {
-    use std::borrow::Cow;
 
     include!("genned.params.rs");
 
-    #[derive(Debug, PartialEq, Clone)]
-    pub struct Alias<'a>(pub Cow<'a, str>);
+    #[derive(Debug, Clone, PartialEq, Eq, Hash)]
+    pub struct Alias<'a>(pub ::std::borrow::Cow<'a, str>);
     pub fn alias<'a, I>(value: I) -> Alias<'a>
     where
         I: Into<Alias<'a>>,
     {
         value.into()
     }
+    impl<'a> Alias<'a> {
+        pub fn to_owned(&self) -> Alias<'static> {
+            Alias(::std::borrow::Cow::Owned(match self.0 {
+                ::std::borrow::Cow::Owned(ref value) => value.clone(),
+                ::std::borrow::Cow::Borrowed(value) => value.to_owned(),
+            }))
+        }
+    }
+    impl<'a> ::std::fmt::Display for Alias<'a> {
+        fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+            match self.0 {
+                ::std::borrow::Cow::Owned(ref value) => ::std::fmt::Display::fmt(value, f),
+                ::std::borrow::Cow::Borrowed(value) => ::std::fmt::Display::fmt(value, f),
+            }
+        }
+    }
     impl<'a> From<&'a str> for Alias<'a> {
         fn from(value: &'a str) -> Alias<'a> {
-            Alias(Cow::Borrowed(value))
+            Alias(::std::borrow::Cow::Borrowed(value))
         }
     }
     impl<'a> From<String> for Alias<'a> {
         fn from(value: String) -> Alias<'a> {
-            Alias(Cow::Owned(value))
+            Alias(::std::borrow::Cow::Owned(value))
         }
     }
-    impl<'a> From<Alias<'a>> for Cow<'a, str> {
-        fn from(value: Alias<'a>) -> Cow<'a, str> {
+    impl<'a> From<&'a String> for Alias<'a> {
+        fn from(value: &'a String) -> Alias<'a> {
+            Alias(::std::borrow::Cow::Borrowed(&**value))
+        }
+    }
+    impl<'a> From<Alias<'a>> for ::std::borrow::Cow<'a, str> {
+        fn from(value: Alias<'a>) -> ::std::borrow::Cow<'a, str> {
             value.0
+        }
+    }
+    impl<'a> From<Alias<'a>> for String {
+        fn from(value: Alias<'a>) -> String {
+            value.0.into_owned()
         }
     }
     impl<'a> ::std::ops::Deref for Alias<'a> {
@@ -6955,27 +6980,53 @@ pub mod params {
         }
     }
 
-    #[derive(Debug, PartialEq, Clone)]
-    pub struct Context<'a>(pub Cow<'a, str>);
+    #[derive(Debug, Clone, PartialEq, Eq, Hash)]
+    pub struct Context<'a>(pub ::std::borrow::Cow<'a, str>);
     pub fn context<'a, I>(value: I) -> Context<'a>
     where
         I: Into<Context<'a>>,
     {
         value.into()
     }
+    impl<'a> Context<'a> {
+        pub fn to_owned(&self) -> Context<'static> {
+            Context(::std::borrow::Cow::Owned(match self.0 {
+                ::std::borrow::Cow::Owned(ref value) => value.clone(),
+                ::std::borrow::Cow::Borrowed(value) => value.to_owned(),
+            }))
+        }
+    }
+    impl<'a> ::std::fmt::Display for Context<'a> {
+        fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+            match self.0 {
+                ::std::borrow::Cow::Owned(ref value) => ::std::fmt::Display::fmt(value, f),
+                ::std::borrow::Cow::Borrowed(value) => ::std::fmt::Display::fmt(value, f),
+            }
+        }
+    }
     impl<'a> From<&'a str> for Context<'a> {
         fn from(value: &'a str) -> Context<'a> {
-            Context(Cow::Borrowed(value))
+            Context(::std::borrow::Cow::Borrowed(value))
         }
     }
     impl<'a> From<String> for Context<'a> {
         fn from(value: String) -> Context<'a> {
-            Context(Cow::Owned(value))
+            Context(::std::borrow::Cow::Owned(value))
         }
     }
-    impl<'a> From<Context<'a>> for Cow<'a, str> {
-        fn from(value: Context<'a>) -> Cow<'a, str> {
+    impl<'a> From<&'a String> for Context<'a> {
+        fn from(value: &'a String) -> Context<'a> {
+            Context(::std::borrow::Cow::Borrowed(&**value))
+        }
+    }
+    impl<'a> From<Context<'a>> for ::std::borrow::Cow<'a, str> {
+        fn from(value: Context<'a>) -> ::std::borrow::Cow<'a, str> {
             value.0
+        }
+    }
+    impl<'a> From<Context<'a>> for String {
+        fn from(value: Context<'a>) -> String {
+            value.0.into_owned()
         }
     }
     impl<'a> ::std::ops::Deref for Context<'a> {
@@ -6985,27 +7036,53 @@ pub mod params {
         }
     }
 
-    #[derive(Debug, PartialEq, Clone)]
-    pub struct Fields<'a>(pub Cow<'a, str>);
+    #[derive(Debug, Clone, PartialEq, Eq, Hash)]
+    pub struct Fields<'a>(pub ::std::borrow::Cow<'a, str>);
     pub fn fields<'a, I>(value: I) -> Fields<'a>
     where
         I: Into<Fields<'a>>,
     {
         value.into()
     }
+    impl<'a> Fields<'a> {
+        pub fn to_owned(&self) -> Fields<'static> {
+            Fields(::std::borrow::Cow::Owned(match self.0 {
+                ::std::borrow::Cow::Owned(ref value) => value.clone(),
+                ::std::borrow::Cow::Borrowed(value) => value.to_owned(),
+            }))
+        }
+    }
+    impl<'a> ::std::fmt::Display for Fields<'a> {
+        fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+            match self.0 {
+                ::std::borrow::Cow::Owned(ref value) => ::std::fmt::Display::fmt(value, f),
+                ::std::borrow::Cow::Borrowed(value) => ::std::fmt::Display::fmt(value, f),
+            }
+        }
+    }
     impl<'a> From<&'a str> for Fields<'a> {
         fn from(value: &'a str) -> Fields<'a> {
-            Fields(Cow::Borrowed(value))
+            Fields(::std::borrow::Cow::Borrowed(value))
         }
     }
     impl<'a> From<String> for Fields<'a> {
         fn from(value: String) -> Fields<'a> {
-            Fields(Cow::Owned(value))
+            Fields(::std::borrow::Cow::Owned(value))
         }
     }
-    impl<'a> From<Fields<'a>> for Cow<'a, str> {
-        fn from(value: Fields<'a>) -> Cow<'a, str> {
+    impl<'a> From<&'a String> for Fields<'a> {
+        fn from(value: &'a String) -> Fields<'a> {
+            Fields(::std::borrow::Cow::Borrowed(&**value))
+        }
+    }
+    impl<'a> From<Fields<'a>> for ::std::borrow::Cow<'a, str> {
+        fn from(value: Fields<'a>) -> ::std::borrow::Cow<'a, str> {
             value.0
+        }
+    }
+    impl<'a> From<Fields<'a>> for String {
+        fn from(value: Fields<'a>) -> String {
+            value.0.into_owned()
         }
     }
     impl<'a> ::std::ops::Deref for Fields<'a> {
@@ -7015,27 +7092,53 @@ pub mod params {
         }
     }
 
-    #[derive(Debug, PartialEq, Clone)]
-    pub struct Id<'a>(pub Cow<'a, str>);
+    #[derive(Debug, Clone, PartialEq, Eq, Hash)]
+    pub struct Id<'a>(pub ::std::borrow::Cow<'a, str>);
     pub fn id<'a, I>(value: I) -> Id<'a>
     where
         I: Into<Id<'a>>,
     {
         value.into()
     }
+    impl<'a> Id<'a> {
+        pub fn to_owned(&self) -> Id<'static> {
+            Id(::std::borrow::Cow::Owned(match self.0 {
+                ::std::borrow::Cow::Owned(ref value) => value.clone(),
+                ::std::borrow::Cow::Borrowed(value) => value.to_owned(),
+            }))
+        }
+    }
+    impl<'a> ::std::fmt::Display for Id<'a> {
+        fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+            match self.0 {
+                ::std::borrow::Cow::Owned(ref value) => ::std::fmt::Display::fmt(value, f),
+                ::std::borrow::Cow::Borrowed(value) => ::std::fmt::Display::fmt(value, f),
+            }
+        }
+    }
     impl<'a> From<&'a str> for Id<'a> {
         fn from(value: &'a str) -> Id<'a> {
-            Id(Cow::Borrowed(value))
+            Id(::std::borrow::Cow::Borrowed(value))
         }
     }
     impl<'a> From<String> for Id<'a> {
         fn from(value: String) -> Id<'a> {
-            Id(Cow::Owned(value))
+            Id(::std::borrow::Cow::Owned(value))
         }
     }
-    impl<'a> From<Id<'a>> for Cow<'a, str> {
-        fn from(value: Id<'a>) -> Cow<'a, str> {
+    impl<'a> From<&'a String> for Id<'a> {
+        fn from(value: &'a String) -> Id<'a> {
+            Id(::std::borrow::Cow::Borrowed(&**value))
+        }
+    }
+    impl<'a> From<Id<'a>> for ::std::borrow::Cow<'a, str> {
+        fn from(value: Id<'a>) -> ::std::borrow::Cow<'a, str> {
             value.0
+        }
+    }
+    impl<'a> From<Id<'a>> for String {
+        fn from(value: Id<'a>) -> String {
+            value.0.into_owned()
         }
     }
     impl<'a> ::std::ops::Deref for Id<'a> {
@@ -7045,27 +7148,53 @@ pub mod params {
         }
     }
 
-    #[derive(Debug, PartialEq, Clone)]
-    pub struct Index<'a>(pub Cow<'a, str>);
+    #[derive(Debug, Clone, PartialEq, Eq, Hash)]
+    pub struct Index<'a>(pub ::std::borrow::Cow<'a, str>);
     pub fn index<'a, I>(value: I) -> Index<'a>
     where
         I: Into<Index<'a>>,
     {
         value.into()
     }
+    impl<'a> Index<'a> {
+        pub fn to_owned(&self) -> Index<'static> {
+            Index(::std::borrow::Cow::Owned(match self.0 {
+                ::std::borrow::Cow::Owned(ref value) => value.clone(),
+                ::std::borrow::Cow::Borrowed(value) => value.to_owned(),
+            }))
+        }
+    }
+    impl<'a> ::std::fmt::Display for Index<'a> {
+        fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+            match self.0 {
+                ::std::borrow::Cow::Owned(ref value) => ::std::fmt::Display::fmt(value, f),
+                ::std::borrow::Cow::Borrowed(value) => ::std::fmt::Display::fmt(value, f),
+            }
+        }
+    }
     impl<'a> From<&'a str> for Index<'a> {
         fn from(value: &'a str) -> Index<'a> {
-            Index(Cow::Borrowed(value))
+            Index(::std::borrow::Cow::Borrowed(value))
         }
     }
     impl<'a> From<String> for Index<'a> {
         fn from(value: String) -> Index<'a> {
-            Index(Cow::Owned(value))
+            Index(::std::borrow::Cow::Owned(value))
         }
     }
-    impl<'a> From<Index<'a>> for Cow<'a, str> {
-        fn from(value: Index<'a>) -> Cow<'a, str> {
+    impl<'a> From<&'a String> for Index<'a> {
+        fn from(value: &'a String) -> Index<'a> {
+            Index(::std::borrow::Cow::Borrowed(&**value))
+        }
+    }
+    impl<'a> From<Index<'a>> for ::std::borrow::Cow<'a, str> {
+        fn from(value: Index<'a>) -> ::std::borrow::Cow<'a, str> {
             value.0
+        }
+    }
+    impl<'a> From<Index<'a>> for String {
+        fn from(value: Index<'a>) -> String {
+            value.0.into_owned()
         }
     }
     impl<'a> ::std::ops::Deref for Index<'a> {
@@ -7075,27 +7204,53 @@ pub mod params {
         }
     }
 
-    #[derive(Debug, PartialEq, Clone)]
-    pub struct IndexMetric<'a>(pub Cow<'a, str>);
+    #[derive(Debug, Clone, PartialEq, Eq, Hash)]
+    pub struct IndexMetric<'a>(pub ::std::borrow::Cow<'a, str>);
     pub fn index_metric<'a, I>(value: I) -> IndexMetric<'a>
     where
         I: Into<IndexMetric<'a>>,
     {
         value.into()
     }
+    impl<'a> IndexMetric<'a> {
+        pub fn to_owned(&self) -> IndexMetric<'static> {
+            IndexMetric(::std::borrow::Cow::Owned(match self.0 {
+                ::std::borrow::Cow::Owned(ref value) => value.clone(),
+                ::std::borrow::Cow::Borrowed(value) => value.to_owned(),
+            }))
+        }
+    }
+    impl<'a> ::std::fmt::Display for IndexMetric<'a> {
+        fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+            match self.0 {
+                ::std::borrow::Cow::Owned(ref value) => ::std::fmt::Display::fmt(value, f),
+                ::std::borrow::Cow::Borrowed(value) => ::std::fmt::Display::fmt(value, f),
+            }
+        }
+    }
     impl<'a> From<&'a str> for IndexMetric<'a> {
         fn from(value: &'a str) -> IndexMetric<'a> {
-            IndexMetric(Cow::Borrowed(value))
+            IndexMetric(::std::borrow::Cow::Borrowed(value))
         }
     }
     impl<'a> From<String> for IndexMetric<'a> {
         fn from(value: String) -> IndexMetric<'a> {
-            IndexMetric(Cow::Owned(value))
+            IndexMetric(::std::borrow::Cow::Owned(value))
         }
     }
-    impl<'a> From<IndexMetric<'a>> for Cow<'a, str> {
-        fn from(value: IndexMetric<'a>) -> Cow<'a, str> {
+    impl<'a> From<&'a String> for IndexMetric<'a> {
+        fn from(value: &'a String) -> IndexMetric<'a> {
+            IndexMetric(::std::borrow::Cow::Borrowed(&**value))
+        }
+    }
+    impl<'a> From<IndexMetric<'a>> for ::std::borrow::Cow<'a, str> {
+        fn from(value: IndexMetric<'a>) -> ::std::borrow::Cow<'a, str> {
             value.0
+        }
+    }
+    impl<'a> From<IndexMetric<'a>> for String {
+        fn from(value: IndexMetric<'a>) -> String {
+            value.0.into_owned()
         }
     }
     impl<'a> ::std::ops::Deref for IndexMetric<'a> {
@@ -7105,27 +7260,53 @@ pub mod params {
         }
     }
 
-    #[derive(Debug, PartialEq, Clone)]
-    pub struct Metric<'a>(pub Cow<'a, str>);
+    #[derive(Debug, Clone, PartialEq, Eq, Hash)]
+    pub struct Metric<'a>(pub ::std::borrow::Cow<'a, str>);
     pub fn metric<'a, I>(value: I) -> Metric<'a>
     where
         I: Into<Metric<'a>>,
     {
         value.into()
     }
+    impl<'a> Metric<'a> {
+        pub fn to_owned(&self) -> Metric<'static> {
+            Metric(::std::borrow::Cow::Owned(match self.0 {
+                ::std::borrow::Cow::Owned(ref value) => value.clone(),
+                ::std::borrow::Cow::Borrowed(value) => value.to_owned(),
+            }))
+        }
+    }
+    impl<'a> ::std::fmt::Display for Metric<'a> {
+        fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+            match self.0 {
+                ::std::borrow::Cow::Owned(ref value) => ::std::fmt::Display::fmt(value, f),
+                ::std::borrow::Cow::Borrowed(value) => ::std::fmt::Display::fmt(value, f),
+            }
+        }
+    }
     impl<'a> From<&'a str> for Metric<'a> {
         fn from(value: &'a str) -> Metric<'a> {
-            Metric(Cow::Borrowed(value))
+            Metric(::std::borrow::Cow::Borrowed(value))
         }
     }
     impl<'a> From<String> for Metric<'a> {
         fn from(value: String) -> Metric<'a> {
-            Metric(Cow::Owned(value))
+            Metric(::std::borrow::Cow::Owned(value))
         }
     }
-    impl<'a> From<Metric<'a>> for Cow<'a, str> {
-        fn from(value: Metric<'a>) -> Cow<'a, str> {
+    impl<'a> From<&'a String> for Metric<'a> {
+        fn from(value: &'a String) -> Metric<'a> {
+            Metric(::std::borrow::Cow::Borrowed(&**value))
+        }
+    }
+    impl<'a> From<Metric<'a>> for ::std::borrow::Cow<'a, str> {
+        fn from(value: Metric<'a>) -> ::std::borrow::Cow<'a, str> {
             value.0
+        }
+    }
+    impl<'a> From<Metric<'a>> for String {
+        fn from(value: Metric<'a>) -> String {
+            value.0.into_owned()
         }
     }
     impl<'a> ::std::ops::Deref for Metric<'a> {
@@ -7135,27 +7316,53 @@ pub mod params {
         }
     }
 
-    #[derive(Debug, PartialEq, Clone)]
-    pub struct Name<'a>(pub Cow<'a, str>);
+    #[derive(Debug, Clone, PartialEq, Eq, Hash)]
+    pub struct Name<'a>(pub ::std::borrow::Cow<'a, str>);
     pub fn name<'a, I>(value: I) -> Name<'a>
     where
         I: Into<Name<'a>>,
     {
         value.into()
     }
+    impl<'a> Name<'a> {
+        pub fn to_owned(&self) -> Name<'static> {
+            Name(::std::borrow::Cow::Owned(match self.0 {
+                ::std::borrow::Cow::Owned(ref value) => value.clone(),
+                ::std::borrow::Cow::Borrowed(value) => value.to_owned(),
+            }))
+        }
+    }
+    impl<'a> ::std::fmt::Display for Name<'a> {
+        fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+            match self.0 {
+                ::std::borrow::Cow::Owned(ref value) => ::std::fmt::Display::fmt(value, f),
+                ::std::borrow::Cow::Borrowed(value) => ::std::fmt::Display::fmt(value, f),
+            }
+        }
+    }
     impl<'a> From<&'a str> for Name<'a> {
         fn from(value: &'a str) -> Name<'a> {
-            Name(Cow::Borrowed(value))
+            Name(::std::borrow::Cow::Borrowed(value))
         }
     }
     impl<'a> From<String> for Name<'a> {
         fn from(value: String) -> Name<'a> {
-            Name(Cow::Owned(value))
+            Name(::std::borrow::Cow::Owned(value))
         }
     }
-    impl<'a> From<Name<'a>> for Cow<'a, str> {
-        fn from(value: Name<'a>) -> Cow<'a, str> {
+    impl<'a> From<&'a String> for Name<'a> {
+        fn from(value: &'a String) -> Name<'a> {
+            Name(::std::borrow::Cow::Borrowed(&**value))
+        }
+    }
+    impl<'a> From<Name<'a>> for ::std::borrow::Cow<'a, str> {
+        fn from(value: Name<'a>) -> ::std::borrow::Cow<'a, str> {
             value.0
+        }
+    }
+    impl<'a> From<Name<'a>> for String {
+        fn from(value: Name<'a>) -> String {
+            value.0.into_owned()
         }
     }
     impl<'a> ::std::ops::Deref for Name<'a> {
@@ -7165,27 +7372,53 @@ pub mod params {
         }
     }
 
-    #[derive(Debug, PartialEq, Clone)]
-    pub struct NewIndex<'a>(pub Cow<'a, str>);
+    #[derive(Debug, Clone, PartialEq, Eq, Hash)]
+    pub struct NewIndex<'a>(pub ::std::borrow::Cow<'a, str>);
     pub fn new_index<'a, I>(value: I) -> NewIndex<'a>
     where
         I: Into<NewIndex<'a>>,
     {
         value.into()
     }
+    impl<'a> NewIndex<'a> {
+        pub fn to_owned(&self) -> NewIndex<'static> {
+            NewIndex(::std::borrow::Cow::Owned(match self.0 {
+                ::std::borrow::Cow::Owned(ref value) => value.clone(),
+                ::std::borrow::Cow::Borrowed(value) => value.to_owned(),
+            }))
+        }
+    }
+    impl<'a> ::std::fmt::Display for NewIndex<'a> {
+        fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+            match self.0 {
+                ::std::borrow::Cow::Owned(ref value) => ::std::fmt::Display::fmt(value, f),
+                ::std::borrow::Cow::Borrowed(value) => ::std::fmt::Display::fmt(value, f),
+            }
+        }
+    }
     impl<'a> From<&'a str> for NewIndex<'a> {
         fn from(value: &'a str) -> NewIndex<'a> {
-            NewIndex(Cow::Borrowed(value))
+            NewIndex(::std::borrow::Cow::Borrowed(value))
         }
     }
     impl<'a> From<String> for NewIndex<'a> {
         fn from(value: String) -> NewIndex<'a> {
-            NewIndex(Cow::Owned(value))
+            NewIndex(::std::borrow::Cow::Owned(value))
         }
     }
-    impl<'a> From<NewIndex<'a>> for Cow<'a, str> {
-        fn from(value: NewIndex<'a>) -> Cow<'a, str> {
+    impl<'a> From<&'a String> for NewIndex<'a> {
+        fn from(value: &'a String) -> NewIndex<'a> {
+            NewIndex(::std::borrow::Cow::Borrowed(&**value))
+        }
+    }
+    impl<'a> From<NewIndex<'a>> for ::std::borrow::Cow<'a, str> {
+        fn from(value: NewIndex<'a>) -> ::std::borrow::Cow<'a, str> {
             value.0
+        }
+    }
+    impl<'a> From<NewIndex<'a>> for String {
+        fn from(value: NewIndex<'a>) -> String {
+            value.0.into_owned()
         }
     }
     impl<'a> ::std::ops::Deref for NewIndex<'a> {
@@ -7195,27 +7428,53 @@ pub mod params {
         }
     }
 
-    #[derive(Debug, PartialEq, Clone)]
-    pub struct NodeId<'a>(pub Cow<'a, str>);
+    #[derive(Debug, Clone, PartialEq, Eq, Hash)]
+    pub struct NodeId<'a>(pub ::std::borrow::Cow<'a, str>);
     pub fn node_id<'a, I>(value: I) -> NodeId<'a>
     where
         I: Into<NodeId<'a>>,
     {
         value.into()
     }
+    impl<'a> NodeId<'a> {
+        pub fn to_owned(&self) -> NodeId<'static> {
+            NodeId(::std::borrow::Cow::Owned(match self.0 {
+                ::std::borrow::Cow::Owned(ref value) => value.clone(),
+                ::std::borrow::Cow::Borrowed(value) => value.to_owned(),
+            }))
+        }
+    }
+    impl<'a> ::std::fmt::Display for NodeId<'a> {
+        fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+            match self.0 {
+                ::std::borrow::Cow::Owned(ref value) => ::std::fmt::Display::fmt(value, f),
+                ::std::borrow::Cow::Borrowed(value) => ::std::fmt::Display::fmt(value, f),
+            }
+        }
+    }
     impl<'a> From<&'a str> for NodeId<'a> {
         fn from(value: &'a str) -> NodeId<'a> {
-            NodeId(Cow::Borrowed(value))
+            NodeId(::std::borrow::Cow::Borrowed(value))
         }
     }
     impl<'a> From<String> for NodeId<'a> {
         fn from(value: String) -> NodeId<'a> {
-            NodeId(Cow::Owned(value))
+            NodeId(::std::borrow::Cow::Owned(value))
         }
     }
-    impl<'a> From<NodeId<'a>> for Cow<'a, str> {
-        fn from(value: NodeId<'a>) -> Cow<'a, str> {
+    impl<'a> From<&'a String> for NodeId<'a> {
+        fn from(value: &'a String) -> NodeId<'a> {
+            NodeId(::std::borrow::Cow::Borrowed(&**value))
+        }
+    }
+    impl<'a> From<NodeId<'a>> for ::std::borrow::Cow<'a, str> {
+        fn from(value: NodeId<'a>) -> ::std::borrow::Cow<'a, str> {
             value.0
+        }
+    }
+    impl<'a> From<NodeId<'a>> for String {
+        fn from(value: NodeId<'a>) -> String {
+            value.0.into_owned()
         }
     }
     impl<'a> ::std::ops::Deref for NodeId<'a> {
@@ -7225,27 +7484,53 @@ pub mod params {
         }
     }
 
-    #[derive(Debug, PartialEq, Clone)]
-    pub struct Repository<'a>(pub Cow<'a, str>);
+    #[derive(Debug, Clone, PartialEq, Eq, Hash)]
+    pub struct Repository<'a>(pub ::std::borrow::Cow<'a, str>);
     pub fn repository<'a, I>(value: I) -> Repository<'a>
     where
         I: Into<Repository<'a>>,
     {
         value.into()
     }
+    impl<'a> Repository<'a> {
+        pub fn to_owned(&self) -> Repository<'static> {
+            Repository(::std::borrow::Cow::Owned(match self.0 {
+                ::std::borrow::Cow::Owned(ref value) => value.clone(),
+                ::std::borrow::Cow::Borrowed(value) => value.to_owned(),
+            }))
+        }
+    }
+    impl<'a> ::std::fmt::Display for Repository<'a> {
+        fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+            match self.0 {
+                ::std::borrow::Cow::Owned(ref value) => ::std::fmt::Display::fmt(value, f),
+                ::std::borrow::Cow::Borrowed(value) => ::std::fmt::Display::fmt(value, f),
+            }
+        }
+    }
     impl<'a> From<&'a str> for Repository<'a> {
         fn from(value: &'a str) -> Repository<'a> {
-            Repository(Cow::Borrowed(value))
+            Repository(::std::borrow::Cow::Borrowed(value))
         }
     }
     impl<'a> From<String> for Repository<'a> {
         fn from(value: String) -> Repository<'a> {
-            Repository(Cow::Owned(value))
+            Repository(::std::borrow::Cow::Owned(value))
         }
     }
-    impl<'a> From<Repository<'a>> for Cow<'a, str> {
-        fn from(value: Repository<'a>) -> Cow<'a, str> {
+    impl<'a> From<&'a String> for Repository<'a> {
+        fn from(value: &'a String) -> Repository<'a> {
+            Repository(::std::borrow::Cow::Borrowed(&**value))
+        }
+    }
+    impl<'a> From<Repository<'a>> for ::std::borrow::Cow<'a, str> {
+        fn from(value: Repository<'a>) -> ::std::borrow::Cow<'a, str> {
             value.0
+        }
+    }
+    impl<'a> From<Repository<'a>> for String {
+        fn from(value: Repository<'a>) -> String {
+            value.0.into_owned()
         }
     }
     impl<'a> ::std::ops::Deref for Repository<'a> {
@@ -7255,27 +7540,53 @@ pub mod params {
         }
     }
 
-    #[derive(Debug, PartialEq, Clone)]
-    pub struct ScrollId<'a>(pub Cow<'a, str>);
+    #[derive(Debug, Clone, PartialEq, Eq, Hash)]
+    pub struct ScrollId<'a>(pub ::std::borrow::Cow<'a, str>);
     pub fn scroll_id<'a, I>(value: I) -> ScrollId<'a>
     where
         I: Into<ScrollId<'a>>,
     {
         value.into()
     }
+    impl<'a> ScrollId<'a> {
+        pub fn to_owned(&self) -> ScrollId<'static> {
+            ScrollId(::std::borrow::Cow::Owned(match self.0 {
+                ::std::borrow::Cow::Owned(ref value) => value.clone(),
+                ::std::borrow::Cow::Borrowed(value) => value.to_owned(),
+            }))
+        }
+    }
+    impl<'a> ::std::fmt::Display for ScrollId<'a> {
+        fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+            match self.0 {
+                ::std::borrow::Cow::Owned(ref value) => ::std::fmt::Display::fmt(value, f),
+                ::std::borrow::Cow::Borrowed(value) => ::std::fmt::Display::fmt(value, f),
+            }
+        }
+    }
     impl<'a> From<&'a str> for ScrollId<'a> {
         fn from(value: &'a str) -> ScrollId<'a> {
-            ScrollId(Cow::Borrowed(value))
+            ScrollId(::std::borrow::Cow::Borrowed(value))
         }
     }
     impl<'a> From<String> for ScrollId<'a> {
         fn from(value: String) -> ScrollId<'a> {
-            ScrollId(Cow::Owned(value))
+            ScrollId(::std::borrow::Cow::Owned(value))
         }
     }
-    impl<'a> From<ScrollId<'a>> for Cow<'a, str> {
-        fn from(value: ScrollId<'a>) -> Cow<'a, str> {
+    impl<'a> From<&'a String> for ScrollId<'a> {
+        fn from(value: &'a String) -> ScrollId<'a> {
+            ScrollId(::std::borrow::Cow::Borrowed(&**value))
+        }
+    }
+    impl<'a> From<ScrollId<'a>> for ::std::borrow::Cow<'a, str> {
+        fn from(value: ScrollId<'a>) -> ::std::borrow::Cow<'a, str> {
             value.0
+        }
+    }
+    impl<'a> From<ScrollId<'a>> for String {
+        fn from(value: ScrollId<'a>) -> String {
+            value.0.into_owned()
         }
     }
     impl<'a> ::std::ops::Deref for ScrollId<'a> {
@@ -7285,27 +7596,53 @@ pub mod params {
         }
     }
 
-    #[derive(Debug, PartialEq, Clone)]
-    pub struct Snapshot<'a>(pub Cow<'a, str>);
+    #[derive(Debug, Clone, PartialEq, Eq, Hash)]
+    pub struct Snapshot<'a>(pub ::std::borrow::Cow<'a, str>);
     pub fn snapshot<'a, I>(value: I) -> Snapshot<'a>
     where
         I: Into<Snapshot<'a>>,
     {
         value.into()
     }
+    impl<'a> Snapshot<'a> {
+        pub fn to_owned(&self) -> Snapshot<'static> {
+            Snapshot(::std::borrow::Cow::Owned(match self.0 {
+                ::std::borrow::Cow::Owned(ref value) => value.clone(),
+                ::std::borrow::Cow::Borrowed(value) => value.to_owned(),
+            }))
+        }
+    }
+    impl<'a> ::std::fmt::Display for Snapshot<'a> {
+        fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+            match self.0 {
+                ::std::borrow::Cow::Owned(ref value) => ::std::fmt::Display::fmt(value, f),
+                ::std::borrow::Cow::Borrowed(value) => ::std::fmt::Display::fmt(value, f),
+            }
+        }
+    }
     impl<'a> From<&'a str> for Snapshot<'a> {
         fn from(value: &'a str) -> Snapshot<'a> {
-            Snapshot(Cow::Borrowed(value))
+            Snapshot(::std::borrow::Cow::Borrowed(value))
         }
     }
     impl<'a> From<String> for Snapshot<'a> {
         fn from(value: String) -> Snapshot<'a> {
-            Snapshot(Cow::Owned(value))
+            Snapshot(::std::borrow::Cow::Owned(value))
         }
     }
-    impl<'a> From<Snapshot<'a>> for Cow<'a, str> {
-        fn from(value: Snapshot<'a>) -> Cow<'a, str> {
+    impl<'a> From<&'a String> for Snapshot<'a> {
+        fn from(value: &'a String) -> Snapshot<'a> {
+            Snapshot(::std::borrow::Cow::Borrowed(&**value))
+        }
+    }
+    impl<'a> From<Snapshot<'a>> for ::std::borrow::Cow<'a, str> {
+        fn from(value: Snapshot<'a>) -> ::std::borrow::Cow<'a, str> {
             value.0
+        }
+    }
+    impl<'a> From<Snapshot<'a>> for String {
+        fn from(value: Snapshot<'a>) -> String {
+            value.0.into_owned()
         }
     }
     impl<'a> ::std::ops::Deref for Snapshot<'a> {
@@ -7315,27 +7652,53 @@ pub mod params {
         }
     }
 
-    #[derive(Debug, PartialEq, Clone)]
-    pub struct Target<'a>(pub Cow<'a, str>);
+    #[derive(Debug, Clone, PartialEq, Eq, Hash)]
+    pub struct Target<'a>(pub ::std::borrow::Cow<'a, str>);
     pub fn target<'a, I>(value: I) -> Target<'a>
     where
         I: Into<Target<'a>>,
     {
         value.into()
     }
+    impl<'a> Target<'a> {
+        pub fn to_owned(&self) -> Target<'static> {
+            Target(::std::borrow::Cow::Owned(match self.0 {
+                ::std::borrow::Cow::Owned(ref value) => value.clone(),
+                ::std::borrow::Cow::Borrowed(value) => value.to_owned(),
+            }))
+        }
+    }
+    impl<'a> ::std::fmt::Display for Target<'a> {
+        fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+            match self.0 {
+                ::std::borrow::Cow::Owned(ref value) => ::std::fmt::Display::fmt(value, f),
+                ::std::borrow::Cow::Borrowed(value) => ::std::fmt::Display::fmt(value, f),
+            }
+        }
+    }
     impl<'a> From<&'a str> for Target<'a> {
         fn from(value: &'a str) -> Target<'a> {
-            Target(Cow::Borrowed(value))
+            Target(::std::borrow::Cow::Borrowed(value))
         }
     }
     impl<'a> From<String> for Target<'a> {
         fn from(value: String) -> Target<'a> {
-            Target(Cow::Owned(value))
+            Target(::std::borrow::Cow::Owned(value))
         }
     }
-    impl<'a> From<Target<'a>> for Cow<'a, str> {
-        fn from(value: Target<'a>) -> Cow<'a, str> {
+    impl<'a> From<&'a String> for Target<'a> {
+        fn from(value: &'a String) -> Target<'a> {
+            Target(::std::borrow::Cow::Borrowed(&**value))
+        }
+    }
+    impl<'a> From<Target<'a>> for ::std::borrow::Cow<'a, str> {
+        fn from(value: Target<'a>) -> ::std::borrow::Cow<'a, str> {
             value.0
+        }
+    }
+    impl<'a> From<Target<'a>> for String {
+        fn from(value: Target<'a>) -> String {
+            value.0.into_owned()
         }
     }
     impl<'a> ::std::ops::Deref for Target<'a> {
@@ -7345,27 +7708,53 @@ pub mod params {
         }
     }
 
-    #[derive(Debug, PartialEq, Clone)]
-    pub struct TaskId<'a>(pub Cow<'a, str>);
+    #[derive(Debug, Clone, PartialEq, Eq, Hash)]
+    pub struct TaskId<'a>(pub ::std::borrow::Cow<'a, str>);
     pub fn task_id<'a, I>(value: I) -> TaskId<'a>
     where
         I: Into<TaskId<'a>>,
     {
         value.into()
     }
+    impl<'a> TaskId<'a> {
+        pub fn to_owned(&self) -> TaskId<'static> {
+            TaskId(::std::borrow::Cow::Owned(match self.0 {
+                ::std::borrow::Cow::Owned(ref value) => value.clone(),
+                ::std::borrow::Cow::Borrowed(value) => value.to_owned(),
+            }))
+        }
+    }
+    impl<'a> ::std::fmt::Display for TaskId<'a> {
+        fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+            match self.0 {
+                ::std::borrow::Cow::Owned(ref value) => ::std::fmt::Display::fmt(value, f),
+                ::std::borrow::Cow::Borrowed(value) => ::std::fmt::Display::fmt(value, f),
+            }
+        }
+    }
     impl<'a> From<&'a str> for TaskId<'a> {
         fn from(value: &'a str) -> TaskId<'a> {
-            TaskId(Cow::Borrowed(value))
+            TaskId(::std::borrow::Cow::Borrowed(value))
         }
     }
     impl<'a> From<String> for TaskId<'a> {
         fn from(value: String) -> TaskId<'a> {
-            TaskId(Cow::Owned(value))
+            TaskId(::std::borrow::Cow::Owned(value))
         }
     }
-    impl<'a> From<TaskId<'a>> for Cow<'a, str> {
-        fn from(value: TaskId<'a>) -> Cow<'a, str> {
+    impl<'a> From<&'a String> for TaskId<'a> {
+        fn from(value: &'a String) -> TaskId<'a> {
+            TaskId(::std::borrow::Cow::Borrowed(&**value))
+        }
+    }
+    impl<'a> From<TaskId<'a>> for ::std::borrow::Cow<'a, str> {
+        fn from(value: TaskId<'a>) -> ::std::borrow::Cow<'a, str> {
             value.0
+        }
+    }
+    impl<'a> From<TaskId<'a>> for String {
+        fn from(value: TaskId<'a>) -> String {
+            value.0.into_owned()
         }
     }
     impl<'a> ::std::ops::Deref for TaskId<'a> {
@@ -7375,27 +7764,53 @@ pub mod params {
         }
     }
 
-    #[derive(Debug, PartialEq, Clone)]
-    pub struct ThreadPoolPatterns<'a>(pub Cow<'a, str>);
+    #[derive(Debug, Clone, PartialEq, Eq, Hash)]
+    pub struct ThreadPoolPatterns<'a>(pub ::std::borrow::Cow<'a, str>);
     pub fn thread_pool_patterns<'a, I>(value: I) -> ThreadPoolPatterns<'a>
     where
         I: Into<ThreadPoolPatterns<'a>>,
     {
         value.into()
     }
+    impl<'a> ThreadPoolPatterns<'a> {
+        pub fn to_owned(&self) -> ThreadPoolPatterns<'static> {
+            ThreadPoolPatterns(::std::borrow::Cow::Owned(match self.0 {
+                ::std::borrow::Cow::Owned(ref value) => value.clone(),
+                ::std::borrow::Cow::Borrowed(value) => value.to_owned(),
+            }))
+        }
+    }
+    impl<'a> ::std::fmt::Display for ThreadPoolPatterns<'a> {
+        fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+            match self.0 {
+                ::std::borrow::Cow::Owned(ref value) => ::std::fmt::Display::fmt(value, f),
+                ::std::borrow::Cow::Borrowed(value) => ::std::fmt::Display::fmt(value, f),
+            }
+        }
+    }
     impl<'a> From<&'a str> for ThreadPoolPatterns<'a> {
         fn from(value: &'a str) -> ThreadPoolPatterns<'a> {
-            ThreadPoolPatterns(Cow::Borrowed(value))
+            ThreadPoolPatterns(::std::borrow::Cow::Borrowed(value))
         }
     }
     impl<'a> From<String> for ThreadPoolPatterns<'a> {
         fn from(value: String) -> ThreadPoolPatterns<'a> {
-            ThreadPoolPatterns(Cow::Owned(value))
+            ThreadPoolPatterns(::std::borrow::Cow::Owned(value))
         }
     }
-    impl<'a> From<ThreadPoolPatterns<'a>> for Cow<'a, str> {
-        fn from(value: ThreadPoolPatterns<'a>) -> Cow<'a, str> {
+    impl<'a> From<&'a String> for ThreadPoolPatterns<'a> {
+        fn from(value: &'a String) -> ThreadPoolPatterns<'a> {
+            ThreadPoolPatterns(::std::borrow::Cow::Borrowed(&**value))
+        }
+    }
+    impl<'a> From<ThreadPoolPatterns<'a>> for ::std::borrow::Cow<'a, str> {
+        fn from(value: ThreadPoolPatterns<'a>) -> ::std::borrow::Cow<'a, str> {
             value.0
+        }
+    }
+    impl<'a> From<ThreadPoolPatterns<'a>> for String {
+        fn from(value: ThreadPoolPatterns<'a>) -> String {
+            value.0.into_owned()
         }
     }
     impl<'a> ::std::ops::Deref for ThreadPoolPatterns<'a> {
@@ -7405,27 +7820,53 @@ pub mod params {
         }
     }
 
-    #[derive(Debug, PartialEq, Clone)]
-    pub struct Type<'a>(pub Cow<'a, str>);
+    #[derive(Debug, Clone, PartialEq, Eq, Hash)]
+    pub struct Type<'a>(pub ::std::borrow::Cow<'a, str>);
     pub fn ty<'a, I>(value: I) -> Type<'a>
     where
         I: Into<Type<'a>>,
     {
         value.into()
     }
+    impl<'a> Type<'a> {
+        pub fn to_owned(&self) -> Type<'static> {
+            Type(::std::borrow::Cow::Owned(match self.0 {
+                ::std::borrow::Cow::Owned(ref value) => value.clone(),
+                ::std::borrow::Cow::Borrowed(value) => value.to_owned(),
+            }))
+        }
+    }
+    impl<'a> ::std::fmt::Display for Type<'a> {
+        fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+            match self.0 {
+                ::std::borrow::Cow::Owned(ref value) => ::std::fmt::Display::fmt(value, f),
+                ::std::borrow::Cow::Borrowed(value) => ::std::fmt::Display::fmt(value, f),
+            }
+        }
+    }
     impl<'a> From<&'a str> for Type<'a> {
         fn from(value: &'a str) -> Type<'a> {
-            Type(Cow::Borrowed(value))
+            Type(::std::borrow::Cow::Borrowed(value))
         }
     }
     impl<'a> From<String> for Type<'a> {
         fn from(value: String) -> Type<'a> {
-            Type(Cow::Owned(value))
+            Type(::std::borrow::Cow::Owned(value))
         }
     }
-    impl<'a> From<Type<'a>> for Cow<'a, str> {
-        fn from(value: Type<'a>) -> Cow<'a, str> {
+    impl<'a> From<&'a String> for Type<'a> {
+        fn from(value: &'a String) -> Type<'a> {
+            Type(::std::borrow::Cow::Borrowed(&**value))
+        }
+    }
+    impl<'a> From<Type<'a>> for ::std::borrow::Cow<'a, str> {
+        fn from(value: Type<'a>) -> ::std::borrow::Cow<'a, str> {
             value.0
+        }
+    }
+    impl<'a> From<Type<'a>> for String {
+        fn from(value: Type<'a>) -> String {
+            value.0.into_owned()
         }
     }
     impl<'a> ::std::ops::Deref for Type<'a> {

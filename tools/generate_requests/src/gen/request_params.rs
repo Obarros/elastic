@@ -75,7 +75,18 @@ impl RequestParamBuilder {
                 .collect(),
         );
 
-        let mut attrs = vec![];
+        let mut attrs = vec![syn::Attribute {
+            is_sugared_doc: false,
+            style: syn::AttrStyle::Outer,
+            value: syn::MetaItem::List(
+                ident("derive"),
+                vec![
+                    syn::NestedMetaItem::MetaItem(syn::MetaItem::Word(ident("Debug"))),
+                    syn::NestedMetaItem::MetaItem(syn::MetaItem::Word(ident("Clone"))),
+                    syn::NestedMetaItem::MetaItem(syn::MetaItem::Word(ident("PartialEq"))),
+                ],
+            ),
+        }];
 
         if let Some(doc_comment) = self.doc_comment {
             attrs.push(doc(doc_comment));

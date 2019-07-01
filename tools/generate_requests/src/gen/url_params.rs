@@ -94,7 +94,18 @@ impl UrlParamBuilder {
         let item = syn::Item {
             ident: self.name,
             vis: syn::Visibility::Inherited,
-            attrs: vec![],
+            attrs: vec![syn::Attribute {
+                is_sugared_doc: false,
+                style: syn::AttrStyle::Outer,
+                value: syn::MetaItem::List(
+                    ident("derive"),
+                    vec![
+                        syn::NestedMetaItem::MetaItem(syn::MetaItem::Word(ident("Debug"))),
+                        syn::NestedMetaItem::MetaItem(syn::MetaItem::Word(ident("Clone"))),
+                        syn::NestedMetaItem::MetaItem(syn::MetaItem::Word(ident("PartialEq"))),
+                    ],
+                ),
+            }],
             node: syn::ItemKind::Enum(variants, generics),
         };
 

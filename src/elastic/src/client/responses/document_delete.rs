@@ -2,18 +2,26 @@
 Response types for a [delete document request](https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-delete.html).
 */
 
-use crate::http::StatusCode;
+use crate::{
+    client::{
+        receiver::{
+            HttpResponseHead,
+            IsOk,
+            MaybeOkResponse,
+            ParseError,
+            ResponseBody,
+            Unbuffered,
+        },
+        requests::params::{
+            Id,
+            Index,
+            Type,
+        },
+    },
+    http::StatusCode,
+};
 
 use super::common::DocumentResult;
-
-use crate::client::receiver::{
-    HttpResponseHead,
-    IsOk,
-    MaybeOkResponse,
-    ParseError,
-    ResponseBody,
-    Unbuffered,
-};
 
 /** Response for a [delete document request](https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-delete.html). */
 #[derive(Deserialize, Debug)]
@@ -41,18 +49,18 @@ impl DeleteResponse {
     }
 
     /** The index for the document. */
-    pub fn index(&self) -> &str {
-        &self.index
+    pub fn index(&self) -> Index {
+        Index::from(&self.index)
     }
 
     /** The type of the document. */
-    pub fn ty(&self) -> &str {
-        &self.ty
+    pub fn ty(&self) -> Type {
+        Type::from(&self.ty)
     }
 
     /** The id of the document. */
-    pub fn id(&self) -> &str {
-        &self.id
+    pub fn id(&self) -> Id {
+        Id::from(&self.id)
     }
 
     /** The version of the document. */

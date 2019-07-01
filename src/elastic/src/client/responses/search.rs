@@ -10,7 +10,14 @@ use serde_json::{
 
 use super::common::Shards;
 
-use crate::client::receiver::IsOkOnSuccess;
+use crate::client::{
+    receiver::IsOkOnSuccess,
+    requests::params::{
+        Id,
+        Index,
+        Type,
+    },
+};
 
 use std::{
     borrow::Cow,
@@ -266,18 +273,18 @@ impl<T> Hit<T> {
     }
 
     /** The index for the hit. */
-    pub fn index(&self) -> &str {
-        &self.index
+    pub fn index(&self) -> Index {
+        Index::from(&self.index)
     }
 
     /** The type of the hit. */
-    pub fn ty(&self) -> &str {
-        &self.ty
+    pub fn ty(&self) -> Type {
+        Type::from(&self.ty)
     }
 
     /** The id of the hit. */
-    pub fn id(&self) -> &str {
-        &self.id
+    pub fn id(&self) -> Id {
+        Id::from(&self.id)
     }
 
     /** The version of the hit. */
