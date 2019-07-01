@@ -1,4 +1,3 @@
-use super::load_file;
 use crate::{
     client::{
         receiver::{
@@ -12,9 +11,9 @@ use crate::{
 
 #[test]
 fn success_parse_response() {
-    let f = load_file("index_success.json");
+    let f = include_bytes!("index_success.json");
     let deserialized = parse::<IndexResponse>()
-        .from_reader(StatusCode::OK, f)
+        .from_slice(StatusCode::OK, f as &[_])
         .unwrap();
 
     assert!(deserialized.created());
@@ -26,9 +25,9 @@ fn success_parse_response() {
 
 #[test]
 fn error_parse_index_already_exists() {
-    let f = load_file("error_index_already_exists.json");
+    let f = include_bytes!("../error/error_index_already_exists.json");
     let deserialized = parse::<IndexResponse>()
-        .from_reader(StatusCode::BAD_REQUEST, f)
+        .from_slice(StatusCode::BAD_REQUEST, f as &[_])
         .unwrap_err();
 
     let valid = match deserialized {

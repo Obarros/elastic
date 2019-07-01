@@ -1,12 +1,6 @@
-use crate::{
-    client::{
-        receiver::{
-            parse,
-            ResponseError,
-        },
-        responses::*,
-    },
-    error::*,
+use crate::client::{
+    receiver::parse,
+    responses::*,
 };
 
 #[test]

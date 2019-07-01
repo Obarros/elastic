@@ -1,5 +1,5 @@
 /*!
-Low-level http client details.
+Low-level http client details for request sending.
 
 This module contains low-level implementation details for the high-level [`Client`][Client].
 Most of the types here aren't currently usable directly, but once the low-level API matures they should be extensible.

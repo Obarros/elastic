@@ -184,6 +184,12 @@ pub mod types {
                     }
                 }
 
+                impl<'a, 'b> PartialEq<#ty> for &'b str {
+                    fn eq(&self, other: &#ty) -> bool {
+                        self.eq(&other.0)
+                    }
+                }
+
                 impl <'a> From<&'a str> for #ty {
                     fn from(value: &'a str) -> #ty {
                         #ident(::std::borrow::Cow::Borrowed(value))

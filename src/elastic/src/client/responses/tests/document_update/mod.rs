@@ -2,7 +2,6 @@
 // - error: action_request_validation
 // - error: document_missing_exception
 
-use super::load_file;
 use crate::{
     client::{
         receiver::{
@@ -16,9 +15,9 @@ use crate::{
 
 #[test]
 fn success_parse_updated_doc_response() {
-    let f = load_file("update_updated.json");
+    let f = include_bytes!("update_updated.json");
     let deserialized = parse::<UpdateResponse>()
-        .from_reader(StatusCode::OK, f)
+        .from_slice(StatusCode::OK, f as &[_])
         .unwrap();
 
     assert_eq!("testindex", deserialized.index());
@@ -31,9 +30,9 @@ fn success_parse_updated_doc_response() {
 
 #[test]
 fn success_parse_noop_doc_response() {
-    let f = load_file("update_noop.json");
+    let f = include_bytes!("update_noop.json");
     let deserialized = parse::<UpdateResponse>()
-        .from_reader(StatusCode::OK, f)
+        .from_slice(StatusCode::OK, f as &[_])
         .unwrap();
 
     assert_eq!("testindex", deserialized.index());
@@ -46,9 +45,9 @@ fn success_parse_noop_doc_response() {
 
 #[test]
 fn error_parse_document_missing() {
-    let f = load_file("error_document_missing.json");
+    let f = include_bytes!("../error/error_document_missing.json");
     let deserialized = parse::<UpdateResponse>()
-        .from_reader(StatusCode::NOT_FOUND, f)
+        .from_slice(StatusCode::NOT_FOUND, f as &[_])
         .unwrap_err();
 
     let valid = match deserialized {

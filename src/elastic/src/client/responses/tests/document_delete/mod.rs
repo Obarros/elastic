@@ -1,20 +1,13 @@
-use super::load_file;
-use crate::{
-    client::{
-        receiver::{
-            parse,
-            ResponseError,
-        },
-        responses::*,
-    },
-    error::*,
+use crate::client::{
+    receiver::parse,
+    responses::*,
 };
 
 #[test]
 fn success_parse_found_response() {
-    let f = load_file("delete_found.json");
+    let f = include_bytes!("delete_found.json");
     let deserialized = parse::<DeleteResponse>()
-        .from_reader(StatusCode::OK, f)
+        .from_slice(StatusCode::OK, f as &[_])
         .unwrap();
 
     assert_eq!("testindex", deserialized.index());
@@ -27,9 +20,9 @@ fn success_parse_found_response() {
 
 #[test]
 fn success_parse_not_found_response() {
-    let f = load_file("delete_not_found.json");
+    let f = include_bytes!("delete_not_found.json");
     let deserialized = parse::<DeleteResponse>()
-        .from_reader(StatusCode::NOT_FOUND, f)
+        .from_slice(StatusCode::NOT_FOUND, f as &[_])
         .unwrap();
 
     assert!(!deserialized.deleted());

@@ -552,17 +552,17 @@ mod tests {
 
     #[test]
     fn get_default_type_index() {
-        assert_eq!("simpletype", SimpleType::static_index().as_ref());
+        assert_eq!("simpletype", SimpleType::static_index());
     }
 
     #[test]
     fn get_custom_type_index() {
-        assert_eq!("renamed_index", CustomType::static_index().as_ref());
+        assert_eq!("renamed_index", CustomType::static_index());
     }
 
     #[test]
     fn get_default_type() {
-        assert_eq!("_doc", SimpleType::static_ty().as_ref());
+        assert_eq!("_doc", SimpleType::static_ty());
     }
 
     #[test]
@@ -578,7 +578,7 @@ mod tests {
             field2: 1,
         };
 
-        assert_eq!("13", doc.partial_id().unwrap().as_ref());
+        assert_eq!("13", doc.partial_id().unwrap());
     }
 
     #[test]
