@@ -10,9 +10,9 @@ use serde_json::{
 
 use super::common::Shards;
 
-use crate::client::{
-    receiver::IsOkOnSuccess,
-    requests::params::{
+use crate::{
+    client::receiver::IsOkOnSuccess,
+    types::document::{
         Id,
         Index,
         Type,

@@ -127,7 +127,7 @@ in a `GetResponse`.
 
 pub mod bulk;
 mod command;
-mod common;
+pub mod common;
 mod document_delete;
 mod document_get;
 mod document_index;
@@ -149,7 +149,6 @@ pub use self::{
         BulkResponse,
     },
     command::*,
-    common::*,
     document_delete::*,
     document_get::*,
     document_index::*,
@@ -179,9 +178,9 @@ pub mod prelude {
         GetResponse,
         IndexResponse,
         IndicesExistsResponse,
+        NodesInfoResponse,
         PingResponse,
         SearchResponse,
-        Shards,
         SqlResponse,
         UpdateResponse,
     };

@@ -3,22 +3,20 @@ Response types for a [delete document request](https://www.elastic.co/guide/en/e
 */
 
 use crate::{
-    client::{
-        receiver::{
-            HttpResponseHead,
-            IsOk,
-            MaybeOkResponse,
-            ParseError,
-            ResponseBody,
-            Unbuffered,
-        },
-        requests::params::{
-            Id,
-            Index,
-            Type,
-        },
+    client::receiver::{
+        HttpResponseHead,
+        IsOk,
+        MaybeOkResponse,
+        ParseError,
+        ResponseBody,
+        Unbuffered,
     },
     http::StatusCode,
+    types::document::{
+        Id,
+        Index,
+        Type,
+    },
 };
 
 use super::common::DocumentResult;

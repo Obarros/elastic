@@ -10,7 +10,7 @@ use std::{
     time::Duration,
 };
 
-type Error = Box<StdError>;
+type Error = Box<dyn StdError>;
 
 pub fn call(client: AsyncClient, timeout_secs: u64) -> Result<(), Error> {
     let wait = tokio::runtime::current_thread::block_on_all(call_future(client, timeout_secs));
@@ -85,7 +85,7 @@ impl StdError for Done {
         "timeout"
     }
 
-    fn cause(&self) -> Option<&StdError> {
+    fn cause(&self) -> Option<&dyn StdError> {
         None
     }
 }

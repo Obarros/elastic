@@ -1,5 +1,6 @@
 /*
 This code is automatically generated
+run the `tools/generate_requests.sh` script to update it
 */
 pub mod endpoints {
     use super::{
@@ -6948,6 +6949,11 @@ pub mod params {
             }
         }
     }
+    impl<'a> PartialEq<str> for Alias<'a> {
+        fn eq(&self, other: &str) -> bool {
+            self.0.eq(other)
+        }
+    }
     impl<'a> From<&'a str> for Alias<'a> {
         fn from(value: &'a str) -> Alias<'a> {
             Alias(::std::borrow::Cow::Borrowed(value))
@@ -7002,6 +7008,11 @@ pub mod params {
                 ::std::borrow::Cow::Owned(ref value) => ::std::fmt::Display::fmt(value, f),
                 ::std::borrow::Cow::Borrowed(value) => ::std::fmt::Display::fmt(value, f),
             }
+        }
+    }
+    impl<'a> PartialEq<str> for Context<'a> {
+        fn eq(&self, other: &str) -> bool {
+            self.0.eq(other)
         }
     }
     impl<'a> From<&'a str> for Context<'a> {
@@ -7060,6 +7071,11 @@ pub mod params {
             }
         }
     }
+    impl<'a> PartialEq<str> for Fields<'a> {
+        fn eq(&self, other: &str) -> bool {
+            self.0.eq(other)
+        }
+    }
     impl<'a> From<&'a str> for Fields<'a> {
         fn from(value: &'a str) -> Fields<'a> {
             Fields(::std::borrow::Cow::Borrowed(value))
@@ -7114,6 +7130,11 @@ pub mod params {
                 ::std::borrow::Cow::Owned(ref value) => ::std::fmt::Display::fmt(value, f),
                 ::std::borrow::Cow::Borrowed(value) => ::std::fmt::Display::fmt(value, f),
             }
+        }
+    }
+    impl<'a> PartialEq<str> for Id<'a> {
+        fn eq(&self, other: &str) -> bool {
+            self.0.eq(other)
         }
     }
     impl<'a> From<&'a str> for Id<'a> {
@@ -7172,6 +7193,11 @@ pub mod params {
             }
         }
     }
+    impl<'a> PartialEq<str> for Index<'a> {
+        fn eq(&self, other: &str) -> bool {
+            self.0.eq(other)
+        }
+    }
     impl<'a> From<&'a str> for Index<'a> {
         fn from(value: &'a str) -> Index<'a> {
             Index(::std::borrow::Cow::Borrowed(value))
@@ -7226,6 +7252,11 @@ pub mod params {
                 ::std::borrow::Cow::Owned(ref value) => ::std::fmt::Display::fmt(value, f),
                 ::std::borrow::Cow::Borrowed(value) => ::std::fmt::Display::fmt(value, f),
             }
+        }
+    }
+    impl<'a> PartialEq<str> for IndexMetric<'a> {
+        fn eq(&self, other: &str) -> bool {
+            self.0.eq(other)
         }
     }
     impl<'a> From<&'a str> for IndexMetric<'a> {
@@ -7284,6 +7315,11 @@ pub mod params {
             }
         }
     }
+    impl<'a> PartialEq<str> for Metric<'a> {
+        fn eq(&self, other: &str) -> bool {
+            self.0.eq(other)
+        }
+    }
     impl<'a> From<&'a str> for Metric<'a> {
         fn from(value: &'a str) -> Metric<'a> {
             Metric(::std::borrow::Cow::Borrowed(value))
@@ -7338,6 +7374,11 @@ pub mod params {
                 ::std::borrow::Cow::Owned(ref value) => ::std::fmt::Display::fmt(value, f),
                 ::std::borrow::Cow::Borrowed(value) => ::std::fmt::Display::fmt(value, f),
             }
+        }
+    }
+    impl<'a> PartialEq<str> for Name<'a> {
+        fn eq(&self, other: &str) -> bool {
+            self.0.eq(other)
         }
     }
     impl<'a> From<&'a str> for Name<'a> {
@@ -7396,6 +7437,11 @@ pub mod params {
             }
         }
     }
+    impl<'a> PartialEq<str> for NewIndex<'a> {
+        fn eq(&self, other: &str) -> bool {
+            self.0.eq(other)
+        }
+    }
     impl<'a> From<&'a str> for NewIndex<'a> {
         fn from(value: &'a str) -> NewIndex<'a> {
             NewIndex(::std::borrow::Cow::Borrowed(value))
@@ -7450,6 +7496,11 @@ pub mod params {
                 ::std::borrow::Cow::Owned(ref value) => ::std::fmt::Display::fmt(value, f),
                 ::std::borrow::Cow::Borrowed(value) => ::std::fmt::Display::fmt(value, f),
             }
+        }
+    }
+    impl<'a> PartialEq<str> for NodeId<'a> {
+        fn eq(&self, other: &str) -> bool {
+            self.0.eq(other)
         }
     }
     impl<'a> From<&'a str> for NodeId<'a> {
@@ -7508,6 +7559,11 @@ pub mod params {
             }
         }
     }
+    impl<'a> PartialEq<str> for Repository<'a> {
+        fn eq(&self, other: &str) -> bool {
+            self.0.eq(other)
+        }
+    }
     impl<'a> From<&'a str> for Repository<'a> {
         fn from(value: &'a str) -> Repository<'a> {
             Repository(::std::borrow::Cow::Borrowed(value))
@@ -7562,6 +7618,11 @@ pub mod params {
                 ::std::borrow::Cow::Owned(ref value) => ::std::fmt::Display::fmt(value, f),
                 ::std::borrow::Cow::Borrowed(value) => ::std::fmt::Display::fmt(value, f),
             }
+        }
+    }
+    impl<'a> PartialEq<str> for ScrollId<'a> {
+        fn eq(&self, other: &str) -> bool {
+            self.0.eq(other)
         }
     }
     impl<'a> From<&'a str> for ScrollId<'a> {
@@ -7620,6 +7681,11 @@ pub mod params {
             }
         }
     }
+    impl<'a> PartialEq<str> for Snapshot<'a> {
+        fn eq(&self, other: &str) -> bool {
+            self.0.eq(other)
+        }
+    }
     impl<'a> From<&'a str> for Snapshot<'a> {
         fn from(value: &'a str) -> Snapshot<'a> {
             Snapshot(::std::borrow::Cow::Borrowed(value))
@@ -7674,6 +7740,11 @@ pub mod params {
                 ::std::borrow::Cow::Owned(ref value) => ::std::fmt::Display::fmt(value, f),
                 ::std::borrow::Cow::Borrowed(value) => ::std::fmt::Display::fmt(value, f),
             }
+        }
+    }
+    impl<'a> PartialEq<str> for Target<'a> {
+        fn eq(&self, other: &str) -> bool {
+            self.0.eq(other)
         }
     }
     impl<'a> From<&'a str> for Target<'a> {
@@ -7732,6 +7803,11 @@ pub mod params {
             }
         }
     }
+    impl<'a> PartialEq<str> for TaskId<'a> {
+        fn eq(&self, other: &str) -> bool {
+            self.0.eq(other)
+        }
+    }
     impl<'a> From<&'a str> for TaskId<'a> {
         fn from(value: &'a str) -> TaskId<'a> {
             TaskId(::std::borrow::Cow::Borrowed(value))
@@ -7788,6 +7864,11 @@ pub mod params {
             }
         }
     }
+    impl<'a> PartialEq<str> for ThreadPoolPatterns<'a> {
+        fn eq(&self, other: &str) -> bool {
+            self.0.eq(other)
+        }
+    }
     impl<'a> From<&'a str> for ThreadPoolPatterns<'a> {
         fn from(value: &'a str) -> ThreadPoolPatterns<'a> {
             ThreadPoolPatterns(::std::borrow::Cow::Borrowed(value))
@@ -7842,6 +7923,11 @@ pub mod params {
                 ::std::borrow::Cow::Owned(ref value) => ::std::fmt::Display::fmt(value, f),
                 ::std::borrow::Cow::Borrowed(value) => ::std::fmt::Display::fmt(value, f),
             }
+        }
+    }
+    impl<'a> PartialEq<str> for Type<'a> {
+        fn eq(&self, other: &str) -> bool {
+            self.0.eq(other)
         }
     }
     impl<'a> From<&'a str> for Type<'a> {

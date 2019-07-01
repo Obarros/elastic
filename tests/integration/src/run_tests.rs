@@ -18,7 +18,7 @@ use term_painter::{
 };
 
 pub type TestResult = bool;
-pub type Test = Box<Fn(AsyncClient) -> Box<dyn Future<Item = TestResult, Error = ()>>>;
+pub type Test = Box<dyn Fn(AsyncClient) -> Box<dyn Future<Item = TestResult, Error = ()>>>;
 
 pub trait IntegrationTest: Debug {
     type Response: Debug;

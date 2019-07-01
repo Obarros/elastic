@@ -38,6 +38,7 @@ fn main() {
     start_comment_block_for_logging();
 
     println!("This code is automatically generated");
+    println!("run the `tools/generate_requests.sh` script to update it");
 
     let dir = "./tools/generate_requests/spec";
 

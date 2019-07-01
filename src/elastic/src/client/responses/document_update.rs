@@ -4,9 +4,9 @@ Response types for a [update document request](https://www.elastic.co/guide/en/e
 
 use super::common::DocumentResult;
 
-use crate::client::{
-    receiver::IsOkOnSuccess,
-    requests::params::{
+use crate::{
+    client::receiver::IsOkOnSuccess,
+    types::document::{
         Id,
         Index,
         Type,

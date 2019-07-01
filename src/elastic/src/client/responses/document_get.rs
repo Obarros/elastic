@@ -5,8 +5,8 @@ Response types for a [get document request](https://www.elastic.co/guide/en/elas
 use crate::http::StatusCode;
 use serde::de::DeserializeOwned;
 
-use crate::client::{
-    receiver::{
+use crate::{
+    client::receiver::{
         HttpResponseHead,
         IsOk,
         MaybeOkResponse,
@@ -14,7 +14,7 @@ use crate::client::{
         ResponseBody,
         Unbuffered,
     },
-    requests::params::{
+    types::document::{
         Id,
         Index,
         Type,
