@@ -13,7 +13,7 @@ use super::index;
 #[derive(Debug, Serialize, Deserialize, ElasticType)]
 #[elastic(index(expr = "index::name()"))]
 pub struct Account {
-    #[elastic(id(expr = "account_number.to_string()"))]
+    #[elastic(id(expr = "account_number"))]
     pub account_number: i32,
     pub balance: i32,
     pub firstname: FirstName,

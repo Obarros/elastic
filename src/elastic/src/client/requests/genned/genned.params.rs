@@ -5,6 +5,12 @@ macro_rules! impl_from_num_for_id {
                 Id::from(value.to_string())
             }
         }
+
+        impl<'a, 'b> From<&'b $num> for Id<'a> {
+            fn from(value: &'b $num) -> Id<'a> {
+                Id::from(value.to_string())
+            }
+        }
     )
 }
 
