@@ -172,10 +172,9 @@ where
     Add a url param to force an index refresh:
 
     ```no_run
-    # extern crate elastic;
     # use elastic::prelude::*;
     # fn main() { run().unwrap() }
-    # fn run() -> Result<(), Box<::std::error::Error>> {
+    # fn run() -> Result<(), Box<dyn ::std::error::Error>> {
     # let client = SyncClientBuilder::new().build()?;
     # fn get_req() -> PingRequest<'static> { PingRequest::new() }
     let builder = client.request(get_req())
@@ -187,10 +186,9 @@ where
     Force the request to be sent to `http://different-host:9200`:
 
     ```no_run
-    # extern crate elastic;
     # use elastic::prelude::*;
     # fn main() { run().unwrap() }
-    # fn run() -> Result<(), Box<::std::error::Error>> {
+    # fn run() -> Result<(), Box<dyn ::std::error::Error>> {
     # let client = SyncClientBuilder::new().build()?;
     # fn get_req() -> PingRequest<'static> { PingRequest::new() }
     let builder = client.request(get_req())
@@ -219,10 +217,9 @@ where
     Add a url param to force an index refresh and send the request to `http://different-host:9200`:
 
     ```no_run
-    # extern crate elastic;
     # use elastic::prelude::*;
     # fn main() { run().unwrap() }
-    # fn run() -> Result<(), Box<::std::error::Error>> {
+    # fn run() -> Result<(), Box<dyn ::std::error::Error>> {
     # let client = SyncClientBuilder::new().build()?;
     # fn get_req() -> PingRequest<'static> { PingRequest::new() }
     let builder = client.request(get_req())
@@ -252,14 +249,12 @@ impl<TRequest> RequestBuilder<AsyncSender, TRequest> {
     Use the given thread pool to deserialise the response:
 
     ```no_run
-    # extern crate tokio;
     # extern crate tokio_threadpool;
-    # extern crate elastic;
     # use std::sync::Arc;
     # use tokio_threadpool::ThreadPool;
     # use elastic::prelude::*;
     # fn main() { run().unwrap() }
-    # fn run() -> Result<(), Box<::std::error::Error>> {
+    # fn run() -> Result<(), Box<dyn ::std::error::Error>> {
     # let client = AsyncClientBuilder::new().build()?;
     # fn get_req() -> PingRequest<'static> { PingRequest::new() }
     let pool = ThreadPool::new();
@@ -272,13 +267,11 @@ impl<TRequest> RequestBuilder<AsyncSender, TRequest> {
     Never deserialise the response on a thread pool:
 
     ```no_run
-    # extern crate tokio;
     # extern crate tokio_threadpool;
-    # extern crate elastic;
     # use tokio_threadpool::ThreadPool;
     # use elastic::prelude::*;
     # fn main() { run().unwrap() }
-    # fn run() -> Result<(), Box<::std::error::Error>> {
+    # fn run() -> Result<(), Box<dyn ::std::error::Error>> {
     # let client = AsyncClientBuilder::new().build()?;
     # fn get_req() -> PingRequest<'static> { PingRequest::new() }
     let builder = client.request(get_req())

@@ -69,13 +69,10 @@ For more details about the methods available to an `AsyncClient`, see the base [
 Create an asynchronous `Client` and send a ping request:
 
 ```no_run
-# extern crate futures;
-# extern crate tokio;
-# extern crate elastic;
 # use futures::Future;
 # use elastic::prelude::*;
 # fn main() { run().unwrap() }
-# fn run() -> Result<(), Box<::std::error::Error>> {
+# fn run() -> Result<(), Box<dyn ::std::error::Error>> {
 let client = AsyncClientBuilder::new().build()?;
 
 let response_future = client.request(PingRequest::new())
@@ -505,12 +502,11 @@ impl AsyncClientBuilder {
 
     ```
     # extern crate tokio_threadpool;
-    # extern crate elastic;
     # use std::sync::Arc;
     # use elastic::prelude::*;
     # use tokio_threadpool::ThreadPool;
     # fn main() { run().unwrap() }
-    # fn run() -> Result<(), Box<::std::error::Error>> {
+    # fn run() -> Result<(), Box<dyn ::std::error::Error>> {
     let pool = ThreadPool::new();
 
     let builder = AsyncClientBuilder::new().serde_pool(Arc::new(pool));

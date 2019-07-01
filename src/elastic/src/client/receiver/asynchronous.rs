@@ -78,11 +78,8 @@ impl AsyncResponseBuilder {
     Get a strongly typed `SearchResponse`:
 
     ```no_run
-    # extern crate tokio;
-    # extern crate futures;
     # #[macro_use] extern crate serde_derive;
     # #[macro_use] extern crate elastic_derive;
-    # extern crate elastic;
     # use futures::Future;
     # use elastic::prelude::*;
     # fn main() { run().unwrap() }
@@ -110,10 +107,6 @@ impl AsyncResponseBuilder {
     if the HTTP status code is `Ok` or `Err(ApiError)` otherwise:
 
     ```no_run
-    # extern crate tokio;
-    # extern crate futures;
-    # #[macro_use] extern crate serde_json;
-    # extern crate elastic;
     # use futures::Future;
     # use serde_json::Value;
     # use elastic::prelude::*;

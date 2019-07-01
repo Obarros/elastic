@@ -56,11 +56,10 @@ A synchronous client can be created through the [`SyncClientBuilder`][SyncClient
 The builder allows you to configure default parameters for all requests:
 
 ```no_run
-# extern crate elastic;
 # use elastic::prelude::*;
 # use std::str::FromStr;
 # fn main() { run().unwrap() }
-# fn run() -> Result<(), Box<::std::error::Error>> {
+# fn run() -> Result<(), Box<dyn ::std::error::Error>> {
 use elastic::http::header::{self, AUTHORIZATION, HeaderValue};
 
 let auth = HeaderValue::from_str("let me in")?;
@@ -79,12 +78,11 @@ let client = builder.build()?;
 Individual requests can override these parameter values:
 
 ```no_run
-# extern crate elastic;
 # #[macro_use] extern crate serde_json;
 # use serde_json::Value;
 # use elastic::prelude::*;
 # fn main() { run().unwrap() }
-# fn run() -> Result<(), Box<::std::error::Error>> {
+# fn run() -> Result<(), Box<dyn ::std::error::Error>> {
 let client = SyncClientBuilder::new().build()?;
 
 let response = client.search::<Value>()
@@ -112,10 +110,9 @@ Derive `Serialize`, `Deserialize` and `ElasticType` on your document types:
 ```no_run
 # #[macro_use] extern crate serde_derive;
 # #[macro_use] extern crate elastic_derive;
-# extern crate elastic;
 # use elastic::prelude::*;
 # fn main() { run().unwrap() }
-# fn run() -> Result<(), Box<::std::error::Error>> {
+# fn run() -> Result<(), Box<dyn ::std::error::Error>> {
 #[derive(Serialize, Deserialize, ElasticType)]
 struct MyType {
     #[elastic(id(expr = "id.to_string()"))]
@@ -132,10 +129,9 @@ Call [`Client.document().put_mapping`][Client.document.put_mapping] to ensure an
 ```no_run
 # #[macro_use] extern crate serde_derive;
 # #[macro_use] extern crate elastic_derive;
-# extern crate elastic;
 # use elastic::prelude::*;
 # fn main() { run().unwrap() }
-# fn run() -> Result<(), Box<::std::error::Error>> {
+# fn run() -> Result<(), Box<dyn ::std::error::Error>> {
 # #[derive(Serialize, Deserialize, ElasticType)]
 # struct MyType { }
 # let client = SyncClientBuilder::new().build()?;
@@ -151,10 +147,9 @@ Then call [`Client.document().index`][Client.document.index] to index documents 
 ```no_run
 # #[macro_use] extern crate serde_derive;
 # #[macro_use] extern crate elastic_derive;
-# extern crate elastic;
 # use elastic::prelude::*;
 # fn main() { run().unwrap() }
-# fn run() -> Result<(), Box<::std::error::Error>> {
+# fn run() -> Result<(), Box<dyn ::std::error::Error>> {
 # #[derive(Serialize, Deserialize, ElasticType)]
 # struct MyType {
 #     pub id: String,
@@ -180,10 +175,9 @@ Call [`Client.document_get`][Client.document_get] to retrieve a single document 
 ```no_run
 # #[macro_use] extern crate serde_derive;
 # #[macro_use] extern crate elastic_derive;
-# extern crate elastic;
 # use elastic::prelude::*;
 # fn main() { run().unwrap() }
-# fn run() -> Result<(), Box<::std::error::Error>> {
+# fn run() -> Result<(), Box<dyn ::std::error::Error>> {
 # #[derive(Serialize, Deserialize, ElasticType)]
 # struct MyType {
 #     pub id: String,
@@ -212,10 +206,9 @@ Call [`Client.doument().search`][Client.document.search] to execute [Query DSL][
 # #[macro_use] extern crate serde_json;
 # #[macro_use] extern crate serde_derive;
 # #[macro_use] extern crate elastic_derive;
-# extern crate elastic;
 # use elastic::prelude::*;
 # fn main() { run().unwrap() }
-# fn run() -> Result<(), Box<::std::error::Error>> {
+# fn run() -> Result<(), Box<dyn ::std::error::Error>> {
 # #[derive(Debug, Serialize, Deserialize, ElasticType)]
 # struct MyType { }
 # let client = SyncClientBuilder::new().build()?;

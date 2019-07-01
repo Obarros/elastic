@@ -26,7 +26,6 @@ For defining your own date mapping, see [mapping details](mapping/trait.DateMapp
 Map with a default `date`:
 
 ```
-# extern crate chrono;
 # use elastic::types::prelude::*;
 # fn main() {
 use chrono::{DateTime, Utc};
@@ -70,8 +69,7 @@ To make it easier to build your own date formats, derive `ElasticDateFormat` on 
 This will convert an Elasticsearch format string into a `Vec<chrono::format::Item>` for efficient parsing and formatting at runtime:
 
 ```
-# extern crate elastic_types_derive;
-# extern crate chrono;
+# #[macro_use] extern crate elastic_derive;
 # use elastic::types::prelude::*;
 # fn main() {
 #[derive(Default, ElasticDateFormat)]
@@ -83,7 +81,6 @@ struct MyFormat;
 You can also manually implement `DateFormat` and write your own arbitrary format/parse logic:
 
 ```
-# extern crate chrono;
 # use elastic::types::prelude::*;
 # use elastic::types::date::ParseError;
 # fn main() {

@@ -64,10 +64,9 @@ where
     Send a cluster ping and read the returned metadata:
 
     ```no_run
-    # extern crate elastic;
     # use elastic::prelude::*;
     # fn main() { run().unwrap() }
-    # fn run() -> Result<(), Box<::std::error::Error>> {
+    # fn run() -> Result<(), Box<dyn ::std::error::Error>> {
     # let client = SyncClientBuilder::new().build()?;
     // `PingRequest` implements `Into<Endpoint>`
     let req = PingRequest::new();
@@ -121,12 +120,11 @@ where
     Send a raw request synchronously and parse it to a concrete response type:
 
     ```no_run
-    # extern crate elastic;
     # #[macro_use] extern crate serde_json;
     # use serde_json::Value;
     # use elastic::prelude::*;
     # fn main() { run().unwrap() }
-    # fn run() -> Result<(), Box<::std::error::Error>> {
+    # fn run() -> Result<(), Box<dyn ::std::error::Error>> {
     # let client = SyncClientBuilder::new().build()?;
     let response = client.request(SimpleSearchRequest::for_index_ty("myindex", "mytype"))
                          .send()?
@@ -143,15 +141,12 @@ where
     Send a raw request asynchronously and parse it to a concrete response type:
 
     ```no_run
-    # extern crate tokio;
-    # extern crate futures;
-    # extern crate elastic;
     # #[macro_use] extern crate serde_json;
     # use serde_json::Value;
     # use elastic::prelude::*;
     # use futures::Future;
     # fn main() { run().unwrap() }
-    # fn run() -> Result<(), Box<::std::error::Error>> {
+    # fn run() -> Result<(), Box<dyn ::std::error::Error>> {
     # let client = AsyncClientBuilder::new().build()?;
     let future = client.request(SimpleSearchRequest::for_index_ty("myindex", "mytype"))
                        .send()

@@ -15,10 +15,9 @@ This module contains the HTTP client, as well as request and response types.
 Use a [`SyncClientBuilder`][SyncClientBuilder] to configure a synchronous client.
 
 ```
-# extern crate elastic;
 # use elastic::prelude::*;
 # fn main() { run().unwrap() }
-# fn run() -> Result<(), Box<::std::error::Error>> {
+# fn run() -> Result<(), Box<dyn ::std::error::Error>> {
 let client = SyncClientBuilder::new().build()?;
 # Ok(())
 # }
@@ -32,11 +31,9 @@ The response is returned as a `Result`.
 Use an [`AsyncClientBuilder`][AsyncClientBuilder] to configure an asynchronous client.
 
 ```
-# extern crate tokio;
-# extern crate elastic;
 # use elastic::prelude::*;
 # fn main() { run().unwrap() }
-# fn run() -> Result<(), Box<::std::error::Error>> {
+# fn run() -> Result<(), Box<dyn ::std::error::Error>> {
 let client = AsyncClientBuilder::new().build()?;
 # Ok(())
 # }
@@ -51,12 +48,11 @@ Requests can be sent with an instance of a client using a builder API:
 
 ```no_run
 # #[macro_use] extern crate serde_json;
-# extern crate elastic;
 # use serde_json::Value;
 # use elastic::prelude::*;
 # use elastic::Error;
 # fn main() { run().unwrap() }
-# fn run() -> Result<(), Box<::std::error::Error>> {
+# fn run() -> Result<(), Box<dyn ::std::error::Error>> {
 # let client = SyncClientBuilder::new().build()?;
 let response = client.search::<Value>()
                      .index("myindex")
@@ -94,12 +90,11 @@ Requests that work with [document types][documents-mod] can infer index and type
 # #[macro_use] extern crate serde_json;
 # #[macro_use] extern crate elastic_derive;
 # #[macro_use] extern crate serde_derive;
-# extern crate elastic;
 # use serde_json::Value;
 # use elastic::prelude::*;
 # use elastic::Error;
 # fn main() { run().unwrap() }
-# fn run() -> Result<(), Box<::std::error::Error>> {
+# fn run() -> Result<(), Box<dyn ::std::error::Error>> {
 # let client = SyncClientBuilder::new().build()?;
 # #[derive(ElasticType, Deserialize, Debug)]
 # struct MyType { }
@@ -168,11 +163,10 @@ For example, a `get` request for an anonymous json value:
 
 ```no_run
 # #[macro_use] extern crate serde_json;
-# extern crate elastic;
 # use serde_json::Value;
 # use elastic::prelude::*;
 # fn main() { run().unwrap() }
-# fn run() -> Result<(), Box<::std::error::Error>> {
+# fn run() -> Result<(), Box<dyn ::std::error::Error>> {
 # let client = SyncClientBuilder::new().build()?;
 let response = client.document::<Value>().get_raw("values", 1).send()?;
 # Ok(())
@@ -183,11 +177,10 @@ is equivalent to:
 
 ```no_run
 # #[macro_use] extern crate serde_json;
-# extern crate elastic;
 # use serde_json::Value;
 # use elastic::prelude::*;
 # fn main() { run().unwrap() }
-# fn run() -> Result<(), Box<::std::error::Error>> {
+# fn run() -> Result<(), Box<dyn ::std::error::Error>> {
 # let client = SyncClientBuilder::new().build()?;
 let response = client.request(GetRequest::for_index_ty_id("values", "value", 1))
                      .send()?
@@ -233,12 +226,11 @@ The basic flow from request to response is:
 The example below shows how these pieces fit together in code  by sending a simple synchronous `SearchRequest`, with the steps in the above process labelled:
 
 ```no_run
-# extern crate elastic;
 # #[macro_use] extern crate serde_json;
 # use elastic::prelude::*;
 # use serde_json::Value;
 # fn main() { run().unwrap() }
-# fn run() -> Result<(), Box<::std::error::Error>> {
+# fn run() -> Result<(), Box<dyn ::std::error::Error>> {
 # let client = SyncClientBuilder::new().build()?;
 let req = SearchRequest::for_index("_all", empty_body());
 
@@ -258,7 +250,6 @@ A raw search request:
 
 ```no_run
 # #[macro_use] extern crate serde_json;
-# extern crate elastic;
 # use elastic::prelude::*;
 # fn main() {
 let req = {
@@ -279,10 +270,9 @@ A raw request to index a document:
 
 ```no_run
 # #[macro_use] extern crate serde_json;
-# extern crate elastic;
 # use elastic::prelude::*;
 # fn main() { run().unwrap() }
-# fn run() -> Result<(), Box<::std::error::Error>> {
+# fn run() -> Result<(), Box<dyn ::std::error::Error>> {
 # let doc = true;
 let req = {
     let body = serde_json::to_string(&doc)?;
@@ -305,10 +295,9 @@ If the request was sent synchronously, the response is returned as a `Result`.
 If the request was sent asynchronously, the response is returned as a `Future`.
 
 ```no_run
-# extern crate elastic;
 # use elastic::prelude::*;
 # fn main() { run().unwrap() }
-# fn run() -> Result<(), Box<::std::error::Error>> {
+# fn run() -> Result<(), Box<dyn ::std::error::Error>> {
 # let client = SyncClientBuilder::new().build()?;
 # let req = PingRequest::new();
 let request_builder = client.request(req);
@@ -333,12 +322,11 @@ Call [`SyncResponseBuilder.into_response`][SyncResponseBuilder.into_response] on
 # #[macro_use] extern crate serde_json;
 # #[macro_use] extern crate serde_derive;
 # #[macro_use] extern crate elastic_derive;
-# extern crate elastic;
 # use serde_json::Value;
 # use elastic::prelude::*;
 # use elastic::Error;
 # fn main() { run().unwrap() }
-# fn run() -> Result<(), Box<::std::error::Error>> {
+# fn run() -> Result<(), Box<dyn ::std::error::Error>> {
 # #[derive(Serialize, Deserialize, ElasticType)]
 # struct MyType {
 #     pub id: String,
@@ -374,11 +362,10 @@ Alternatively, call [`SyncResponseBuilder.into_raw`][SyncResponseBuilder.into_ra
 ```no_run
 # #[macro_use] extern crate serde_derive;
 # #[macro_use] extern crate elastic_derive;
-# extern crate elastic;
 # use std::io::Read;
 # use elastic::prelude::*;
 # fn main() { run().unwrap() }
-# fn run() -> Result<(), Box<::std::error::Error>> {
+# fn run() -> Result<(), Box<dyn ::std::error::Error>> {
 # let client = SyncClientBuilder::new().build()?;
 # let req = PingRequest::new();
 let mut response = client.request(req)
@@ -401,17 +388,14 @@ For more details see the [`responses`][responses-mod] module.
 Call [`AsyncResponseBuilder.into_response`][AsyncResponseBuilder.into_response] on a sent request to get a [strongly typed response][response-types]:
 
 ```no_run
-# extern crate futures;
-# extern crate tokio;
 # #[macro_use] extern crate serde_json;
 # #[macro_use] extern crate serde_derive;
 # #[macro_use] extern crate elastic_derive;
-# extern crate elastic;
 # use futures::Future;
 # use serde_json::Value;
 # use elastic::prelude::*;
 # fn main() { run().unwrap() }
-# fn run() -> Result<(), Box<::std::error::Error>> {
+# fn run() -> Result<(), Box<dyn ::std::error::Error>> {
 # #[derive(Serialize, Deserialize, ElasticType)]
 # struct MyType {
 #     pub id: String,
@@ -439,24 +423,21 @@ future.and_then(|response| {
 Alternatively, call [`AsyncResponseBuilder.into_raw`][AsyncResponseBuilder.into_raw] on a sent request to get a raw [`AsyncHttpResponse`][AsyncHttpResponse]:
 
 ```no_run
-# extern crate futures;
-# extern crate tokio;
 # #[macro_use] extern crate serde_derive;
 # #[macro_use] extern crate elastic_derive;
-# extern crate elastic;
 # use std::str;
 # use std::io::Read;
 # use futures::{Future, Stream};
 # use elastic::prelude::*;
 # fn main() { run().unwrap() }
-# fn run() -> Result<(), Box<::std::error::Error>> {
+# fn run() -> Result<(), Box<dyn ::std::error::Error>> {
 # let client = AsyncClientBuilder::new().build()?;
 # let req = PingRequest::new();
 let future = client.request(req)
                    .send()
                    .and_then(|response| Ok(response.into_raw()))
                    .and_then(|raw| raw.concat2())
-                   .map_err(|e| Box::new(e) as Box<::std::error::Error>);
+                   .map_err(|e| Box::new(e) as Box<dyn ::std::error::Error>);
 
 future.and_then(|body| {
     let body = str::from_utf8(body.as_ref())?;
@@ -586,10 +567,9 @@ The `Client` is a structure that lets you create and send request builders.
 Create a synchronous `Client` and send a ping request:
 
 ```no_run
-# extern crate elastic;
 # use elastic::prelude::*;
 # fn main() { run().unwrap() }
-# fn run() -> Result<(), Box<::std::error::Error>> {
+# fn run() -> Result<(), Box<dyn ::std::error::Error>> {
 let client = SyncClientBuilder::new().build()?;
 
 let response = client.request(PingRequest::new())
@@ -602,13 +582,10 @@ let response = client.request(PingRequest::new())
 Create an asynchronous `Client` and send a ping request:
 
 ```no_run
-# extern crate futures;
-# extern crate tokio;
-# extern crate elastic;
 # use futures::Future;
 # use elastic::prelude::*;
 # fn main() { run().unwrap() }
-# fn run() -> Result<(), Box<::std::error::Error>> {
+# fn run() -> Result<(), Box<dyn ::std::error::Error>> {
 let client = AsyncClientBuilder::new().build()?;
 
 let response_future = client.request(PingRequest::new())

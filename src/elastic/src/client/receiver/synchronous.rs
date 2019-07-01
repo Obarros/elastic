@@ -58,10 +58,9 @@ impl SyncResponseBuilder {
     ```no_run
     # #[macro_use] extern crate serde_derive;
     # #[macro_use] extern crate elastic_derive;
-    # extern crate elastic;
     # use elastic::prelude::*;
     # fn main() { run().unwrap() }
-    # fn run() -> Result<(), Box<::std::error::Error>> {
+    # fn run() -> Result<(), Box<dyn ::std::error::Error>> {
     # #[derive(Serialize, Deserialize, ElasticType)]
     # struct MyType {
     #     pub id: String,
@@ -80,12 +79,11 @@ impl SyncResponseBuilder {
     if the HTTP status code is `Ok` or `Err(ApiError)` otherwise:
 
     ```no_run
-    # extern crate elastic;
     # #[macro_use] extern crate serde_json;
     # use serde_json::Value;
     # use elastic::prelude::*;
     # fn main() { run().unwrap() }
-    # fn run() -> Result<(), Box<::std::error::Error>> {
+    # fn run() -> Result<(), Box<dyn ::std::error::Error>> {
     # let client = SyncClientBuilder::new().build()?;
     let response = client.request(SimpleSearchRequest::for_index_ty("myindex", "mytype"))
                          .send()?

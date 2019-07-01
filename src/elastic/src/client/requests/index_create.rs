@@ -73,10 +73,9 @@ where
     Create an index called `myindex`:
 
     ```no_run
-    # extern crate elastic;
     # use elastic::prelude::*;
     # fn main() { run().unwrap() }
-    # fn run() -> Result<(), Box<::std::error::Error>> {
+    # fn run() -> Result<(), Box<dyn ::std::error::Error>> {
     # let client = SyncClientBuilder::new().build()?;
     let my_index = index("myindex");
 
@@ -93,12 +92,11 @@ where
     # #[macro_use] extern crate serde_derive;
     # #[macro_use] extern crate elastic_derive;
     # #[macro_use] extern crate serde_json;
-    # extern crate elastic;
     # use elastic::prelude::*;
     # #[derive(Serialize, Deserialize, ElasticType)]
     # struct MyType { }
     # fn main() { run().unwrap() }
-    # fn run() -> Result<(), Box<::std::error::Error>> {
+    # fn run() -> Result<(), Box<dyn ::std::error::Error>> {
     # let client = SyncClientBuilder::new().build()?;
     let body = json!({
         "settings": {
@@ -195,10 +193,9 @@ where
     Create an index called `myindex`:
 
     ```no_run
-    # extern crate elastic;
     # use elastic::prelude::*;
     # fn main() { run().unwrap() }
-    # fn run() -> Result<(), Box<::std::error::Error>> {
+    # fn run() -> Result<(), Box<dyn ::std::error::Error>> {
     # let client = SyncClientBuilder::new().build()?;
     let response = client.index("myindex").create().send()?;
 
@@ -235,13 +232,10 @@ where
     Create an index called `myindex`:
 
     ```no_run
-    # extern crate futures;
-    # extern crate tokio;
-    # extern crate elastic;
     # use futures::Future;
     # use elastic::prelude::*;
     # fn main() { run().unwrap() }
-    # fn run() -> Result<(), Box<::std::error::Error>> {
+    # fn run() -> Result<(), Box<dyn ::std::error::Error>> {
     # let client = AsyncClientBuilder::new().build()?;
     let future = client.index("myindex").create().send();
 

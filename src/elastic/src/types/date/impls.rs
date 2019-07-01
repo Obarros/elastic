@@ -133,7 +133,6 @@ where
 
     ```
     # use elastic::types::prelude::*;
-    # extern crate chrono;
     # fn main() {
     use chrono::Utc;
 
@@ -150,7 +149,6 @@ where
 
     ```
     # use elastic::types::prelude::*;
-    # extern crate chrono;
     # fn main() {
     use chrono::Utc;
 
@@ -429,11 +427,10 @@ Which serialises to:
 
 ```
 # #[macro_use] extern crate serde_json;
-# #[macro_use] extern crate json_str;
 # use elastic::types::prelude::*;
 # fn main() {
 # let expr: DateExpr<BasicDateTime> = DateExpr::now().add_days(2);
-# let ser = serde_json::to_string(&expr).unwrap();
+# let ser = serde_json::to_value(&expr).unwrap();
 # let expected = json!(
 "now+2d"
 # );
@@ -452,11 +449,10 @@ Which serialises to:
 
 ```
 # #[macro_use] extern crate serde_json;
-# #[macro_use] extern crate json_str;
 # use elastic::types::prelude::*;
 # fn main() {
 # let expr: DateExpr<BasicDateTime> = DateExpr::value(DateValue::build(2015, 03, 01, 14, 55, 0, 0)).add_days(2);
-# let ser = serde_json::to_string(&expr).unwrap();
+# let ser = serde_json::to_value(&expr).unwrap();
 # let expected = json!(
 "20150301T145500.000Z||+2d"
 # );

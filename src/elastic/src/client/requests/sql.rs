@@ -71,11 +71,10 @@ where
     Runs a simple [Query String][docs-querystring] query:
 
     ```no_run
-    # extern crate elastic;
     # #[macro_use] extern crate serde_json;
     # use elastic::prelude::*;
     # fn main() { run().unwrap() }
-    # fn run() -> Result<(), Box<::std::error::Error>> {
+    # fn run() -> Result<(), Box<dyn ::std::error::Error>> {
     # let client = SyncClientBuilder::new().build()?;
     let response = client.sql()
                          .body(json!({
@@ -116,10 +115,9 @@ where
     Runs a simple [Query String][docs-querystring] query:
 
     ```no_run
-    # extern crate elastic;
     # use elastic::prelude::*;
     # fn main() { run().unwrap() }
-    # fn run() -> Result<(), Box<::std::error::Error>> {
+    # fn run() -> Result<(), Box<dyn ::std::error::Error>> {
     # let client = SyncClientBuilder::new().build()?;
     let response = client.sql_query("SELECT * FROM library GROUP BY author")
                          .send()?;
@@ -209,10 +207,9 @@ where
     Runs a simple [Query String][docs-querystring] query:
 
     ```no_run
-    # extern crate elastic;
     # use elastic::prelude::*;
     # fn main() { run().unwrap() }
-    # fn run() -> Result<(), Box<::std::error::Error>> {
+    # fn run() -> Result<(), Box<dyn ::std::error::Error>> {
     # let client = SyncClientBuilder::new().build()?;
     let response = client.sql_query("SELECT * FROM library GROUP BY author")
                          .send()?;
@@ -256,13 +253,10 @@ where
     Runs a simple [Query String][docs-querystring] query:
 
     ```no_run
-    # extern crate tokio;
-    # extern crate futures;
-    # extern crate elastic;
     # use futures::Future;
     # use elastic::prelude::*;
     # fn main() { run().unwrap() }
-    # fn run() -> Result<(), Box<::std::error::Error>> {
+    # fn run() -> Result<(), Box<dyn ::std::error::Error>> {
     # let client = AsyncClientBuilder::new().build()?;
     let future = client.sql_query("SELECT * FROM library GROUP BY author")
                        .send();

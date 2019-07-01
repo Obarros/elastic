@@ -9,13 +9,12 @@ Any method defined in `elastic` that could fail will return a `Result<T, Error>`
 The below example sends a request and then checks the response for an `Error::Api`:
 
 ```no_run
-# extern crate elastic;
 # #[macro_use] extern crate serde_json;
 # use serde_json::Value;
 # use elastic::prelude::*;
 # use elastic::Error;
 # fn main() { run().unwrap() }
-# fn run() -> Result<(), Box<::std::error::Error>> {
+# fn run() -> Result<(), Box<dyn ::std::error::Error>> {
 # let client = SyncClientBuilder::new().build()?;
 // Send a request.
 // The returned error may be a REST API error from Elasticsearch or an internal error

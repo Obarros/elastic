@@ -84,10 +84,9 @@ where
     ```no_run
     # #[macro_use] extern crate serde_derive;
     # #[macro_use] extern crate elastic_derive;
-    # extern crate elastic;
     # use elastic::prelude::*;
     # fn main() { run().unwrap() }
-    # fn run() -> Result<(), Box<::std::error::Error>> {
+    # fn run() -> Result<(), Box<dyn ::std::error::Error>> {
     # #[derive(Serialize, Deserialize, ElasticType)]
     # struct MyType {
     #     pub id: String,
@@ -149,10 +148,9 @@ where
     ```no_run
     # #[macro_use] extern crate serde_derive;
     # #[macro_use] extern crate elastic_derive;
-    # extern crate elastic;
     # use elastic::prelude::*;
     # fn main() { run().unwrap() }
-    # fn run() -> Result<(), Box<::std::error::Error>> {
+    # fn run() -> Result<(), Box<dyn ::std::error::Error>> {
     # let client = SyncClientBuilder::new().build()?;
     let response = client.document()
                          .delete_raw("myindex", 1)
@@ -230,10 +228,9 @@ impl<TDocument> DeleteRequestBuilder<SyncSender, TDocument> {
     ```no_run
     # #[macro_use] extern crate serde_derive;
     # #[macro_use] extern crate elastic_derive;
-    # extern crate elastic;
     # use elastic::prelude::*;
     # fn main() { run().unwrap() }
-    # fn run() -> Result<(), Box<::std::error::Error>> {
+    # fn run() -> Result<(), Box<dyn ::std::error::Error>> {
     # #[derive(Serialize, Deserialize, ElasticType)]
     # struct MyType {
     #     pub id: String,
@@ -276,19 +273,16 @@ impl<TDocument> DeleteRequestBuilder<AsyncSender, TDocument> {
     Delete a [`DocumentType`][documents-mod] called `MyType` with an id of `1`:
 
     ```no_run
-    # extern crate futures;
-    # extern crate tokio;
     # #[macro_use] extern crate serde_json;
     # #[macro_use] extern crate serde_derive;
     # #[macro_use] extern crate elastic_derive;
-    # extern crate elastic;
     # use serde_json::Value;
     # use futures::Future;
     # use elastic::prelude::*;
     # #[derive(ElasticType)]
     # struct MyType { }
     # fn main() { run().unwrap() }
-    # fn run() -> Result<(), Box<::std::error::Error>> {
+    # fn run() -> Result<(), Box<dyn ::std::error::Error>> {
     # let client = AsyncClientBuilder::new().build()?;
     let future = client.document::<MyType>()
                        .delete(1)

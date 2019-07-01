@@ -74,7 +74,9 @@ Serialize a field individually.
 This method isn't intended to be used publicly, but is useful in the docs.
 */
 #[inline]
-pub fn standalone_field_ser<TMapping, TPivot>(_: TMapping) -> Result<serde_json::Value, serde_json::Error>
+pub fn standalone_field_ser<TMapping, TPivot>(
+    _: TMapping,
+) -> Result<serde_json::Value, serde_json::Error>
 where
     TMapping: FieldMapping<TPivot>,
     SerializeFieldMapping<TMapping, TPivot>: Serialize,

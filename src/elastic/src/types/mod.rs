@@ -79,7 +79,6 @@ Document types must derive `serde`'s [serialisation traits][serde].
 Use simple generic types to annotate your Rust structures with Elasticsearch document field mappings:
 
 ```
-# extern crate elastic;
 # #[macro_use] extern crate elastic_derive;
 # #[macro_use] extern crate serde_derive;
 # use elastic::prelude::*;
@@ -101,13 +100,12 @@ struct MyType {
 You can use the `IndexDocumentMapping` type wrapper to serialise the mapping for your document types:
 
 ```
-# extern crate elastic;
 # #[macro_use] extern crate elastic_derive;
 # #[macro_use] extern crate serde_json;
 # #[macro_use] extern crate serde_derive;
 # use elastic::prelude::*;
 # fn main() { run().unwrap() }
-# fn run() -> Result<(), Box<::std::error::Error>> {
+# fn run() -> Result<(), Box<dyn ::std::error::Error>> {
 # #[derive(Serialize, Deserialize, ElasticType)]
 # struct MyType {}
 let doc = MyType::index_mapping();
@@ -120,21 +118,19 @@ let mapping = serde_json::to_string(&doc)?;
 This will produce the following JSON:
 
 ```
-# extern crate elastic;
 # #[macro_use] extern crate elastic_derive;
-# #[macro_use] extern crate json_str;
 # #[macro_use] extern crate serde_json;
 # #[macro_use] extern crate serde_derive;
 # use elastic::prelude::*;
 # fn main() { run().unwrap() }
-# fn run() -> Result<(), Box<::std::error::Error>> {
+# fn run() -> Result<(), Box<dyn ::std::error::Error>> {
 # #[derive(Serialize, Deserialize, ElasticType)]
 # struct MyType {
 #     id: Keyword<DefaultKeywordMapping>,
 #     title: String,
 #     timestamp: Date<DefaultDateMapping<EpochMillis>>
 # }
-# let mapping = serde_json::to_string(&MyType::index_mapping())?;
+# let mapping = serde_json::to_value(&MyType::index_mapping())?;
 # let expected = json!(
 {
     "properties": {
@@ -170,7 +166,6 @@ Use traits to define your own field types and have them mapped as one of the cor
 In the below example, variants of `MyEnum` will be serialised as a string, which we map as a non-analysed `keyword` in Elasticsearch:
 
 ```
-# extern crate elastic;
 # #[macro_use] extern crate elastic_derive;
 # #[macro_use] extern crate serde_derive;
 # use elastic::prelude::*;
@@ -190,7 +185,6 @@ impl KeywordFieldType<DefaultKeywordMapping> for MyEnum {}
 You can then use `MyEnum` on any document type:
 
 ```
-# extern crate elastic;
 # #[macro_use] extern crate elastic_derive;
 # #[macro_use] extern crate serde_derive;
 # use elastic::prelude::*;
@@ -208,10 +202,8 @@ struct MyType {
 Serialising `MyType`s mapping will produce the following json:
 
 ```
-# extern crate elastic;
 # #[macro_use] extern crate elastic_derive;
 # #[macro_use] extern crate serde_derive;
-# #[macro_use] extern crate json_str;
 # #[macro_use] extern crate serde_json;
 # use elastic::prelude::*;
 # #[derive(Serialize, Deserialize)]
@@ -222,8 +214,8 @@ Serialising `MyType`s mapping will produce the following json:
 #     value: MyEnum
 # }
 # fn main() { run().unwrap() }
-# fn run() -> Result<(), Box<::std::error::Error>> {
-# let mapping = serde_json::to_string(&MyType::index_mapping())?;
+# fn run() -> Result<(), Box<dyn ::std::error::Error>> {
+# let mapping = serde_json::to_value(&MyType::index_mapping())?;
 # let expected = json!(
 {
     "properties": {

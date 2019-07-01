@@ -175,8 +175,7 @@ The easiest way to implement `DateFormat` is to derive `ElasticDateFormat`
 on a unit struct:
 
 ```
-# extern crate elastic_types_derive;
-# extern crate chrono;
+# #[macro_use] extern crate elastic_derive;
 # use elastic::types::prelude::*;
 # fn main() {
 #[derive(Default, ElasticDateFormat)]
@@ -193,8 +192,7 @@ and must contain a valid [format string](http://www.joda.org/joda-time/apidocs/o
 You can customise the indexed format name by adding an `#[elastic(date_format_name)]` attribute:
 
 ```
-# extern crate elastic_types_derive;
-# extern crate chrono;
+# #[macro_use] extern crate elastic_derive;
 # use elastic::types::prelude::*;
 # fn main() {
 #[derive(Default, ElasticDateFormat)]
