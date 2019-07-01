@@ -122,7 +122,7 @@ where
 
     ```no_run
     # extern crate elastic;
-    # extern crate serde_json;
+    # #[macro_use] extern crate serde_json;
     # use serde_json::Value;
     # use elastic::prelude::*;
     # fn main() { run().unwrap() }
@@ -146,7 +146,7 @@ where
     # extern crate tokio;
     # extern crate futures;
     # extern crate elastic;
-    # extern crate serde_json;
+    # #[macro_use] extern crate serde_json;
     # use serde_json::Value;
     # use elastic::prelude::*;
     # use futures::Future;

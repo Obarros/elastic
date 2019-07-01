@@ -54,18 +54,18 @@ fn impl_date_format(
     let ty = &item.ident;
 
     let parse_fn = quote!(
-        fn parse(date: &str) -> ::std::result::Result<#crate_root::derive::DateValue, #crate_root::derive::ParseError> {
+        fn parse(date: &str) -> ::std::result::Result<#crate_root::__derive::DateValue, #crate_root::__derive::ParseError> {
             let fmt = vec![ #(#format),* ];
 
-            #crate_root::derive::parse_from_tokens(date, fmt)
+            #crate_root::__derive::parse_from_tokens(date, fmt)
         }
     );
 
     let format_fn = quote!(
-        fn format<'a>(date: &'a #crate_root::derive::DateValue) -> #crate_root::derive::FormattedDate<'a> {
+        fn format<'a>(date: &'a #crate_root::__derive::DateValue) -> #crate_root::__derive::FormattedDate<'a> {
             let fmt = vec![ #(#format),* ];
 
-            #crate_root::derive::format_with_tokens(date, fmt)
+            #crate_root::__derive::format_with_tokens(date, fmt)
         }
     );
 
@@ -76,7 +76,7 @@ fn impl_date_format(
     );
 
     quote!(
-        impl #crate_root::derive::DateFormat for #ty {
+        impl #crate_root::__derive::DateFormat for #ty {
             #parse_fn
 
             #format_fn
@@ -116,32 +116,32 @@ impl<'a> parse::DateFormatToken<'a> {
 
         match self {
             Year => {
-                quote!(#crate_root::derive::Item::Numeric(#crate_root::derive::Numeric::Year, #crate_root::derive::Pad::Zero))
+                quote!(#crate_root::__derive::Item::Numeric(#crate_root::__derive::Numeric::Year, #crate_root::__derive::Pad::Zero))
             }
             Month => {
-                quote!(#crate_root::derive::Item::Numeric(#crate_root::derive::Numeric::Month, #crate_root::derive::Pad::Zero))
+                quote!(#crate_root::__derive::Item::Numeric(#crate_root::__derive::Numeric::Month, #crate_root::__derive::Pad::Zero))
             }
             DayOfMonth => {
-                quote!(#crate_root::derive::Item::Numeric(#crate_root::derive::Numeric::Day, #crate_root::derive::Pad::Zero))
+                quote!(#crate_root::__derive::Item::Numeric(#crate_root::__derive::Numeric::Day, #crate_root::__derive::Pad::Zero))
             }
             DayOfYear => {
-                quote!(#crate_root::derive::Item::Numeric(#crate_root::derive::Numeric::Ordinal, #crate_root::derive::Pad::Zero))
+                quote!(#crate_root::__derive::Item::Numeric(#crate_root::__derive::Numeric::Ordinal, #crate_root::__derive::Pad::Zero))
             }
             Hour => {
-                quote!(#crate_root::derive::Item::Numeric(#crate_root::derive::Numeric::Hour, #crate_root::derive::Pad::Zero))
+                quote!(#crate_root::__derive::Item::Numeric(#crate_root::__derive::Numeric::Hour, #crate_root::__derive::Pad::Zero))
             }
             Minute => {
-                quote!(#crate_root::derive::Item::Numeric(#crate_root::derive::Numeric::Minute, #crate_root::derive::Pad::Zero))
+                quote!(#crate_root::__derive::Item::Numeric(#crate_root::__derive::Numeric::Minute, #crate_root::__derive::Pad::Zero))
             }
             Second => {
-                quote!(#crate_root::derive::Item::Numeric(#crate_root::derive::Numeric::Second, #crate_root::derive::Pad::Zero))
+                quote!(#crate_root::__derive::Item::Numeric(#crate_root::__derive::Numeric::Second, #crate_root::__derive::Pad::Zero))
             }
             Millisecond => {
-                quote!(#crate_root::derive::Item::Fixed(#crate_root::derive::Fixed::Nanosecond3))
+                quote!(#crate_root::__derive::Item::Fixed(#crate_root::__derive::Fixed::Nanosecond3))
             }
-            Utc => quote!(#crate_root::derive::Item::Literal("Z")),
-            Delim(s) => quote!(#crate_root::derive::Item::Literal(#s)),
-            Escaped(s) => quote!(#crate_root::derive::Item::Literal(#s)),
+            Utc => quote!(#crate_root::__derive::Item::Literal("Z")),
+            Delim(s) => quote!(#crate_root::__derive::Item::Literal(#s)),
+            Escaped(s) => quote!(#crate_root::__derive::Item::Literal(#s)),
         }
     }
 }

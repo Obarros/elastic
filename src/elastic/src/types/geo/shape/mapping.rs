@@ -19,10 +19,7 @@ Custom mappings can be defined by implementing `GeoShapeMapping`.
 Define a custom `GeoShapeMapping`:
 
 ```
-# #[macro_use]
-# extern crate elastic_types;
-# extern crate serde;
-# use elastic_types::prelude::*;
+# #[macro_use] use elastic::types::prelude::*;
 #[derive(Default)]
 struct MyGeoShapeMapping;
 impl GeoShapeMapping for MyGeoShapeMapping {
@@ -37,13 +34,8 @@ impl GeoShapeMapping for MyGeoShapeMapping {
 This will produce the following mapping:
 
 ```
-# #[macro_use]
-# extern crate json_str;
-# #[macro_use]
-# extern crate elastic_types;
-# extern crate serde;
-# extern crate serde_json;
-# use elastic_types::prelude::*;
+# #[macro_use] extern crate serde_json;
+# use elastic::types::prelude::*;
 #[derive(Default)]
 # struct MyGeoShapeMapping;
 # impl GeoShapeMapping for MyGeoShapeMapping {
@@ -53,8 +45,8 @@ This will produce the following mapping:
 #     }
 # }
 # fn main() {
-# let mapping = elastic_types::derive::standalone_field_ser(MyGeoShapeMapping).unwrap();
-# let json = json_str!(
+# let mapping = elastic::types::__derive::standalone_field_ser(MyGeoShapeMapping).unwrap();
+# let json = json!(
 {
     "type": "geo_shape",
     "tree_levels": 2

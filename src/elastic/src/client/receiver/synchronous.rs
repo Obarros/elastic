@@ -56,11 +56,8 @@ impl SyncResponseBuilder {
     Get a strongly typed `SearchResponse`:
 
     ```no_run
-    # extern crate serde;
-    # #[macro_use]
-    # extern crate serde_derive;
-    # #[macro_use]
-    # extern crate elastic_derive;
+    # #[macro_use] extern crate serde_derive;
+    # #[macro_use] extern crate elastic_derive;
     # extern crate elastic;
     # use elastic::prelude::*;
     # fn main() { run().unwrap() }
@@ -84,7 +81,7 @@ impl SyncResponseBuilder {
 
     ```no_run
     # extern crate elastic;
-    # extern crate serde_json;
+    # #[macro_use] extern crate serde_json;
     # use serde_json::Value;
     # use elastic::prelude::*;
     # fn main() { run().unwrap() }

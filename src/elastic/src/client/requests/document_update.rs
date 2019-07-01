@@ -94,11 +94,8 @@ where
     Update a [`DocumentType`][documents-mod] called `MyType` with an id of `1` using a new document value:
 
     ```no_run
-    # extern crate serde;
-    # #[macro_use]
-    # extern crate serde_derive;
-    # #[macro_use]
-    # extern crate elastic_derive;
+    # #[macro_use] extern crate serde_derive;
+    # #[macro_use] extern crate elastic_derive;
     # extern crate elastic;
     # use elastic::prelude::*;
     # fn main() { run().unwrap() }
@@ -125,13 +122,9 @@ where
     Be careful though because this can lead to unexpected results or runtime errors if the document types don't align:
 
     ```no_run
-    # extern crate serde;
-    # #[macro_use]
-    # extern crate serde_json;
-    # #[macro_use]
-    # extern crate serde_derive;
-    # #[macro_use]
-    # extern crate elastic_derive;
+    # #[macro_use] extern crate serde_json;
+    # #[macro_use] extern crate serde_derive;
+    # #[macro_use] extern crate elastic_derive;
     # extern crate elastic;
     # use elastic::prelude::*;
     # fn main() { run().unwrap() }
@@ -158,11 +151,8 @@ where
     Documents can also be updated using a script:
 
     ```no_run
-    # extern crate serde;
-    # #[macro_use]
-    # extern crate serde_derive;
-    # #[macro_use]
-    # extern crate elastic_derive;
+    # #[macro_use] extern crate serde_derive;
+    # #[macro_use] extern crate elastic_derive;
     # extern crate elastic;
     # use elastic::prelude::*;
     # fn main() { run().unwrap() }
@@ -188,11 +178,8 @@ where
     Scripts can be configured with parameters:
 
     ```no_run
-    # extern crate serde;
-    # #[macro_use]
-    # extern crate serde_derive;
-    # #[macro_use]
-    # extern crate elastic_derive;
+    # #[macro_use] extern crate serde_derive;
+    # #[macro_use] extern crate elastic_derive;
     # extern crate elastic;
     # use elastic::prelude::*;
     # fn main() { run().unwrap() }
@@ -260,13 +247,9 @@ where
     Update a document with an id of `1` using a new document value:
 
     ```no_run
-    # extern crate serde;
-    # #[macro_use]
-    # extern crate serde_json;
-    # #[macro_use]
-    # extern crate serde_derive;
-    # #[macro_use]
-    # extern crate elastic_derive;
+    # #[macro_use] extern crate serde_json;
+    # #[macro_use] extern crate serde_derive;
+    # #[macro_use] extern crate elastic_derive;
     # extern crate elastic;
     # use elastic::prelude::*;
     # fn main() { run().unwrap() }
@@ -344,11 +327,8 @@ where
     Update a [`DocumentType`][documents-mod] called `MyType` with an id of `1` using a new document value:
 
     ```no_run
-    # extern crate serde;
-    # #[macro_use]
-    # extern crate serde_derive;
-    # #[macro_use]
-    # extern crate elastic_derive;
+    # #[macro_use] extern crate serde_derive;
+    # #[macro_use] extern crate elastic_derive;
     # extern crate elastic;
     # use elastic::prelude::*;
     # fn main() { run().unwrap() }
@@ -373,13 +353,9 @@ where
     Be careful though because this can lead to unexpected results or runtime errors if the document types don't align:
 
     ```no_run
-    # extern crate serde;
-    # #[macro_use]
-    # extern crate serde_json;
-    # #[macro_use]
-    # extern crate serde_derive;
-    # #[macro_use]
-    # extern crate elastic_derive;
+    # #[macro_use] extern crate serde_json;
+    # #[macro_use] extern crate serde_derive;
+    # #[macro_use] extern crate elastic_derive;
     # extern crate elastic;
     # use elastic::prelude::*;
     # fn main() { run().unwrap() }
@@ -428,11 +404,8 @@ where
     Update the `title` property of a document using a script:
 
     ```no_run
-    # extern crate serde;
-    # #[macro_use]
-    # extern crate serde_derive;
-    # #[macro_use]
-    # extern crate elastic_derive;
+    # #[macro_use] extern crate serde_derive;
+    # #[macro_use] extern crate elastic_derive;
     # extern crate elastic;
     # use elastic::prelude::*;
     # fn main() { run().unwrap() }
@@ -455,11 +428,8 @@ where
      Update the `title` property of a document using a parameterised script:
 
     ```no_run
-    # extern crate serde;
-    # #[macro_use]
-    # extern crate serde_derive;
-    # #[macro_use]
-    # extern crate elastic_derive;
+    # #[macro_use] extern crate serde_derive;
+    # #[macro_use] extern crate elastic_derive;
     # extern crate elastic;
     # use elastic::client::requests::document_update::ScriptBuilder;
     # use elastic::prelude::*;
@@ -518,11 +488,8 @@ where
     Update the `title` property of a document using a parameterised script:
 
     ```no_run
-    # extern crate serde;
-    # #[macro_use]
-    # extern crate serde_derive;
-    # #[macro_use]
-    # extern crate elastic_derive;
+    # #[macro_use] extern crate serde_derive;
+    # #[macro_use] extern crate elastic_derive;
     # extern crate elastic;
     # use elastic::prelude::*;
     # fn main() { run().unwrap() }
@@ -550,11 +517,8 @@ where
     If the parameters don't serialize to an object then Elasticsearch will fail to parse them:
 
     ```no_run
-    # extern crate serde;
-    # #[macro_use]
-    # extern crate serde_derive;
-    # #[macro_use]
-    # extern crate elastic_derive;
+    # #[macro_use] extern crate serde_derive;
+    # #[macro_use] extern crate elastic_derive;
     # extern crate elastic;
     # use elastic::prelude::*;
     # fn main() { run().unwrap() }
@@ -618,11 +582,8 @@ where
     Update a [`DocumentType`][documents-mod] called `MyType` with an id of `1` using a new document value:
 
     ```no_run
-    # extern crate serde;
-    # #[macro_use]
-    # extern crate serde_derive;
-    # #[macro_use]
-    # extern crate elastic_derive;
+    # #[macro_use] extern crate serde_derive;
+    # #[macro_use] extern crate elastic_derive;
     # extern crate elastic;
     # use elastic::prelude::*;
     # fn main() { run().unwrap() }
@@ -676,8 +637,7 @@ where
     ```no_run
     # extern crate futures;
     # extern crate tokio;
-    # extern crate serde;
-    # extern crate serde_json;
+    # #[macro_use] extern crate serde_json;
     # #[macro_use] extern crate serde_derive;
     # #[macro_use] extern crate elastic_derive;
     # extern crate elastic;

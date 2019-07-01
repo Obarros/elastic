@@ -13,7 +13,7 @@ For defining your own geo point mapping, see [mapping details](mapping/trait.Geo
 Map with a default `geo_point`:
 
 ```
-# use elastic_types::geo::point::prelude::*;
+# use elastic::types::geo::point::prelude::*;
 struct MyType {
     pub field: GeoPoint<DefaultGeoPointMapping>
 }
@@ -22,14 +22,11 @@ struct MyType {
 Map with a custom `geo_point`:
 
 ```
-# extern crate serde;
-# #[macro_use]
-# extern crate elastic_types;
-# use std::marker::PhantomData;
-# use elastic_types::prelude::*;
+# #[macro_use] use std::marker::PhantomData;
+# use elastic::types::prelude::*;
 # fn main() {
-# use elastic_types::prelude::*;
-# use elastic_types::geo::point::prelude::*;
+# use elastic::types::prelude::*;
+# use elastic::types::geo::point::prelude::*;
 # #[derive(Default)]
 # struct MyGeoPointMapping;
 # impl GeoPointMapping for MyGeoPointMapping { type Format = GeoPointString; }
@@ -42,13 +39,9 @@ struct MyType {
 Map a custom type as a `geo_point` field:
 
 ```
-# extern crate serde;
-# #[macro_use]
-# extern crate elastic_types;
-# #[macro_use]
-# extern crate serde_derive;
+#[macro_use] extern crate serde_derive;
 # fn main() {
-# use elastic_types::prelude::*;
+# use elastic::types::prelude::*;
 #[derive(Serialize)]
 struct MyGeoPointField(f32, f32);
 

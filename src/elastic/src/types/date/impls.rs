@@ -66,21 +66,21 @@ This struct wraps up a `chrono::DateTime<Utc>` struct, meaning storing time in `
 Defining a date using the default format:
 
 ```
-# use elastic_types::prelude::*;
+# use elastic::types::prelude::*;
 let date: Date<DefaultDateMapping> = Date::now();
 ```
 
 Defining a date using a named format:
 
 ```
-# use elastic_types::prelude::*;
+# use elastic::types::prelude::*;
 let date: Date<DefaultDateMapping<BasicDateTime>> = Date::now();
 ```
 
 Accessing the values of a date:
 
 ```
-# use elastic_types::prelude::*;
+# use elastic::types::prelude::*;
 let date = Date::<DefaultDateMapping>::now();
 
 //eg: 2010/04/30 13:56:59.372
@@ -121,7 +121,7 @@ where
     Create a `Date` from a `DateValue`:
 
     ```
-    # use elastic_types::prelude::*;
+    # use elastic::types::prelude::*;
     //Create a DateValue struct
     let date = DateValue::now();
 
@@ -132,8 +132,7 @@ where
     If the `Date`s format is `ChronoFormat`, then it can also be created from `chrono::DateTime`:
 
     ```
-    # extern crate elastic_types;
-    # use elastic_types::prelude::*;
+    # use elastic::types::prelude::*;
     # extern crate chrono;
     # fn main() {
     use chrono::Utc;
@@ -150,8 +149,7 @@ where
     This is to make sure you don't accidentally change the format of a date, which could lead to errors at runtime:
 
     ```
-    # extern crate elastic_types;
-    # use elastic_types::prelude::*;
+    # use elastic::types::prelude::*;
     # extern crate chrono;
     # fn main() {
     use chrono::Utc;
@@ -175,7 +173,7 @@ where
     Creates an `Date` from the given Utc primitives:
 
     ```
-    # use elastic_types::prelude::*;
+    # use elastic::types::prelude::*;
     let date: Date<DefaultDateMapping> = Date::build(2015, 5, 14, 16, 45, 8, 886);
     ```
     */
@@ -199,7 +197,7 @@ where
     # Examples
 
     ```
-    # use elastic_types::prelude::*;
+    # use elastic::types::prelude::*;
     let date: Date<DefaultDateMapping> = Date::now();
     ```
     */
@@ -213,7 +211,7 @@ where
     # Examples
 
     ```
-    # use elastic_types::prelude::*;
+    # use elastic::types::prelude::*;
     //Get the current datetime formatted as basic_date_time
     let date: Date<DefaultDateMapping<BasicDateTime>> = Date::now();
 
@@ -423,21 +421,20 @@ Date math expressions start from an anchor date, like the literal `now` or `2017
 A date expression for `now` plus 2 days:
 
 ```
-# use elastic_types::prelude::*;
+# use elastic::types::prelude::*;
 let expr: DateExpr<BasicDateTime> = DateExpr::now().add_days(2);
 ```
 
 Which serialises to:
 
 ```
-# extern crate serde_json;
+# #[macro_use] extern crate serde_json;
 # #[macro_use] extern crate json_str;
-# extern crate elastic_types;
-# use elastic_types::prelude::*;
+# use elastic::types::prelude::*;
 # fn main() {
 # let expr: DateExpr<BasicDateTime> = DateExpr::now().add_days(2);
 # let ser = serde_json::to_string(&expr).unwrap();
-# let expected = json_str!(
+# let expected = json!(
 "now+2d"
 # );
 # assert_eq!(expected, ser);
@@ -447,21 +444,20 @@ Which serialises to:
 A date expression using a concrete date value plus 2 days:
 
 ```
-# use elastic_types::prelude::*;
+# use elastic::types::prelude::*;
 let expr: DateExpr<BasicDateTime> = DateExpr::value(DateValue::now()).add_days(2);
 ```
 
 Which serialises to:
 
 ```
-# extern crate serde_json;
+# #[macro_use] extern crate serde_json;
 # #[macro_use] extern crate json_str;
-# extern crate elastic_types;
-# use elastic_types::prelude::*;
+# use elastic::types::prelude::*;
 # fn main() {
 # let expr: DateExpr<BasicDateTime> = DateExpr::value(DateValue::build(2015, 03, 01, 14, 55, 0, 0)).add_days(2);
 # let ser = serde_json::to_string(&expr).unwrap();
-# let expected = json_str!(
+# let expected = json!(
 "20150301T145500.000Z||+2d"
 # );
 # assert_eq!(expected, ser);
@@ -601,7 +597,7 @@ where
     Create a date expression from a `chrono::DateTime`:
 
     ```
-    # use elastic_types::prelude::*;
+    # use elastic::types::prelude::*;
     let date = DateValue::now();
 
     // The format annotation `EpochMillis` is required
@@ -611,7 +607,7 @@ where
     Create a date expression from a `Date`:
 
     ```
-    # use elastic_types::prelude::*;
+    # use elastic::types::prelude::*;
     let date: Date<DefaultDateMapping<EpochMillis>> = Date::now();
 
     // The format `EpochMillis` is inferred
@@ -621,7 +617,7 @@ where
     Attempting to create a date expression from a `Date` with a different format will fail to compile:
 
     ```
-    # use elastic_types::prelude::*;
+    # use elastic::types::prelude::*;
     let date: Date<DefaultDateMapping<BasicDateTime>> = Date::now();
 
     // Error: expected struct `EpochMillis`, found struct `BasicDateTime`
@@ -633,7 +629,7 @@ where
     Convert the date into a `DateValue` first:
 
     ```
-    # use elastic_types::prelude::*;
+    # use elastic::types::prelude::*;
     let date: Date<DefaultDateMapping<BasicDateTime>> = Date::now();
 
     let expr: DateExpr<EpochMillis> = DateExpr::value(DateValue::from(date));

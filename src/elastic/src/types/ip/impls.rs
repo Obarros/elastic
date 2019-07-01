@@ -34,8 +34,8 @@ Defining an `ip` with a mapping:
 
 ```
 use std::net::Ipv4Addr;
-use elastic_types::ip::mapping::DefaultIpMapping;
-use elastic_types::ip::Ip;
+use elastic::types::ip::mapping::DefaultIpMapping;
+use elastic::types::ip::Ip;
 
 let ip = Ip::<DefaultIpMapping>::new(Ipv4Addr::new(127, 0, 0, 1));
 ```
@@ -62,8 +62,8 @@ where
 
     ```
     use std::net::Ipv4Addr;
-    use elastic_types::ip::mapping::DefaultIpMapping;
-    use elastic_types::ip::Ip;
+    use elastic::types::ip::mapping::DefaultIpMapping;
+    use elastic::types::ip::Ip;
 
     let ip = Ip::<DefaultIpMapping>::new(Ipv4Addr::new(127, 0, 0, 1));
     ```
@@ -86,12 +86,9 @@ where
     Change the mapping for a given `Ip`:
 
     ```
-    # extern crate serde;
-    # #[macro_use]
-    # extern crate elastic_types;
-    # fn main() {
+    # #[macro_use] fn main() {
     # use std::net::Ipv4Addr;
-    # use elastic_types::prelude::*;
+    # use elastic::types::prelude::*;
     # #[derive(Default)]
     # struct MyIpMapping;
     # impl IpMapping for MyIpMapping { }

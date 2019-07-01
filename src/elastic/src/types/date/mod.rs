@@ -27,8 +27,7 @@ Map with a default `date`:
 
 ```
 # extern crate chrono;
-# extern crate elastic_types;
-# use elastic_types::prelude::*;
+# use elastic::types::prelude::*;
 # fn main() {
 use chrono::{DateTime, Utc};
 
@@ -41,7 +40,7 @@ struct MyType {
 For custom formats, the most ergonomic approach is to declare a type alias using the mapping and format:
 
 ```
-# use elastic_types::prelude::*;
+# use elastic::types::prelude::*;
 type Timestamp = Date<DefaultDateMapping<EpochMillis>>;
 
 struct MyType {
@@ -52,13 +51,10 @@ struct MyType {
 Map with a custom `date` mapping:
 
 ```
-# extern crate serde;
-# #[macro_use]
-# extern crate elastic_types;
-# use std::marker::PhantomData;
-# use elastic_types::prelude::*;
+# #[macro_use] use std::marker::PhantomData;
+# use elastic::types::prelude::*;
 # fn main() {
-# use elastic_types::prelude::*;
+# use elastic::types::prelude::*;
 # #[derive(Default)]
 # struct MyDateMapping;
 # impl DateMapping for MyDateMapping { type Format = EpochMillis; }
@@ -74,12 +70,9 @@ To make it easier to build your own date formats, derive `ElasticDateFormat` on 
 This will convert an Elasticsearch format string into a `Vec<chrono::format::Item>` for efficient parsing and formatting at runtime:
 
 ```
-# #[macro_use]
-# extern crate elastic_types;
-# #[macro_use]
 # extern crate elastic_types_derive;
 # extern crate chrono;
-# use elastic_types::prelude::*;
+# use elastic::types::prelude::*;
 # fn main() {
 #[derive(Default, ElasticDateFormat)]
 #[elastic(date_format="yyyy-MM-dd'T'HH:mm:ss")]
@@ -90,10 +83,9 @@ struct MyFormat;
 You can also manually implement `DateFormat` and write your own arbitrary format/parse logic:
 
 ```
-# extern crate elastic_types;
 # extern crate chrono;
-# use elastic_types::prelude::*;
-# use elastic_types::date::ParseError;
+# use elastic::types::prelude::*;
+# use elastic::types::date::ParseError;
 # fn main() {
 use chrono::{DateTime, Utc};
 

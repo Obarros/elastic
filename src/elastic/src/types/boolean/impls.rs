@@ -30,7 +30,7 @@ Where the mapping isn't custom, you can use the standard library `bool` instead.
 Defining a `bool` with a mapping:
 
 ```
-# use elastic_types::prelude::*;
+# use elastic::types::prelude::*;
 let boolean = Boolean::<DefaultBooleanMapping>::new(true);
 ```
 */
@@ -55,7 +55,7 @@ where
     Create a new `Boolean` from a `bool`:
 
     ```
-    # use elastic_types::prelude::*;
+    # use elastic::types::prelude::*;
     let boolean = Boolean::<DefaultBooleanMapping>::new(false);
     ```
     */
@@ -77,11 +77,8 @@ where
     Change the mapping for a given `Boolean`:
 
     ```
-    # extern crate serde;
-    # #[macro_use]
-    # extern crate elastic_types;
-    # fn main() {
-    # use elastic_types::prelude::*;
+    # #[macro_use] fn main() {
+    # use elastic::types::prelude::*;
     # #[derive(Default)]
     # struct MyBooleanMapping;
     # impl BooleanMapping for MyBooleanMapping { }

@@ -26,11 +26,8 @@ Define a custom `DateMapping`:
 Define a custom `DateMapping` that's valid for a single `DateFormat`:
 
 ```
-# #[macro_use]
-# extern crate elastic_types;
-# extern crate serde;
-# use std::marker::PhantomData;
-# use elastic_types::prelude::*;
+# #[macro_use] use std::marker::PhantomData;
+# use elastic::types::prelude::*;
 #[derive(Default)]
 struct MyDateMapping;
 impl DateMapping for MyDateMapping {
@@ -47,14 +44,9 @@ impl DateMapping for MyDateMapping {
 This will produce the following mapping:
 
 ```
-# #[macro_use]
-# extern crate json_str;
-# #[macro_use]
-# extern crate elastic_types;
-# extern crate serde;
-# extern crate serde_json;
+# #[macro_use] extern crate serde_json;
 # use std::marker::PhantomData;
-# use elastic_types::prelude::*;
+# use elastic::types::prelude::*;
 # #[derive(Default)]
 # struct MyDateMapping;
 # impl DateMapping for MyDateMapping {
@@ -64,8 +56,8 @@ This will produce the following mapping:
 #     }
 # }
 # fn main() {
-# let mapping = elastic_types::derive::standalone_field_ser(MyDateMapping).unwrap();
-# let json = json_str!(
+# let mapping = elastic::types::__derive::standalone_field_ser(MyDateMapping).unwrap();
+# let json = json!(
 {
     "type": "date",
     "format": "epoch_millis",
@@ -81,11 +73,8 @@ This will produce the following mapping:
 You can use a generic input parameter to make your `DateMapping` work for any kind of `DateFormat`:
 
 ```
-# #[macro_use]
-# extern crate elastic_types;
-# extern crate serde;
-# use std::marker::PhantomData;
-# use elastic_types::prelude::*;
+# #[macro_use] use std::marker::PhantomData;
+# use elastic::types::prelude::*;
 #[derive(Default)]
 struct MyDateMapping<F> {
     _marker: PhantomData<F>

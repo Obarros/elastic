@@ -10,7 +10,7 @@ The below example sends a request and then checks the response for an `Error::Ap
 
 ```no_run
 # extern crate elastic;
-# extern crate serde_json;
+# #[macro_use] extern crate serde_json;
 # use serde_json::Value;
 # use elastic::prelude::*;
 # use elastic::Error;

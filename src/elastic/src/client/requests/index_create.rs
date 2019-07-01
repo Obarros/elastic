@@ -90,7 +90,6 @@ where
     Create an index with settings and document mappings for a [`DocumentType`][documents-mod] called `MyType`:
 
     ```no_run
-    # extern crate serde;
     # #[macro_use] extern crate serde_derive;
     # #[macro_use] extern crate elastic_derive;
     # #[macro_use] extern crate serde_json;

@@ -109,11 +109,8 @@ where
     Send a bulk request to index some documents:
 
     ```no_run
-    # extern crate serde;
-    # #[macro_use]
-    # extern crate serde_derive;
-    # #[macro_use]
-    # extern crate elastic_derive;
+    # #[macro_use] extern crate serde_derive;
+    # #[macro_use] extern crate elastic_derive;
     # extern crate elastic;
     # use elastic::prelude::*;
     # fn main() { run().unwrap() }
@@ -191,7 +188,6 @@ impl Client<AsyncSender> {
     Stream a bulk request to index some documents:
 
     ```no_run
-    # extern crate serde;
     # extern crate futures;
     # extern crate tokio;
     # #[macro_use] extern crate serde_derive;
@@ -568,11 +564,8 @@ where
     Send a bulk request to index some documents:
 
     ```no_run
-    # extern crate serde;
-    # #[macro_use]
-    # extern crate serde_derive;
-    # #[macro_use]
-    # extern crate elastic_derive;
+    # #[macro_use] extern crate serde_derive;
+    # #[macro_use] extern crate elastic_derive;
     # extern crate elastic;
     # use elastic::prelude::*;
     # fn main() { run().unwrap() }
@@ -636,7 +629,6 @@ where
     Send a bulk request to index some documents:
 
     ```no_run
-    # extern crate serde;
     # extern crate futures;
     # extern crate tokio;
     # #[macro_use] extern crate serde_derive;

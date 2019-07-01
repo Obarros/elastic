@@ -84,7 +84,6 @@ where
     Index a [`DocumentType`][documents-mod] called `MyType` with an id of `1`:
 
     ```no_run
-    # extern crate serde;
     # #[macro_use] extern crate serde_derive;
     # #[macro_use] extern crate elastic_derive;
     # extern crate elastic;
@@ -153,7 +152,6 @@ where
     Index a [`DocumentType`][documents-mod] called `MyType` with an id of `1`:
 
     ```no_run
-    # extern crate serde;
     # #[macro_use] extern crate serde_derive;
     # #[macro_use] extern crate elastic_derive;
     # #[macro_use] extern crate serde_json;
@@ -268,7 +266,6 @@ where
     Index a document with an id of `1`:
 
     ```no_run
-    # extern crate serde;
     # #[macro_use] extern crate serde_derive;
     # #[macro_use] extern crate elastic_derive;
     # extern crate elastic;
@@ -325,7 +322,6 @@ where
     Index a document with an id of `1`:
 
     ```no_run
-    # extern crate serde;
     # extern crate futures;
     # extern crate tokio;
     # #[macro_use] extern crate serde_derive;

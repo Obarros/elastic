@@ -103,9 +103,8 @@ In the example below, we expect all bulk items to use either a type called `myty
 and an index called `myindex`:
 
 ```no_run
-# extern crate serde;
 # #[macro_use] extern crate serde_derive;
-# extern crate serde_json;
+# #[macro_use] extern crate serde_json;
 # extern crate elastic_responses;
 # use crate::client::responses::*;
 # fn main() {

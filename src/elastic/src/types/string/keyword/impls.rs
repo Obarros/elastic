@@ -27,8 +27,8 @@ Where the mapping isn't custom, you can use the standard library `String` instea
 Defining a `keyword` with a mapping:
 
 ```
-use elastic_types::string::keyword::mapping::DefaultKeywordMapping;
-use elastic_types::string::keyword::Keyword;
+use elastic::types::string::keyword::mapping::DefaultKeywordMapping;
+use elastic::types::string::keyword::Keyword;
 
 let string = Keyword::<DefaultKeywordMapping>::new("my string value");
 ```
@@ -54,8 +54,8 @@ where
     Create a new `Keyword` from a `String`:
 
     ```
-    use elastic_types::string::keyword::mapping::DefaultKeywordMapping;
-    use elastic_types::string::keyword::Keyword;
+    use elastic::types::string::keyword::mapping::DefaultKeywordMapping;
+    use elastic::types::string::keyword::Keyword;
 
     let string = Keyword::<DefaultKeywordMapping>::new("my string");
     ```

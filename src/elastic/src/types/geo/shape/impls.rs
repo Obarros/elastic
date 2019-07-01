@@ -20,11 +20,10 @@ Geo shape type with a given mapping.
 Defining a `geo_shape` with a mapping:
 
 ```
-# extern crate elastic_types;
 extern crate geojson;
 use geojson::{ Geometry, Value };
 
-# use elastic_types::prelude::*;
+# use elastic::types::prelude::*;
 # fn main() {
 let point: GeoShape<DefaultGeoShapeMapping> = GeoShape::new(
     Geometry::new(
@@ -55,11 +54,10 @@ where
     # Examples
 
     ```
-    # extern crate elastic_types;
     # extern crate geojson;
     use geojson::{ Geometry, Value };
 
-    # use elastic_types::prelude::*;
+    # use elastic::types::prelude::*;
     # fn main() {
     let point: GeoShape<DefaultGeoShapeMapping> = GeoShape::new(
         Geometry::new(

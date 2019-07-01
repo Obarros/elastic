@@ -16,11 +16,8 @@ struct MyType {
 Map with a custom `boolean`:
 
 ```
-# extern crate serde;
-# #[macro_use]
-# extern crate elastic_types;
-# fn main() {
-# use elastic_types::prelude::*;
+# #[macro_use] fn main() {
+# use elastic::types::prelude::*;
 # #[derive(Default)]
 # struct MyBooleanMapping;
 # impl BooleanMapping for MyBooleanMapping { }
@@ -33,13 +30,9 @@ struct MyType {
 Map a custom type as a `boolean` field:
 
 ```
-# extern crate serde;
-# #[macro_use]
-# extern crate elastic_types;
-# #[macro_use]
-# extern crate serde_derive;
+#[macro_use] extern crate serde_derive;
 # fn main() {
-# use elastic_types::prelude::*;
+# use elastic::types::prelude::*;
 #[derive(Serialize)]
 struct MyBooleanField(bool);
 

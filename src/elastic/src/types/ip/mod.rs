@@ -17,11 +17,9 @@ struct MyType {
 Map with a custom `ip`:
 
 ```
-# extern crate serde;
 #[macro_use]
-# extern crate elastic_types;
 # fn main() {
-# use elastic_types::prelude::*;
+# use elastic::types::prelude::*;
 # #[derive(Default)]
 # struct MyIpMapping;
 # impl IpMapping for MyIpMapping {}
@@ -34,13 +32,9 @@ struct MyType {
 Map a custom type as an `ip` field:
 
 ```
-# extern crate serde;
-# #[macro_use]
-# extern crate elastic_types;
-# #[macro_use]
-# extern crate serde_derive;
+#[macro_use] extern crate serde_derive;
 # fn main() {
-# use elastic_types::prelude::*;
+# use elastic::types::prelude::*;
 #[derive(Serialize)]
 struct MyIpField(String);
 

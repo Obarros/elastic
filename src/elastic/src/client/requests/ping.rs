@@ -60,7 +60,6 @@ where
     Ping an Elasticsearch node.
 
     ```no_run
-    # extern crate serde;
     # #[macro_use] extern crate serde_derive;
     # #[macro_use] extern crate elastic_derive;
     # #[macro_use] extern crate serde_json;
@@ -107,7 +106,6 @@ impl PingRequestBuilder<SyncSender> {
     Ping an Elasticsearch node:
 
     ```no_run
-    # extern crate serde;
     # #[macro_use] extern crate serde_derive;
     # #[macro_use] extern crate elastic_derive;
     # #[macro_use] extern crate serde_json;
@@ -152,7 +150,6 @@ impl PingRequestBuilder<AsyncSender> {
     ```no_run
     # extern crate tokio;
     # extern crate futures;
-    # extern crate serde;
     # #[macro_use] extern crate serde_derive;
     # #[macro_use] extern crate elastic_derive;
     # extern crate elastic;

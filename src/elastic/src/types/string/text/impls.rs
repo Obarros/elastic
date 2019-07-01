@@ -31,8 +31,8 @@ Where the mapping isn't custom, you can use the standard library `String` instea
 Defining a `text` field with a mapping:
 
 ```
-use elastic_types::string::text::mapping::DefaultTextMapping;
-use elastic_types::string::text::Text;
+use elastic::types::string::text::mapping::DefaultTextMapping;
+use elastic::types::string::text::Text;
 
 let string = Text::<DefaultTextMapping>::new("my string value");
 ```
@@ -58,8 +58,8 @@ where
     Create a new `Text` from a `String`:
 
     ```
-    use elastic_types::string::text::mapping::DefaultTextMapping;
-    use elastic_types::string::text::Text;
+    use elastic::types::string::text::mapping::DefaultTextMapping;
+    use elastic::types::string::text::Text;
 
     let string = Text::<DefaultTextMapping>::new("my string");
     ```

@@ -83,8 +83,7 @@ where
     Get a [`DocumentType`][documents-mod] called `MyType` with an id of `1`:
 
     ```no_run
-    # extern crate serde;
-    # extern crate serde_json;
+    # #[macro_use] extern crate serde_json;
     # #[macro_use] extern crate serde_derive;
     # #[macro_use] extern crate elastic_derive;
     # extern crate elastic;
@@ -143,8 +142,7 @@ where
     Get a document as a `serde_json::Value`:
 
     ```no_run
-    # extern crate serde;
-    # extern crate serde_json;
+    # #[macro_use] extern crate serde_json;
     # #[macro_use] extern crate serde_derive;
     # #[macro_use] extern crate elastic_derive;
     # extern crate elastic;
@@ -232,8 +230,7 @@ where
     Get a [`DocumentType`][documents-mod] called `MyType` with an id of `1`:
 
     ```no_run
-    # extern crate serde;
-    # extern crate serde_json;
+    # #[macro_use] extern crate serde_json;
     # #[macro_use] extern crate serde_derive;
     # #[macro_use] extern crate elastic_derive;
     # extern crate elastic;
@@ -286,8 +283,7 @@ where
     ```no_run
     # extern crate futures;
     # extern crate tokio;
-    # extern crate serde;
-    # extern crate serde_json;
+    # #[macro_use] extern crate serde_json;
     # #[macro_use] extern crate serde_derive;
     # #[macro_use] extern crate elastic_derive;
     # extern crate elastic;

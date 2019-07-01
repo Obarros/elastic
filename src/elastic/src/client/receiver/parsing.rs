@@ -39,7 +39,7 @@ but provide the concrete response type in cases it can't be inferred.
 Provide an explicit response type in the `parse` function:
 
 ```no_run
-# extern crate serde_json;
+# #[macro_use] extern crate serde_json;
 # extern crate elastic_responses;
 # use serde_json::*;
 # use crate::client::responses::*;
@@ -54,7 +54,7 @@ let get_response = parse::<GetResponse<Value>>().from_slice(response_status, res
 Provide an explicit response type on the result ident:
 
 ```no_run
-# extern crate serde_json;
+# #[macro_use] extern crate serde_json;
 # extern crate elastic_responses;
 # use serde_json::Value;
 # use crate::client::responses::*;
@@ -69,7 +69,7 @@ let get_response: Result<GetResponse<Value>, ParseError> = parse().from_slice(re
 If Rust can infer the concrete response type then you can avoid specifying it at all:
 
 ```no_run
-# extern crate serde_json;
+# #[macro_use] extern crate serde_json;
 # extern crate elastic_responses;
 # use serde_json::Value;
 # use crate::client::responses::*;
@@ -262,7 +262,6 @@ Implement `IsOk` for a custom response type, where a http `404` might still cont
 
 ```
 # #[macro_use] extern crate serde_derive;
-# extern crate serde;
 # extern crate elastic_responses;
 # use crate::client::responses::*;
 # use crate::client::responses::parsing::*;

@@ -167,7 +167,7 @@ The high-level request builders are wrappers around the [`Client.request`][Clien
 For example, a `get` request for an anonymous json value:
 
 ```no_run
-# extern crate serde_json;
+# #[macro_use] extern crate serde_json;
 # extern crate elastic;
 # use serde_json::Value;
 # use elastic::prelude::*;
@@ -182,7 +182,7 @@ let response = client.document::<Value>().get_raw("values", 1).send()?;
 is equivalent to:
 
 ```no_run
-# extern crate serde_json;
+# #[macro_use] extern crate serde_json;
 # extern crate elastic;
 # use serde_json::Value;
 # use elastic::prelude::*;
@@ -234,9 +234,7 @@ The example below shows how these pieces fit together in code  by sending a simp
 
 ```no_run
 # extern crate elastic;
-# #[macro_use]
-# extern crate json_str;
-# extern crate serde_json;
+# #[macro_use] extern crate serde_json;
 # use elastic::prelude::*;
 # use serde_json::Value;
 # fn main() { run().unwrap() }
@@ -280,7 +278,7 @@ let req = {
 A raw request to index a document:
 
 ```no_run
-# extern crate serde_json;
+# #[macro_use] extern crate serde_json;
 # extern crate elastic;
 # use elastic::prelude::*;
 # fn main() { run().unwrap() }
@@ -332,8 +330,7 @@ let response = request_builder.send();
 Call [`SyncResponseBuilder.into_response`][SyncResponseBuilder.into_response] on a sent request to get a [strongly typed response][response-types]:
 
 ```no_run
-# extern crate serde;
-# extern crate serde_json;
+# #[macro_use] extern crate serde_json;
 # #[macro_use] extern crate serde_derive;
 # #[macro_use] extern crate elastic_derive;
 # extern crate elastic;
@@ -375,7 +372,6 @@ match response {
 Alternatively, call [`SyncResponseBuilder.into_raw`][SyncResponseBuilder.into_raw] on a sent request to get a raw [`SyncHttpResponse`][SyncHttpResponse]:
 
 ```no_run
-# extern crate serde;
 # #[macro_use] extern crate serde_derive;
 # #[macro_use] extern crate elastic_derive;
 # extern crate elastic;
@@ -407,8 +403,7 @@ Call [`AsyncResponseBuilder.into_response`][AsyncResponseBuilder.into_response] 
 ```no_run
 # extern crate futures;
 # extern crate tokio;
-# extern crate serde;
-# extern crate serde_json;
+# #[macro_use] extern crate serde_json;
 # #[macro_use] extern crate serde_derive;
 # #[macro_use] extern crate elastic_derive;
 # extern crate elastic;
@@ -446,7 +441,6 @@ Alternatively, call [`AsyncResponseBuilder.into_raw`][AsyncResponseBuilder.into_
 ```no_run
 # extern crate futures;
 # extern crate tokio;
-# extern crate serde;
 # #[macro_use] extern crate serde_derive;
 # #[macro_use] extern crate elastic_derive;
 # extern crate elastic;

@@ -80,11 +80,8 @@ Use simple generic types to annotate your Rust structures with Elasticsearch doc
 
 ```
 # extern crate elastic;
-# #[macro_use]
-# extern crate elastic_derive;
-# extern crate serde;
-# #[macro_use]
-# extern crate serde_derive;
+# #[macro_use] extern crate elastic_derive;
+# #[macro_use] extern crate serde_derive;
 # use elastic::prelude::*;
 # fn main() {
 #[derive(Serialize, Deserialize, ElasticType)]
@@ -105,12 +102,9 @@ You can use the `IndexDocumentMapping` type wrapper to serialise the mapping for
 
 ```
 # extern crate elastic;
-# #[macro_use]
-# extern crate elastic_derive;
-# extern crate serde;
-# extern crate serde_json;
-# #[macro_use]
-# extern crate serde_derive;
+# #[macro_use] extern crate elastic_derive;
+# #[macro_use] extern crate serde_json;
+# #[macro_use] extern crate serde_derive;
 # use elastic::prelude::*;
 # fn main() { run().unwrap() }
 # fn run() -> Result<(), Box<::std::error::Error>> {
@@ -128,9 +122,8 @@ This will produce the following JSON:
 ```
 # extern crate elastic;
 # #[macro_use] extern crate elastic_derive;
-# extern crate serde;
 # #[macro_use] extern crate json_str;
-# extern crate serde_json;
+# #[macro_use] extern crate serde_json;
 # #[macro_use] extern crate serde_derive;
 # use elastic::prelude::*;
 # fn main() { run().unwrap() }
@@ -142,7 +135,7 @@ This will produce the following JSON:
 #     timestamp: Date<DefaultDateMapping<EpochMillis>>
 # }
 # let mapping = serde_json::to_string(&MyType::index_mapping())?;
-# let expected = json_str!(
+# let expected = json!(
 {
     "properties": {
         "id": {
@@ -178,11 +171,8 @@ In the below example, variants of `MyEnum` will be serialised as a string, which
 
 ```
 # extern crate elastic;
-# #[macro_use]
-# extern crate elastic_derive;
-# extern crate serde;
-# #[macro_use]
-# extern crate serde_derive;
+# #[macro_use] extern crate elastic_derive;
+# #[macro_use] extern crate serde_derive;
 # use elastic::prelude::*;
 # fn main() {
 # #[derive(Serialize, Deserialize)]
@@ -201,11 +191,8 @@ You can then use `MyEnum` on any document type:
 
 ```
 # extern crate elastic;
-# #[macro_use]
-# extern crate elastic_derive;
-# extern crate serde;
-# #[macro_use]
-# extern crate serde_derive;
+# #[macro_use] extern crate elastic_derive;
+# #[macro_use] extern crate serde_derive;
 # use elastic::prelude::*;
 # fn main() {
 # #[derive(Serialize, Deserialize)]
@@ -223,10 +210,9 @@ Serialising `MyType`s mapping will produce the following json:
 ```
 # extern crate elastic;
 # #[macro_use] extern crate elastic_derive;
-# extern crate serde;
 # #[macro_use] extern crate serde_derive;
 # #[macro_use] extern crate json_str;
-# extern crate serde_json;
+# #[macro_use] extern crate serde_json;
 # use elastic::prelude::*;
 # #[derive(Serialize, Deserialize)]
 # enum MyEnum {}
@@ -238,7 +224,7 @@ Serialising `MyType`s mapping will produce the following json:
 # fn main() { run().unwrap() }
 # fn run() -> Result<(), Box<::std::error::Error>> {
 # let mapping = serde_json::to_string(&MyType::index_mapping())?;
-# let expected = json_str!(
+# let expected = json!(
 {
     "properties": {
         "value": {
@@ -276,7 +262,7 @@ pub mod number;
 pub mod string;
 
 #[doc(hidden)]
-pub mod derive;
+pub mod __derive;
 
 pub mod prelude {
     /*!

@@ -30,10 +30,7 @@ struct MyType {
 Map with a custom `number` (`integer` in this case):
 
 ```
-# extern crate serde;
-# #[macro_use]
-# extern crate elastic_types;
-# use elastic_types::prelude::*;
+# #[macro_use] use elastic::types::prelude::*;
 # fn main() {
 # #[derive(Default)]
 # struct MyIntegerMapping;
@@ -47,13 +44,9 @@ struct MyType {
 Map a custom type as a `number` field (`integer` in this case):
 
 ```
-# extern crate serde;
-# #[macro_use]
-# extern crate elastic_types;
-# #[macro_use]
-# extern crate serde_derive;
+#[macro_use] extern crate serde_derive;
 # fn main() {
-# use elastic_types::prelude::*;
+# use elastic::types::prelude::*;
 #[derive(Serialize)]
 struct MyIntegerField(i32);
 

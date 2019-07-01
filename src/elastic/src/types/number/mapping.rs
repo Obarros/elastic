@@ -9,10 +9,7 @@ The implementation is the same for all number types, the only difference is the 
 Define a custom `IntegerMapping`:
 
 ```
-# #[macro_use]
-# extern crate elastic_types;
-# extern crate serde;
-# use elastic_types::prelude::*;
+# #[macro_use] use elastic::types::prelude::*;
 #[derive(Default)]
 struct MyIntegerMapping;
 impl IntegerMapping for MyIntegerMapping {
@@ -27,14 +24,8 @@ impl IntegerMapping for MyIntegerMapping {
 This will produce the following mapping:
 
 ```
-# #[macro_use]
-# extern crate json;
-# #[macro_use]
-# extern crate elastic_types;
-# extern crate serde;
-# #[cfg(feature = "nightly")]
-# extern crate serde_json;
-# use elastic_types::prelude::*;
+# #[macro_use] extern crate serde_json;
+# use elastic::types::prelude::*;
 # #[derive(Default)]
 # struct MyIntegerMapping;
 # impl IntegerMapping for MyIntegerMapping {
@@ -50,10 +41,7 @@ This will produce the following mapping:
     "null_value": 42
 }
 # );
-# #[cfg(feature = "nightly")]
-# let mapping = serde_json::to_string(&field::serialize(MyIntegerMapping)).unwrap();
-# #[cfg(not(feature = "nightly"))]
-# let mapping = json.clone();
+# let mapping = elastic::types::__derive::standalone_field_ser(MyIntegerMapping).unwrap();
 # assert_eq!(json, mapping);
 # }
 ```

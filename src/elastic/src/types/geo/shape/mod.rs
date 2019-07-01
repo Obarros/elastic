@@ -10,8 +10,8 @@ For defining your own geo shape mapping, see [mapping details](mapping/trait.Geo
 Map with a default `geo_shape`:
 
 ```
-# use elastic_types::geo::shape::prelude::*;
-# use elastic_types::geo::shape::mapping::*;
+# use elastic::types::geo::shape::prelude::*;
+# use elastic::types::geo::shape::mapping::*;
 struct MyType {
     pub field: GeoShape<DefaultGeoShapeMapping>
 }
@@ -20,14 +20,11 @@ struct MyType {
 Map with a custom `geo_shape`:
 
 ```
-# extern crate serde;
-# #[macro_use]
-# extern crate elastic_types;
-# use elastic_types::prelude::*;
+# #[macro_use] use elastic::types::prelude::*;
 # use std::marker::PhantomData;
 # fn main() {
-# use elastic_types::prelude::*;
-# use elastic_types::geo::shape::prelude::*;
+# use elastic::types::prelude::*;
+# use elastic::types::geo::shape::prelude::*;
 # #[derive(Default)]
 # struct MyGeoShapeMapping;
 # impl GeoShapeMapping for MyGeoShapeMapping {}
@@ -40,13 +37,9 @@ struct MyType {
 Map a custom type as a `geo_shape` field:
 
 ```
-# extern crate serde;
-# #[macro_use]
-# extern crate elastic_types;
-# #[macro_use]
-# extern crate serde_derive;
+#[macro_use] extern crate serde_derive;
 # fn main() {
-# use elastic_types::prelude::*;
+# use elastic::types::prelude::*;
 #[derive(Serialize)]
 struct MyGeoShapeField(String);
 

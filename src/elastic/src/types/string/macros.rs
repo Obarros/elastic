@@ -22,6 +22,15 @@ macro_rules! impl_string_type {
             }
         }
 
+        impl<'a, TMapping> From<&'a $wrapper_ty<TMapping>> for &'a str
+        where
+            TMapping: $mapping_ty,
+        {
+            fn from(wrapper: &'a $wrapper_ty<TMapping>) -> Self {
+                wrapper.as_ref()
+            }
+        }
+
         impl<'a, TMapping> From<$wrapper_ty<TMapping>> for std::borrow::Cow<'a, str>
         where
             TMapping: $mapping_ty,

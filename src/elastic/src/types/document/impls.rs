@@ -112,16 +112,9 @@ To serialise a document mapping, you can use its mapping type as a generic param
 For example, we can define an index type for the Create Index API that includes the mapping for `MyType`:
 
 ```
-# #[macro_use]
-# extern crate json_str;
-# #[macro_use]
-# extern crate serde_derive;
-# #[macro_use]
-# extern crate elastic_types_derive;
-# #[macro_use]
-# extern crate elastic_types;
-# extern crate serde;
-# use elastic_types::prelude::*;
+#[macro_use] extern crate serde_derive;
+# #[macro_use] extern crate elastic_derive;
+# #[macro_use] use elastic::types::prelude::*;
 #[derive(Serialize, ElasticType)]
 pub struct MyType {
     pub my_date: Date<DefaultDateMapping>,
@@ -145,17 +138,10 @@ pub struct Mappings {
 Serialising `MyIndex` will produce the following json:
 
 ```
-# #[macro_use]
-# extern crate json_str;
-# #[macro_use]
-# extern crate serde_derive;
-# #[macro_use]
-# extern crate elastic_types_derive;
-# #[macro_use]
-# extern crate elastic_types;
-# extern crate serde;
-# extern crate serde_json;
-# use elastic_types::prelude::*;
+#[macro_use] extern crate serde_derive;
+# #[macro_use] extern crate elastic_derive;
+# #[macro_use] extern crate serde_json;
+# use elastic::types::prelude::*;
 # #[derive(Serialize, ElasticType)]
 # pub struct MyType {
 #     pub my_date: Date<DefaultDateMapping>,
@@ -172,7 +158,7 @@ Serialising `MyIndex` will produce the following json:
 # }
 # fn main() {
 # let index = serde_json::to_string(&MyIndex::default()).unwrap();
-# let json = json_str!(
+# let json = json!(
 {
     "mappings": {
         "mytype": {
@@ -206,19 +192,12 @@ Alternatively, you can implement serialisation manually for `MyIndex` and avoid 
 to keep field names up to date if the document type name changes:
 
 ```
-# #[macro_use]
-# extern crate json_str;
-# #[macro_use]
-# extern crate serde_derive;
-# #[macro_use]
-# extern crate elastic_types_derive;
-# #[macro_use]
-# extern crate elastic_types;
-# extern crate serde;
-# extern crate serde_json;
+#[macro_use] extern crate serde_derive;
+# #[macro_use] extern crate elastic_derive;
+# #[macro_use] extern crate serde_json;
 # use serde::{Serialize, Serializer};
 # use serde::ser::SerializeStruct;
-# use elastic_types::prelude::*;
+# use elastic::types::prelude::*;
 #[derive(Serialize, ElasticType)]
 # pub struct MyType {
 #     pub my_date: Date<DefaultDateMapping>,
@@ -243,7 +222,7 @@ impl Serialize for Mappings {
 }
 # fn main() {
 # let index = serde_json::to_string(&MyIndex::default()).unwrap();
-# let json = json_str!(
+# let json = json!(
 # {
 #     "mappings": {
 #         "_doc": {

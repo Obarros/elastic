@@ -80,7 +80,7 @@ Individual requests can override these parameter values:
 
 ```no_run
 # extern crate elastic;
-# extern crate serde_json;
+# #[macro_use] extern crate serde_json;
 # use serde_json::Value;
 # use elastic::prelude::*;
 # fn main() { run().unwrap() }
@@ -110,7 +110,6 @@ The [Document Mapping API][docs-mapping] is provided as a custom derive plugin a
 Derive `Serialize`, `Deserialize` and `ElasticType` on your document types:
 
 ```no_run
-# extern crate serde;
 # #[macro_use] extern crate serde_derive;
 # #[macro_use] extern crate elastic_derive;
 # extern crate elastic;
@@ -131,7 +130,6 @@ struct MyType {
 Call [`Client.document().put_mapping`][Client.document.put_mapping] to ensure an index has the right mapping for your document types:
 
 ```no_run
-# extern crate serde;
 # #[macro_use] extern crate serde_derive;
 # #[macro_use] extern crate elastic_derive;
 # extern crate elastic;
@@ -151,7 +149,6 @@ client.document::<MyType>()
 Then call [`Client.document().index`][Client.document.index] to index documents in Elasticsearch:
 
 ```no_run
-# extern crate serde;
 # #[macro_use] extern crate serde_derive;
 # #[macro_use] extern crate elastic_derive;
 # extern crate elastic;
@@ -181,7 +178,6 @@ let response = client.document()
 Call [`Client.document_get`][Client.document_get] to retrieve a single document from an index:
 
 ```no_run
-# extern crate serde;
 # #[macro_use] extern crate serde_derive;
 # #[macro_use] extern crate elastic_derive;
 # extern crate elastic;
@@ -213,7 +209,6 @@ For more details on document types, see the [`types`][types-mod] module.
 Call [`Client.doument().search`][Client.document.search] to execute [Query DSL][docs-search] queries:
 
 ```no_run
-# extern crate serde;
 # #[macro_use] extern crate serde_json;
 # #[macro_use] extern crate serde_derive;
 # #[macro_use] extern crate elastic_derive;

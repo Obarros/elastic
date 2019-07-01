@@ -27,10 +27,7 @@ Custom mappings can be defined by implementing `KeywordMapping`.
 Define a custom `KeywordMapping`:
 
 ```
-# #[macro_use]
-# extern crate elastic_types;
-# extern crate serde;
-# use elastic_types::prelude::*;
+# #[macro_use] use elastic::types::prelude::*;
 #[derive(Default)]
 struct MyStringMapping;
 impl KeywordMapping for MyStringMapping {
@@ -45,14 +42,8 @@ impl KeywordMapping for MyStringMapping {
 This will produce the following mapping:
 
 ```
-# #[macro_use]
-# extern crate json_str;
-# #[macro_use]
-# extern crate elastic_types;
-# extern crate serde;
-# #[cfg(feature = "nightly")]
-# extern crate serde_json;
-# use elastic_types::prelude::*;
+# #[macro_use] extern crate serde_json;
+# use elastic::types::prelude::*;
 # #[derive(Default)]
 # struct MyStringMapping;
 # impl KeywordMapping for MyStringMapping {
@@ -62,16 +53,13 @@ This will produce the following mapping:
 #     }
 # }
 # fn main() {
-# let json = json_str!(
+# let json = json!(
 {
     "type": "keyword",
     "boost": 1.5
 }
 # );
-# #[cfg(feature = "nightly")]
-# let mapping = serde_json::to_string(&field::serialize(MyStringMapping)).unwrap();
-# #[cfg(not(feature = "nightly"))]
-# let mapping = json.clone();
+# let mapping = elastic::types::__derive::standalone_field_ser(MyStringMapping).unwrap();
 # assert_eq!(json, mapping);
 # }
 ```
@@ -120,11 +108,8 @@ pub trait KeywordMapping {
     to map them:
 
     ```
-    # #[macro_use]
-    # extern crate elastic_types;
-    # extern crate serde;
-    # use std::collections::BTreeMap;
-    # use elastic_types::prelude::*;
+    # #[macro_use] use std::collections::BTreeMap;
+    # use elastic::types::prelude::*;
     # #[derive(Default)]
     # struct MyStringMapping;
     # impl KeywordMapping for MyStringMapping {

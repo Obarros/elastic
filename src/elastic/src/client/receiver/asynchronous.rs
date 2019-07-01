@@ -80,7 +80,6 @@ impl AsyncResponseBuilder {
     ```no_run
     # extern crate tokio;
     # extern crate futures;
-    # extern crate serde;
     # #[macro_use] extern crate serde_derive;
     # #[macro_use] extern crate elastic_derive;
     # extern crate elastic;
@@ -113,7 +112,7 @@ impl AsyncResponseBuilder {
     ```no_run
     # extern crate tokio;
     # extern crate futures;
-    # extern crate serde_json;
+    # #[macro_use] extern crate serde_json;
     # extern crate elastic;
     # use futures::Future;
     # use serde_json::Value;

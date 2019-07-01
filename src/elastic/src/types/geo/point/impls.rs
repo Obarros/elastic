@@ -34,21 +34,21 @@ This struct wraps up a `geo::Point` struct, which have an `x` and `y` floating p
 Defining a geo point using the default format:
 
 ```
-# use elastic_types::prelude::*;
+# use elastic::types::prelude::*;
 let point: GeoPoint<DefaultGeoPointMapping> = GeoPoint::build(1.0, 1.0);
 ```
 
 Defining a geo point using a named format:
 
 ```
-# use elastic_types::prelude::*;
+# use elastic::types::prelude::*;
 let point: GeoPoint<DefaultGeoPointMapping<GeoPointString>> = GeoPoint::build(1.0, 1.0);
 ```
 
 Accessing the values of a geo point:
 
 ```
-# use elastic_types::prelude::*;
+# use elastic::types::prelude::*;
 let point: GeoPoint<DefaultGeoPointMapping> = GeoPoint::build(1.0, 1.0);
 
 //eg: (1.0,1.0)
@@ -82,11 +82,10 @@ where
     # Examples
 
     ```
-    # extern crate elastic_types;
     # extern crate geo;
     # fn main() {
     use geo::{ Point, Coordinate };
-    use elastic_types::prelude::*;
+    use elastic::types::prelude::*;
 
     //Create a geo Coordinate struct
     let coord = Coordinate { x: 1.0, y: 1.0 };
@@ -110,7 +109,7 @@ where
     Creates an `GeoPoint` from the given `x` and `y` primitives:
 
     ```
-    # use elastic_types::prelude::*;
+    # use elastic::types::prelude::*;
     let point: GeoPoint<DefaultGeoPointMapping> = GeoPoint::build(1.0, 1.0);
     ```
     */
@@ -124,7 +123,7 @@ where
     # Examples
 
     ```
-    # use elastic_types::prelude::*;
+    # use elastic::types::prelude::*;
     //Get a point formatted as a string
     let point: GeoPoint<DefaultGeoPointMapping<GeoPointString>> = GeoPoint::build(1.0, 1.0);
 

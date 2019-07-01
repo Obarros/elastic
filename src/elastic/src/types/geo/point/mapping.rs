@@ -18,11 +18,8 @@ The base requirements for mapping a `geo_point` type.
 Define a custom `GeoPointMapping`:
 
 ```
-# #[macro_use]
-# extern crate elastic_types;
-# extern crate serde;
-# use std::marker::PhantomData;
-# use elastic_types::prelude::*;
+# #[macro_use] use std::marker::PhantomData;
+# use elastic::types::prelude::*;
 #[derive(Default)]
 struct MyGeoPointMapping;
 impl GeoPointMapping for MyGeoPointMapping {
@@ -39,16 +36,10 @@ impl GeoPointMapping for MyGeoPointMapping {
 This will produce the following mapping:
 
 ```
-# #[macro_use]
-# extern crate elastic_types_derive;
-# #[macro_use]
-# extern crate json_str;
-# #[macro_use]
-# extern crate elastic_types;
-# extern crate serde;
-# extern crate serde_json;
+# #[macro_use] extern crate elastic_derive;
+# #[macro_use] extern crate serde_json;
 # use std::marker::PhantomData;
-# use elastic_types::prelude::*;
+# use elastic::types::prelude::*;
 # #[derive(Default)]
 # struct MyGeoPointMapping;
 # impl GeoPointMapping for MyGeoPointMapping {
@@ -58,8 +49,8 @@ This will produce the following mapping:
 #     }
 # }
 # fn main() {
-# let mapping = elastic_types::derive::standalone_field_ser(MyGeoPointMapping).unwrap();
-# let json = json_str!(
+# let mapping = elastic::types::__derive::standalone_field_ser(MyGeoPointMapping).unwrap();
+# let json = json!(
 {
     "type": "geo_point",
     "geohash": true
@@ -75,11 +66,8 @@ You can use a generic input parameter to make your `GeoPointMapping` work for an
 `GeoPointFormat`:
 
 ```
-# #[macro_use]
-# extern crate elastic_types;
-# extern crate serde;
-# use std::marker::PhantomData;
-# use elastic_types::prelude::*;
+# #[macro_use] use std::marker::PhantomData;
+# use elastic::types::prelude::*;
 #[derive(Default)]
 struct MyGeoPointMapping<F> {
     _marker: PhantomData<F>

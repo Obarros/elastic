@@ -111,7 +111,7 @@ fn get_mapping(crate_root: &Tokens, input: &syn::MacroInput) -> ElasticDocumentM
         properties: &syn::Ident,
     ) -> Tokens {
         quote!(
-            impl #crate_root::derive::ObjectMapping for #mapping {
+            impl #crate_root::__derive::ObjectMapping for #mapping {
                 type Properties = #properties;
             }
         )
@@ -191,7 +191,7 @@ fn get_doc_ty_impl_block(
                 match get_method_from_struct(item, "ty") {
                     Some(MethodFromStruct::Literal(name)) => (name, true),
                     Some(MethodFromStruct::Expr(expr)) => (expr, false),
-                    _ => (quote!(#crate_root::derive::DEFAULT_DOC_TYPE), true),
+                    _ => (quote!(#crate_root::__derive::DEFAULT_DOC_TYPE), true),
                 }
             };
 
@@ -234,19 +234,19 @@ fn get_doc_ty_impl_block(
 
         let (partial_static_index, static_index_block) = if index_is_static {
             let method = quote!(
-                fn partial_static_index() -> ::std::option::Option<#crate_root::derive::Index<'static>> {
+                fn partial_static_index() -> ::std::option::Option<#crate_root::__derive::Index<'static>> {
                     Some((#index).into())
                 }
             );
 
             let block = quote!(
-                impl #crate_root::derive::StaticIndex for #doc_ty { }
+                impl #crate_root::__derive::StaticIndex for #doc_ty { }
             );
 
             (Some(method), Some(block))
         } else {
             let method = quote!(
-                fn partial_static_index() -> ::std::option::Option<#crate_root::derive::Index<'static>> {
+                fn partial_static_index() -> ::std::option::Option<#crate_root::__derive::Index<'static>> {
                     None
                 }
             );
@@ -256,19 +256,19 @@ fn get_doc_ty_impl_block(
 
         let (partial_static_ty, static_ty_block) = if ty_is_static {
             let method = quote!(
-                fn partial_static_ty() -> ::std::option::Option<#crate_root::derive::Type<'static>> {
+                fn partial_static_ty() -> ::std::option::Option<#crate_root::__derive::Type<'static>> {
                     Some((#ty).into())
                 }
             );
 
             let block = quote!(
-                impl #crate_root::derive::StaticType for #doc_ty { }
+                impl #crate_root::__derive::StaticType for #doc_ty { }
             );
 
             (Some(method), Some(block))
         } else {
             let method = quote!(
-                fn partial_static_ty() -> ::std::option::Option<#crate_root::derive::Type<'static>> {
+                fn partial_static_ty() -> ::std::option::Option<#crate_root::__derive::Type<'static>> {
                     None
                 }
             );
@@ -277,15 +277,15 @@ fn get_doc_ty_impl_block(
         };
 
         let instance_methods = quote!(
-            fn index(&self) -> #crate_root::derive::Index {
+            fn index(&self) -> #crate_root::__derive::Index {
                 (#index).into()
             }
 
-            fn ty(&self) -> #crate_root::derive::Type {
+            fn ty(&self) -> #crate_root::__derive::Type {
                 (#ty).into()
             }
 
-            fn partial_id(&self) -> ::std::option::Option<#crate_root::derive::Id> {
+            fn partial_id(&self) -> ::std::option::Option<#crate_root::__derive::Id> {
                 (#id).into()
             }
 
@@ -312,11 +312,11 @@ fn get_doc_ty_impl_block(
     } = get_doc_ty_methods(crate_root, item, fields);
 
     quote!(
-        impl #crate_root::derive::ObjectFieldType for #doc_ty {
+        impl #crate_root::__derive::ObjectFieldType for #doc_ty {
             type Mapping = #mapping;
         }
 
-        impl #crate_root::derive::DocumentType for #doc_ty {
+        impl #crate_root::__derive::DocumentType for #doc_ty {
             #instance_methods
         }
 
@@ -342,7 +342,7 @@ fn get_props_impl_block(
                 let lit = syn::Lit::Str(name.as_ref().to_string(), syn::StrStyle::Cooked);
                 let ty = &field.ty;
 
-                quote!(#crate_root::derive::field_ser::<#ty, _, _, _>(state, #lit)?;)
+                quote!(#crate_root::__derive::field_ser::<#ty, _, _, _>(state, #lit)?;)
             })
             .collect();
 
@@ -353,11 +353,11 @@ fn get_props_impl_block(
     let stmts_len = stmts.len();
 
     quote!(
-        impl #crate_root::derive::PropertiesMapping for #props_ty {
+        impl #crate_root::__derive::PropertiesMapping for #props_ty {
             fn props_len() -> usize { #stmts_len }
 
             fn serialize_props<S>(state: &mut S) -> ::std::result::Result<(), S::Error>
-                where S: #crate_root::derive::SerializeStruct {
+                where S: #crate_root::__derive::SerializeStruct {
                 #(#stmts)*
                 Ok(())
             }

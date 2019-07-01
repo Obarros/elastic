@@ -61,7 +61,6 @@ Any type that implements `Deserialize` can be used as the document type in the s
 
 ```no_run
 # #[macro_use] extern crate serde_derive;
-# extern crate serde;
 # extern crate elastic_responses;
 # use crate::client::responses::*;
 # fn do_request() -> (StatusCode, Vec<u8>) { unimplemented!() }
@@ -86,7 +85,7 @@ for doc in response.documents() {
 Run a [Get Document][get-document] request, and handle cases where the document wasn't found or the index doesn't exist:
 
 ```no_run
-# extern crate serde_json;
+# #[macro_use] extern crate serde_json;
 # extern crate elastic_responses;
 # use serde_json::Value;
 # use crate::client::responses::*;
