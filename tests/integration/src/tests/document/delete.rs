@@ -18,7 +18,6 @@ fn doc() -> Doc {
 }
 
 test! {
-    const kind: &'static str = "document";
     const description: &'static str = "delete existing document";
 
     type Response = (GetResponse<Doc>, DeleteResponse, GetResponse<Doc>);

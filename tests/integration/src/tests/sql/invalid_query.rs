@@ -10,7 +10,6 @@ use futures::Future;
 const INDEX: &'static str = "no_sql_index_idx";
 
 test! {
-    const kind: &'static str = "sql";
     const description: &'static str = "invalid query";
 
     type Response = SqlResponse;

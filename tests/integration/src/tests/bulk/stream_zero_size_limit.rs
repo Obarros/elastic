@@ -18,7 +18,6 @@ pub struct Doc {
 }
 
 test! {
-    const kind: &'static str = "bulk";
     const description: &'static str = "stream with zero byte request size";
 
     type Response = Vec<OkItem>;

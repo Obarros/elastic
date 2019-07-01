@@ -15,7 +15,6 @@ pub struct Doc {
 }
 
 test! {
-    const kind: &'static str = "document";
     const description: &'static str = "update and create index";
 
     type Response = UpdateResponse;

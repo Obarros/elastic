@@ -7,7 +7,7 @@ use futures::Future;
 use serde_json::Value;
 
 #[derive(Debug, PartialEq, Serialize, Deserialize, ElasticType)]
-#[elastic(ty = "document", index = "simple_mapping")]
+#[elastic(index = "simple_mapping")]
 pub struct Doc {
     #[elastic(id)]
     id: String,
@@ -15,7 +15,6 @@ pub struct Doc {
 }
 
 test! {
-    const kind: &'static str = "document";
     const description: &'static str = "put simple derived mapping";
 
     type Response = Value;
@@ -45,9 +44,8 @@ test! {
         let put_mapping = client.document::<Doc>().put_mapping().send();
 
         let get_mapping = client
-            .request(IndicesGetMappingRequest::for_index_ty(
+            .request(IndicesGetMappingRequest::for_index(
                 Doc::static_index(),
-                Doc::static_ty(),
             ))
             .send()
             .and_then(|res| res.into_response::<Value>());
@@ -64,21 +62,19 @@ test! {
         let expected = json!({
             "simple_mapping": {
                 "mappings": {
-                    "document": {
-                        "properties": {
-                            "id": {
-                                "type": "text",
-                                "fields": {
-                                    "keyword": {
-                                        "type": "keyword",
-                                        "ignore_above": 256
-                                    }
+                    "properties": {
+                        "id": {
+                            "type": "text",
+                            "fields": {
+                                "keyword": {
+                                    "type": "keyword",
+                                    "ignore_above": 256
                                 }
-                            },
-                            "timestamp": {
-                                "type": "date",
-                                "format": "basic_date_time"
                             }
+                        },
+                        "timestamp": {
+                            "type": "date",
+                            "format": "basic_date_time"
                         }
                     }
                 }

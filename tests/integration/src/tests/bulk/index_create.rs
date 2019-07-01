@@ -24,7 +24,6 @@ fn doc() -> Doc {
 }
 
 test! {
-    const kind: &'static str = "bulk";
     const description: &'static str = "create a doc along with its index";
 
     type Response = BulkResponse;

@@ -14,7 +14,6 @@ pub struct Doc {
 }
 
 test! {
-    const kind: &'static str = "bulk";
     const description: &'static str = "raw index then get";
 
     type Response = GetResponse<Doc>;

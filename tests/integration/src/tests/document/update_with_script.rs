@@ -23,7 +23,6 @@ fn doc() -> Doc {
 }
 
 test! {
-    const kind: &'static str = "document";
     const description: &'static str = "update with script";
 
     type Response = (UpdateResponse, GetResponse<Doc>);

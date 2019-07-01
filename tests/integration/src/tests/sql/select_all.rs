@@ -23,7 +23,6 @@ fn doc(i: i32) -> Doc {
 }
 
 test! {
-    const kind: &'static str = "sql";
     const description: &'static str = "select all documents";
 
     type Response = SqlResponse;

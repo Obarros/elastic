@@ -4,7 +4,7 @@ macro_rules! test_groups {
             mod $group;
         )*
 
-        pub fn all() -> Vec<crate::run_tests::Test> {
+        pub fn all() -> Vec<(&'static str, crate::run_tests::Test)> {
             let mut all = Vec::new();
 
             $(
@@ -22,10 +22,10 @@ macro_rules! test_cases {
             mod $case;
         )*
 
-        pub fn all() -> Vec<crate::run_tests::Test> {
+        pub fn all() -> Vec<(&'static str, crate::run_tests::Test)> {
             vec![
                 $(
-                    Box::new(|client| crate::run_tests::test(client, self::$case::Test))
+                    (<self::$case::Test as crate::run_tests::IntegrationTest>::path, Box::new(|client| crate::run_tests::test(client, self::$case::Test)))
                 ),*
             ]
         }
@@ -38,6 +38,8 @@ macro_rules! test {
         pub struct Test;
 
         impl crate::run_tests::IntegrationTest for Test {
+            const path: &'static str = module_path!();
+
             $($test)*
         }
     };

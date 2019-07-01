@@ -21,7 +21,9 @@ pub type TestResult = bool;
 pub type Test = Box<dyn Fn(AsyncClient) -> Box<dyn Future<Item = TestResult, Error = ()>>>;
 
 pub trait IntegrationTest {
-    const kind: &'static str;
+    #[doc(hidden)]
+    const path: &'static str;
+
     const description: &'static str;
 
     type Response: Debug;
@@ -56,7 +58,7 @@ pub fn test<T>(client: AsyncClient, test: T) -> Box<dyn Future<Item = TestResult
 where
     T: IntegrationTest + Send + 'static,
 {
-    let prefix = format!("{} ({}):", T::kind, T::description);
+    let prefix = format!("{} ({}):", T::path, T::description);
 
     let prep_failed = format!("{} prepare failed:", prefix);
     let assert_ok_failed = format!("{} unexpected response:", prefix);
@@ -96,16 +98,23 @@ where
     Box::new(fut)
 }
 
-pub fn call(client: AsyncClient, max_concurrent_tests: usize) -> Result<Vec<TestResult>, ()> {
-    tokio::runtime::current_thread::block_on_all(call_future(client, max_concurrent_tests))
+pub fn call(
+    client: AsyncClient,
+    cases: impl IntoIterator<Item = Test>,
+    max_concurrent_tests: usize,
+) -> Result<Vec<TestResult>, ()> {
+    tokio::runtime::current_thread::block_on_all(call_future(client, cases, max_concurrent_tests))
 }
 
 fn call_future(
     client: AsyncClient,
+    cases: impl IntoIterator<Item = Test>,
     max_concurrent_tests: usize,
 ) -> Box<dyn Future<Item = Vec<TestResult>, Error = ()>> {
-    
-    let all_tests = crate::tests::all().into_iter().map(move |t| t(client.clone()));
+    let all_tests = cases
+        .into_iter()
+        .map(move |t| t(client.clone()))
+        .collect::<Vec<_>>();
 
     println!("Running {} tests", all_tests.len());
 

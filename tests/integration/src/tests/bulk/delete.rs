@@ -18,7 +18,6 @@ fn doc() -> Doc {
 }
 
 test! {
-    const kind: &'static str = "bulk";
     const description: &'static str = "index and delete a document";
 
     type Response = BulkResponse;

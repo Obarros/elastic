@@ -24,7 +24,6 @@ pub struct BulkResult {
 }
 
 test! {
-    const kind: &'static str = "bulk";
     const description: &'static str = "simple index streaming";
 
     type Response = BulkResult;

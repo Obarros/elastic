@@ -11,7 +11,6 @@ use futures::{
 };
 
 test! {
-    const kind: &'static str = "sql";
     const description: &'static str = "invalid syntax";
 
     type Response = SqlResponse;

@@ -24,7 +24,6 @@ fn doc() -> Doc {
 }
 
 test! {
-    const kind: &'static str = "document";
     const description: &'static str = "simple index then get";
 
     type Response = GetResponse<Doc>;

@@ -19,7 +19,6 @@ fn doc() -> Doc {
 }
 
 test! {
-    const kind: &'static str = "search";
     const description: &'static str = "raw query string";
 
     type Response = SearchResponse<Doc>;

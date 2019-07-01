@@ -19,7 +19,6 @@ pub struct Doc {
 }
 
 test! {
-    const kind: &'static str = "bulk";
     const description: &'static str = "stream with tiny batch timeout";
 
     type Response = Vec<OkItem>;

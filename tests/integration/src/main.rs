@@ -25,10 +25,10 @@ use term_painter::{
     ToStyle,
 };
 
-mod tests;
 mod build_client;
 mod build_container;
 mod run_tests;
+mod tests;
 mod wait_until_ready;
 
 fn main() {
@@ -39,7 +39,14 @@ fn main() {
             Arg::with_name("runs")
                 .default_value("default")
                 .takes_value(true)
-                .multiple(true),
+                .multiple(true)
+                .required(true),
+        )
+        .arg(
+            Arg::with_name("filter")
+                .takes_value(true)
+                .short("f")
+                .long("filter"),
         )
         .get_matches();
 
@@ -47,6 +54,7 @@ fn main() {
     let mut total = 0;
 
     let runs = matches.values_of("runs").expect("missing `runs` argument");
+    let filter = matches.value_of("filter");
 
     for run in runs {
         println!("\n{} tests\n", run);
@@ -57,10 +65,24 @@ fn main() {
         build_container::start(run).unwrap();
 
         // Wait until the container is ready
-        wait_until_ready::call(client.clone(), 60).unwrap();
+        wait_until_ready::call(client.clone(), 20).unwrap();
+
+        // Apply the first argument as a filter
+        let cases = crate::tests::all()
+            .into_iter()
+            .filter_map(|(meta, test)| match filter {
+                Some(ref filter) => {
+                    if meta.starts_with(filter) {
+                        Some(test)
+                    } else {
+                        None
+                    }
+                }
+                None => Some(test),
+            });
 
         // Run the integration tests
-        let results = run_tests::call(client, 8).unwrap();
+        let results = run_tests::call(client, cases, 8).unwrap();
         failed.extend(results.iter().filter(|success| **success == false));
         total += results.len();
 
