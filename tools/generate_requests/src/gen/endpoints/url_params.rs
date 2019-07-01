@@ -1,21 +1,22 @@
-use super::helpers::*;
+use crate::gen::helpers::*;
+
+use crate::parse;
 use inflector::Inflector;
-use parse;
 use syn;
 
 /// Builder for request url parameters enum.
 ///
 /// The output of this structure is an enum that only accepts valid parameter combinations,
 /// based on what's given in the paths for an endpoint.
-pub struct UrlParamBuilder {
+pub struct Builder {
     name: syn::Ident,
     variants: Vec<syn::Variant>,
     has_lifetime: bool,
 }
 
-impl UrlParamBuilder {
+impl Builder {
     pub fn new(name: &str) -> Self {
-        UrlParamBuilder {
+        Builder {
             name: ident(name),
             variants: vec![],
             has_lifetime: false,
@@ -113,13 +114,13 @@ impl UrlParamBuilder {
     }
 }
 
-impl<'a> From<&'a (String, parse::Endpoint)> for UrlParamBuilder {
+impl<'a> From<&'a (String, parse::Endpoint)> for Builder {
     fn from(value: &'a (String, parse::Endpoint)) -> Self {
         let name = format!("{}UrlParams", value.0.into_rust_type());
 
         let endpoint = &value.1;
 
-        let mut builder = UrlParamBuilder::new(&name);
+        let mut builder = Builder::new(&name);
 
         for path in &endpoint.url.paths {
             let param_set = path.params();
@@ -138,36 +139,8 @@ mod tests {
     use super::*;
 
     #[test]
-    fn gen_params_enum_empty() {
-        let (result, _) = UrlParamBuilder::new("RequestParams").build();
-
-        let expected = quote!(
-            enum RequestParams {
-                None,
-            }
-        );
-
-        ast_eq(expected, result.into_stmt());
-    }
-
-    #[test]
-    fn gen_params_enum_with_param_sets() {
-        let (result, _) = UrlParamBuilder::new("RequestParams").with_param_set(vec![]).with_param_set(vec!["Index"]).with_param_set(vec!["Index", "Type", "Id"]).build();
-
-        let expected = quote!(
-            enum RequestParams<'a> {
-                None,
-                Index(Index<'a>),
-                IndexTypeId(Index<'a>, Type<'a>, Id<'a>),
-            }
-        );
-
-        ast_eq(expected, result.into_stmt());
-    }
-
-    #[test]
     fn gen_params_enum_from_endpoint() {
-        use parse::*;
+        use crate::parse::*;
 
         let endpoint = (
             "indices.exists_alias".to_string(),
@@ -179,9 +152,10 @@ mod tests {
             },
         );
 
-        let (result, _) = UrlParamBuilder::from(&endpoint).build();
+        let (result, _) = Builder::from(&endpoint).build();
 
         let expected = quote!(
+            #[derive(Debug, Clone, PartialEq)]
             enum IndicesExistsAliasUrlParams<'a> {
                 None,
                 Index(Index<'a>),

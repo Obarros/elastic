@@ -1,8 +1,10 @@
-use super::{
-    helpers::*,
-    types,
+use crate::{
+    gen::{
+        helpers::*,
+        http,
+    },
+    parse::Endpoint,
 };
-use parse::Endpoint;
 use syn;
 
 /// Structure for a request type constructor associated function.
@@ -20,16 +22,16 @@ impl Constructor {
 }
 
 /// Builder for request type constructor associated functions.
-pub struct RequestParamsCtorBuilder {
+pub struct Builder {
     req_ty: syn::Ty,
     params_ty: syn::Ty,
     has_body: bool,
     ctors: Vec<Constructor>,
 }
 
-impl RequestParamsCtorBuilder {
+impl Builder {
     pub fn new(has_body: bool, request_ty: syn::Ty, params_ty: syn::Ty) -> Self {
-        RequestParamsCtorBuilder {
+        Builder {
             req_ty: request_ty,
             params_ty: params_ty,
             has_body: has_body,
@@ -97,7 +99,7 @@ impl RequestParamsCtorBuilder {
     /// a body field.
     fn body_field(has_body: bool) -> Option<(syn::Ident, syn::Ty)> {
         if has_body {
-            Some((ident("body"), types::body::ty()))
+            Some((ident("body"), http::body::ty()))
         } else {
             None
         }
@@ -229,7 +231,7 @@ impl RequestParamsCtorBuilder {
 
                 syn::FnArg::Captured(
                     syn::Pat::Path(None, path_none(&name.to_string())),
-                    types::body::ty(),
+                    http::body::ty(),
                 )
             });
         }
@@ -349,7 +351,7 @@ impl<'a>
         &'a (String, Endpoint),
         &'a syn::Ty,
         &'a (syn::Item, syn::Ty),
-    )> for RequestParamsCtorBuilder
+    )> for Builder
 {
     fn from(
         value: (
@@ -360,7 +362,7 @@ impl<'a>
     ) -> Self {
         let (&(_, ref endpoint), ref req_ty, &(ref params, ref params_ty)) = value;
 
-        let mut builder = RequestParamsCtorBuilder::new(
+        let mut builder = Builder::new(
             endpoint.has_body(),
             (*req_ty).to_owned(),
             (*params_ty).to_owned(),
@@ -411,7 +413,7 @@ pub mod tests {
     #[test]
     fn gen_request_ctor_none() {
         let req_ty = ty_a("Request");
-        let result = RequestParamsCtorBuilder::new(false, req_ty, ty_a("UrlParams")).with_constructor(vec![], Some("A doc comment".to_owned())).build();
+        let result = Builder::new(false, req_ty, ty_a("UrlParams")).with_constructor(vec![], Some("A doc comment".to_owned())).build();
 
         let expected = quote!(
             impl<'a> Request<'a> {
@@ -428,7 +430,7 @@ pub mod tests {
     #[test]
     fn gen_request_ctor_params() {
         let req_ty = ty_a("Request");
-        let result = RequestParamsCtorBuilder::new(false, req_ty, ty_a("UrlParams"))
+        let result = Builder::new(false, req_ty, ty_a("UrlParams"))
             .with_constructor(vec!["Index".into(), "Type".into(), "Id".into()], Some("A doc comment".to_owned()))
             .build();
 
@@ -453,8 +455,8 @@ pub mod tests {
 
     #[test]
     fn gen_request_ctor_body() {
-        let req_ty = ty_path("Request", vec![lifetime()], vec![types::body::ty()]);
-        let result = RequestParamsCtorBuilder::new(true, req_ty, ty_a("UrlParams")).with_constructor(vec![], None).build();
+        let req_ty = ty_path("Request", vec![lifetime()], vec![http::body::ty()]);
+        let result = Builder::new(true, req_ty, ty_a("UrlParams")).with_constructor(vec![], None).build();
 
         let expected = quote!(
             impl<'a, B> Request<'a, B> {
@@ -469,8 +471,8 @@ pub mod tests {
 
     #[test]
     fn gen_request_ctor_params_body() {
-        let req_ty = ty_path("Request", vec![lifetime()], vec![types::body::ty()]);
-        let result = RequestParamsCtorBuilder::new(true, req_ty, ty_a("UrlParams")).with_constructor(vec!["Index".into(), "Type".into(), "Id".into()], None).build();
+        let req_ty = ty_path("Request", vec![lifetime()], vec![http::body::ty()]);
+        let result = Builder::new(true, req_ty, ty_a("UrlParams")).with_constructor(vec!["Index".into(), "Type".into(), "Id".into()], None).build();
 
         let expected = quote!(
             impl<'a, B> Request<'a, B> {
@@ -493,8 +495,8 @@ pub mod tests {
 
     #[test]
     fn gen_request_ctor_from_endpoint() {
-        use gen::url_params::UrlParamBuilder;
-        use parse::*;
+        use crate::gen::endpoints::url_params;
+        use crate::parse::*;
 
         let endpoint = (
             "indices.exists_alias".to_string(),
@@ -506,10 +508,10 @@ pub mod tests {
             },
         );
 
-        let req_ty = ty_path("IndicesExistsAliasRequest", vec![lifetime()], vec![types::body::ty()]);
-        let url_params = UrlParamBuilder::from(&endpoint).build();
+        let req_ty = ty_path("IndicesExistsAliasRequest", vec![lifetime()], vec![http::body::ty()]);
+        let url_params = url_params::Builder::from(&endpoint).build();
 
-        let result = RequestParamsCtorBuilder::from((&endpoint, &req_ty, &url_params)).build();
+        let result = Builder::from((&endpoint, &req_ty, &url_params)).build();
 
         let expected = quote!(
             impl<'a, B> IndicesExistsAliasRequest<'a, B> {

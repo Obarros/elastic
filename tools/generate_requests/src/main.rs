@@ -4,15 +4,11 @@
 #[macro_use]
 extern crate json_str;
 
-extern crate serde;
-extern crate serde_derive;
-extern crate serde_json;
-
 #[macro_use]
 extern crate quote;
-extern crate syn;
 
-extern crate inflector;
+#[macro_use]
+extern crate serde_derive;
 
 pub mod gen;
 pub mod parse;
@@ -30,7 +26,7 @@ use std::{
     },
 };
 
-use parse::*;
+use crate::parse::*;
 use quote::Tokens;
 
 fn main() {
@@ -213,20 +209,17 @@ fn endpoints_mod(
             params_to_emit.insert(ty.to_owned(), true);
         }
 
-        let url_params = gen::url_params::UrlParamBuilder::from(&e).build();
+        let url_params = gen::endpoints::url_params::Builder::from(&e).build();
         let (ref url_params_item, _) = url_params;
 
-        let (req_params_item, req_params_ty) =
-            gen::request_params::RequestParamBuilder::from(&e).build();
+        let (req_params_item, req_params_ty) = gen::endpoints::item::Builder::from(&e).build();
 
         let req_ctors_item =
-            gen::request_ctors::RequestParamsCtorBuilder::from((&e, &req_params_ty, &url_params))
-                .build();
-        let url_method_item = gen::url_builder::UrlMethodBuilder::from((&e, &url_params)).build();
+            gen::endpoints::ctors::Builder::from((&e, &req_params_ty, &url_params)).build();
+        let url_method_item = gen::endpoints::url_builder::Builder::from((&e, &url_params)).build();
 
         let req_into_http_item =
-            gen::request_into_endpoint::RequestIntoEndpointBuilder::from((&e, &req_params_ty))
-                .build();
+            gen::endpoints::into_endpoint::Builder::from((&e, &req_params_ty)).build();
 
         tokens.append_all(vec![
             quote!(#url_params_item),
@@ -239,9 +232,9 @@ fn endpoints_mod(
 }
 
 fn http_mod(tokens: &mut Tokens) {
-    let url_tokens = gen::types::url::tokens();
+    let url_tokens = gen::http::url::tokens();
 
-    let body_tokens = gen::types::body::tokens();
+    let body_tokens = gen::http::body::tokens();
 
     let uses = quote!(
         use std::borrow::Cow;
@@ -250,7 +243,7 @@ fn http_mod(tokens: &mut Tokens) {
         pub use crate::http::Method;
     );
 
-    let http_req_item = gen::types::request::req_tokens();
+    let http_req_item = gen::http::endpoint::tokens();
 
     tokens.append(uses.to_string());
 
@@ -268,7 +261,7 @@ fn params_mod(tokens: &mut Tokens, params_to_emit: BTreeMap<String, bool>) {
     let params_to_emit = params_to_emit.iter().filter(|&(_, is_emitted)| *is_emitted);
 
     for (ty, _) in params_to_emit {
-        let ty_item = gen::types::wrapped_ty::item(ty);
+        let ty_item = gen::params::tokens(ty);
 
         tokens.append(quote!(#ty_item));
 

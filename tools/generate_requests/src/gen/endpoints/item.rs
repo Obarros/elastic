@@ -1,20 +1,23 @@
-use super::{
-    helpers::*,
-    types,
+use crate::{
+    gen::{
+        helpers::*,
+        http,
+    },
+    parse::Endpoint,
 };
-use parse;
+
 use syn;
 
 /// Builder for request parameters enum.
-pub struct RequestParamBuilder {
+pub struct Builder {
     name: syn::Ident,
     has_body: bool,
     doc_comment: Option<String>,
 }
 
-impl RequestParamBuilder {
+impl Builder {
     pub fn new(name: &str) -> Self {
-        RequestParamBuilder {
+        Builder {
             name: ident(name),
             doc_comment: None,
             has_body: false,
@@ -41,7 +44,7 @@ impl RequestParamBuilder {
             ident: Some(ident("url")),
             vis: syn::Visibility::Public,
             attrs: vec![],
-            ty: types::url::ty(),
+            ty: http::url::ty(),
         }];
 
         let mut generics = generics(vec![lifetime()], vec![]);
@@ -51,12 +54,12 @@ impl RequestParamBuilder {
                 ident: Some(ident("body")),
                 vis: syn::Visibility::Public,
                 attrs: vec![],
-                ty: types::body::ty(),
+                ty: http::body::ty(),
             });
 
             generics
                 .ty_params
-                .push(ty_param(types::body::ident(), vec![]));
+                .push(ty_param(http::body::ident(), vec![]));
         }
 
         let fields = syn::VariantData::Struct(fields);
@@ -103,8 +106,8 @@ impl RequestParamBuilder {
     }
 }
 
-impl<'a> From<&'a (String, parse::Endpoint)> for RequestParamBuilder {
-    fn from(value: &'a (String, parse::Endpoint)) -> Self {
+impl<'a> From<&'a (String, Endpoint)> for Builder {
+    fn from(value: &'a (String, Endpoint)) -> Self {
         let &(ref endpoint_name, ref endpoint) = value;
 
         let name = format!("{}Request", endpoint_name.into_rust_type());
@@ -117,7 +120,7 @@ impl<'a> From<&'a (String, parse::Endpoint)> for RequestParamBuilder {
             format!("`{}`", endpoint.url.path)
         };
 
-        let builder = RequestParamBuilder::new(&name)
+        let builder = Builder::new(&name)
             .has_body(endpoint.has_body())
             .doc_comment(doc_comment);
 
@@ -132,54 +135,8 @@ mod tests {
     use super::*;
 
     #[test]
-    fn gen_request_params_ty_no_body() {
-        let (_, result) = RequestParamBuilder::new("Request").build();
-
-        let expected = quote!(Request<'a>);
-
-        ast_eq(expected, result);
-    }
-
-    #[test]
-    fn gen_request_params_no_body() {
-        let (result, _) = RequestParamBuilder::new("Request").build();
-
-        let expected = quote!(
-            pub struct Request<'a> {
-                pub url: UrlPath<'a>
-            }
-        );
-
-        ast_eq(expected, result.into_stmt());
-    }
-
-    #[test]
-    fn gen_request_params_ty_with_body() {
-        let (_, result) = RequestParamBuilder::new("Request").has_body(true).build();
-
-        let expected = quote!(Request<'a, B>);
-
-        ast_eq(expected, result);
-    }
-
-    #[test]
-    fn gen_request_params_with_body_doc() {
-        let (result, _) = RequestParamBuilder::new("Request").has_body(true).doc_comment("Some doc").build();
-
-        let expected = quote!(
-            #[doc = "Some doc"]
-            pub struct Request<'a, B> {
-                pub url: UrlPath<'a>,
-                pub body: B
-            }
-        );
-
-        ast_eq(expected, result.into_stmt());
-    }
-
-    #[test]
     fn gen_params_enum_from_endpoint() {
-        use parse::*;
+        use crate::parse::*;
 
         let endpoint = (
             "indices.exists_alias".to_string(),
@@ -191,9 +148,10 @@ mod tests {
             },
         );
 
-        let (result, _) = RequestParamBuilder::from(&endpoint).build();
+        let (result, _) = Builder::from(&endpoint).build();
 
         let expected = quote!(
+            #[derive(Debug, Clone, PartialEq)]
             #[doc = "`Get: /_search`\n\n[Elasticsearch Documentation]()"]
             pub struct IndicesExistsAliasRequest<'a, B> {
                 pub url: UrlPath<'a>,

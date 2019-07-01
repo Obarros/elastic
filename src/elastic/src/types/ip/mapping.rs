@@ -180,10 +180,6 @@ mod tests {
     #[derive(Default, Clone)]
     pub struct MyIpMapping;
     impl IpMapping for MyIpMapping {
-        fn boost() -> Option<f32> {
-            Some(1.01)
-        }
-
         fn index() -> Option<bool> {
             Some(false)
         }
@@ -218,7 +214,6 @@ mod tests {
 
         let expected = json!({
             "type": "ip",
-            "boost": 1.01,
             "doc_values": true,
             "index": false,
             "store": true,

@@ -178,10 +178,6 @@ mod tests {
     #[derive(Default, Clone)]
     pub struct MyBooleanMapping;
     impl BooleanMapping for MyBooleanMapping {
-        fn boost() -> Option<f32> {
-            Some(1.01)
-        }
-
         fn index() -> Option<bool> {
             Some(false)
         }
@@ -216,7 +212,6 @@ mod tests {
 
         let expected = json!({
             "type": "boolean",
-            "boost": 1.01,
             "doc_values": true,
             "index": false,
             "store": true,

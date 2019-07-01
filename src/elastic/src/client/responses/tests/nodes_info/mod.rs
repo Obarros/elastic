@@ -1,10 +1,6 @@
-use crate::{
-    client::{
-        receiver::{
-            parse,
-        },
-        responses::*,
-    },
+use crate::client::{
+    receiver::parse,
+    responses::*,
 };
 
 #[test]

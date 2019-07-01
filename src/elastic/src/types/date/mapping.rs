@@ -274,10 +274,6 @@ mod tests {
             Some(Date::build(2015, 3, 14, 16, 45, 13, 778))
         }
 
-        fn boost() -> Option<f32> {
-            Some(1.01)
-        }
-
         fn index() -> Option<bool> {
             Some(true)
         }
@@ -321,7 +317,6 @@ mod tests {
         let expected = json!({
             "type": "date",
             "format": "epoch_millis",
-            "boost": 1.01,
             "doc_values": true,
             "include_in_all": false,
             "index": true,

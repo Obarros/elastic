@@ -1,23 +1,26 @@
-use super::{
-    helpers::*,
-    types,
+use crate::{
+    gen::{
+        helpers::*,
+        http,
+    },
+    parse::{
+        Endpoint,
+        Method,
+    },
 };
-use parse::{
-    Endpoint,
-    Method,
-};
+
 use quote;
 use syn;
 
-pub struct RequestIntoEndpointBuilder {
+pub struct Builder {
     req_ty: syn::Ty,
     has_body: bool,
     http_verb: Method,
 }
 
-impl RequestIntoEndpointBuilder {
+impl Builder {
     pub fn new(http_verb: Method, has_body: bool, request_ty: syn::Ty) -> Self {
-        RequestIntoEndpointBuilder {
+        Builder {
             req_ty: request_ty,
             has_body: has_body,
             http_verb: http_verb,
@@ -26,7 +29,7 @@ impl RequestIntoEndpointBuilder {
 
     pub fn build(self) -> quote::Tokens {
         let req_ty = self.req_ty;
-        let method_ty = types::request::method_ty();
+        let method_ty = http::method::ty();
 
         let method = match self.http_verb {
             Method::Get => quote!(#method_ty ::GET),
@@ -37,10 +40,10 @@ impl RequestIntoEndpointBuilder {
             Method::Patch => quote!(#method_ty ::PATCH),
         };
 
-        let endpoint_ty = ident(types::request::req_ident());
+        let endpoint_ty = ident(http::endpoint::ident());
 
         if self.has_body {
-            let generic_body = ident(types::body::ident());
+            let generic_body = ident(http::body::ident());
             quote!(
                 impl <'a, #generic_body> Into<#endpoint_ty<'a, #generic_body> > for #req_ty {
                     fn into(self) -> #endpoint_ty<'a, #generic_body> {
@@ -53,7 +56,7 @@ impl RequestIntoEndpointBuilder {
                 }
             )
         } else {
-            let default_body = ident(types::body::default_ident());
+            let default_body = ident(http::body::default_ident());
 
             quote!(
                 impl <'a> Into<#endpoint_ty<'a, #default_body> > for #req_ty {
@@ -70,14 +73,14 @@ impl RequestIntoEndpointBuilder {
     }
 }
 
-impl<'a> From<(&'a (String, Endpoint), &'a syn::Ty)> for RequestIntoEndpointBuilder {
+impl<'a> From<(&'a (String, Endpoint), &'a syn::Ty)> for Builder {
     fn from(value: (&'a (String, Endpoint), &'a syn::Ty)) -> Self {
         let (&(_, ref endpoint), ref req_ty) = value;
 
         let has_body = endpoint.has_body();
         let verb = endpoint.methods[0];
 
-        RequestIntoEndpointBuilder::new(verb, has_body, (*req_ty).to_owned())
+        Builder::new(verb, has_body, (*req_ty).to_owned())
     }
 }
 
@@ -86,7 +89,7 @@ mod tests {
     #![cfg_attr(rustfmt, rustfmt_skip)]
     
     use super::*;
-    use parse::*;
+    use crate::parse::*;
 
     #[test]
     fn gen_into_http_req_with_body() {
@@ -99,9 +102,9 @@ mod tests {
                 body: Some(Body { description: String::new() }),
             },
         );
-        let req_ty = ty_path("Request", vec![lifetime()], vec![types::body::ty()]);
+        let req_ty = ty_path("Request", vec![lifetime()], vec![http::body::ty()]);
 
-        let result = RequestIntoEndpointBuilder::from((&endpoint, &req_ty)).build();
+        let result = Builder::from((&endpoint, &req_ty)).build();
 
         let expected = quote!(
             impl<'a, B> Into<Endpoint<'a, B> > for Request<'a, B> {
@@ -131,7 +134,7 @@ mod tests {
         );
         let req_ty = ty_a("Request");
 
-        let result = RequestIntoEndpointBuilder::from((&endpoint, &req_ty)).build();
+        let result = Builder::from((&endpoint, &req_ty)).build();
 
         let expected = quote!(
             impl<'a> Into<Endpoint<'a, DefaultBody> > for Request<'a> {

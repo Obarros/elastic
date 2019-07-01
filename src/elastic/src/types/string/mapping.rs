@@ -304,10 +304,6 @@ mod tests {
             Some("my_analyzer")
         }
 
-        fn boost() -> Option<f32> {
-            Some(1.3)
-        }
-
         fn eager_global_ordinals() -> Option<bool> {
             Some(false)
         }
@@ -392,10 +388,6 @@ mod tests {
             Some("my_analyzer")
         }
 
-        fn boost() -> Option<f32> {
-            Some(1.03)
-        }
-
         fn doc_values() -> Option<bool> {
             Some(true)
         }
@@ -475,7 +467,6 @@ mod tests {
 
         let expected = json!({
             "type":"text",
-            "boost":1.3,
             "analyzer":"my_analyzer",
             "eager_global_ordinals":false,
             "fielddata":true,
@@ -527,7 +518,6 @@ mod tests {
 
         let expected = json!({
             "type": "keyword",
-            "boost": 1.03,
             "analyzer": "my_analyzer",
             "doc_values": true,
             "eager_global_ordinals": false,
@@ -560,16 +550,14 @@ mod tests {
     #[test]
     fn serialise_mapping_field_filter() {
         let filter = FieldDataFrequencyFilter {
-            min: Some(0.001),
-            max: Some(0.1),
+            min: None,
+            max: None,
             min_segment_size: Some(500),
         };
 
         let ser = serde_json::to_value(&filter).unwrap();
 
         let expected = json!({
-            "min": 0.001,
-            "max": 0.1,
             "min_segment_size": 500
         });
 
@@ -720,7 +708,7 @@ mod tests {
     fn serialise_mapping_token_count_field() {
         let mapping = StringField::TokenCount(ElasticTokenCountFieldMapping {
             analyzer: Some("my_analyzer"),
-            boost: Some(1.3),
+            boost: None,
             doc_values: Some(false),
             index: Some(IndexAnalysis::No),
             include_in_all: Some(true),
@@ -732,7 +720,6 @@ mod tests {
         let expected = json!({
             "type": "token_count",
             "analyzer": "my_analyzer",
-            "boost": 1.3,
             "doc_values": false,
             "index": "no",
             "include_in_all": true,

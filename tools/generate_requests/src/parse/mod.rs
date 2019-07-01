@@ -300,7 +300,7 @@ pub fn get_url() -> Url {
 #[cfg(test)]
 mod tests {
     mod path {
-        use parse::{
+        use crate::parse::{
             Path,
             PathPart,
         };
@@ -361,7 +361,7 @@ mod tests {
     }
 
     mod endpoint {
-        use parse::*;
+        use crate::parse::*;
 
         #[test]
         fn has_body_if_body_is_some() {
@@ -415,7 +415,7 @@ mod tests {
     }
 
     mod url {
-        use parse::*;
+        use crate::parse::*;
 
         #[test]
         fn lookup_param_type_in_part() {
@@ -451,7 +451,7 @@ mod tests {
     }
 
     mod ser {
-        use parse::*;
+        use crate::parse::*;
         use serde_json::{
             self,
             value::to_value,

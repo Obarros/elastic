@@ -23,7 +23,7 @@ fn success_parse_updated_doc_response() {
     assert_eq!("testindex", deserialized.index());
     assert_eq!("testtype", deserialized.ty());
     assert_eq!("1", deserialized.id());
-    assert_eq!(Some(8), deserialized.version());
+    assert_eq!(Some(5), deserialized.version());
 
     assert!(deserialized.updated());
 }

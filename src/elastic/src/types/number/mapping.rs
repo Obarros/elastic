@@ -284,10 +284,6 @@ mod tests {
             Some(true)
         }
 
-        fn boost() -> Option<f32> {
-            Some(1.1)
-        }
-
         fn doc_values() -> Option<bool> {
             Some(false)
         }
@@ -318,10 +314,6 @@ mod tests {
     impl LongMapping for MyLongMapping {
         fn coerce() -> Option<bool> {
             Some(true)
-        }
-
-        fn boost() -> Option<f32> {
-            Some(1.1)
         }
 
         fn doc_values() -> Option<bool> {
@@ -356,10 +348,6 @@ mod tests {
             Some(true)
         }
 
-        fn boost() -> Option<f32> {
-            Some(1.1)
-        }
-
         fn doc_values() -> Option<bool> {
             Some(false)
         }
@@ -390,10 +378,6 @@ mod tests {
     impl ByteMapping for MyByteMapping {
         fn coerce() -> Option<bool> {
             Some(true)
-        }
-
-        fn boost() -> Option<f32> {
-            Some(1.1)
         }
 
         fn doc_values() -> Option<bool> {
@@ -428,10 +412,6 @@ mod tests {
             Some(true)
         }
 
-        fn boost() -> Option<f32> {
-            Some(1.1)
-        }
-
         fn doc_values() -> Option<bool> {
             Some(false)
         }
@@ -451,10 +431,6 @@ mod tests {
         fn store() -> Option<bool> {
             Some(true)
         }
-
-        fn null_value() -> Option<f32> {
-            Some(1.04)
-        }
     }
 
     #[derive(Default, Clone)]
@@ -462,10 +438,6 @@ mod tests {
     impl DoubleMapping for MyDoubleMapping {
         fn coerce() -> Option<bool> {
             Some(true)
-        }
-
-        fn boost() -> Option<f32> {
-            Some(1.1)
         }
 
         fn doc_values() -> Option<bool> {
@@ -511,7 +483,6 @@ mod tests {
         let expected = json!({
             "type": "integer",
             "coerce": true,
-            "boost": 1.1,
             "doc_values": false,
             "ignore_malformed": true,
             "include_in_all": true,
@@ -540,7 +511,6 @@ mod tests {
         let expected = json!({
             "type": "long",
             "coerce": true,
-            "boost": 1.1,
             "doc_values": false,
             "ignore_malformed": true,
             "include_in_all": true,
@@ -569,7 +539,6 @@ mod tests {
         let expected = json!({
             "type": "short",
             "coerce": true,
-            "boost": 1.1,
             "doc_values": false,
             "ignore_malformed": true,
             "include_in_all": true,
@@ -598,7 +567,6 @@ mod tests {
         let expected = json!({
             "type": "byte",
             "coerce": true,
-            "boost": 1.1,
             "doc_values": false,
             "ignore_malformed": true,
             "include_in_all": true,
@@ -627,7 +595,6 @@ mod tests {
         let expected = json!({
             "type": "double",
             "coerce": true,
-            "boost": 1.1,
             "doc_values": false,
             "ignore_malformed": true,
             "include_in_all": true,
@@ -656,11 +623,9 @@ mod tests {
         let expected = json!({
             "type": "float",
             "coerce": true,
-            "boost": 1.1,
             "doc_values": false,
             "ignore_malformed": true,
             "include_in_all": true,
-            "null_value": 1.04,
             "store": true
         });
 
