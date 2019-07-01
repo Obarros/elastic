@@ -1,7 +1,13 @@
-extern crate elastic_responses;
-extern crate serde_json;
-
-use crate::client::responses::*;
+use crate::{
+    client::{
+        receiver::{
+            parse,
+            ResponseError,
+        },
+        responses::*,
+    },
+    error::*,
+};
 
 #[test]
 fn success_parse_response_exists() {

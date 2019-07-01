@@ -199,9 +199,9 @@ where
         BulkOperation {
             action: Action::Index,
             header: BulkHeader {
-                index: Some(Index::from(doc.index().into_owned())),
-                ty: Some(Type::from(doc.ty().into_owned())),
-                id: doc.partial_id().map(|id| Id::from(id.into_owned())),
+                index: Some(doc.index()),
+                ty: Some(doc.ty()),
+                id: doc.partial_id(),
             },
             inner: Some(doc),
         }
@@ -211,9 +211,9 @@ where
         BulkOperation {
             action: Action::Update,
             header: BulkHeader {
-                index: Some(Index::from(doc.index().into_owned())),
-                ty: Some(Type::from(doc.ty().into_owned())),
-                id: doc.partial_id().map(|id| Id::from(id.into_owned())),
+                index: Some(doc.index()),
+                ty: Some(doc.ty()),
+                id: doc.partial_id(),
             },
             inner: Some(Doc::value(doc)),
         }
@@ -231,8 +231,8 @@ where
         BulkOperation {
             action: Action::Update,
             header: BulkHeader {
-                index: TDocument::partial_static_index().map(Into::into),
-                ty: TDocument::partial_static_ty().map(Into::into),
+                index: TDocument::partial_static_index(),
+                ty: TDocument::partial_static_ty(),
                 id: Some(id.into()),
             },
             inner: Some(Script::new(script)),
@@ -266,9 +266,9 @@ where
         BulkOperation {
             action: Action::Create,
             header: BulkHeader {
-                index: Some(Index::from(doc.index().into_owned())),
-                ty: Some(Type::from(doc.ty().into_owned())),
-                id: doc.partial_id().map(|id| Id::from(id.into_owned())),
+                index: Some(doc.index()),
+                ty: Some(doc.ty()),
+                id: doc.partial_id(),
             },
             inner: Some(doc),
         }
@@ -281,8 +281,8 @@ where
         BulkOperation {
             action: Action::Delete,
             header: BulkHeader {
-                index: TDocument::partial_static_index().map(Into::into),
-                ty: TDocument::partial_static_ty().map(Into::into),
+                index: TDocument::partial_static_index(),
+                ty: TDocument::partial_static_ty(),
                 id: Some(id.into()),
             },
             inner: None,

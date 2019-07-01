@@ -26,7 +26,7 @@ use std::{
     time::Duration,
 };
 
-fn run() -> Result<(), Box<Error>> {
+fn run() -> Result<(), Box<dyn Error>> {
     // A HTTP client and request parameters
     let client = AsyncClientBuilder::new().build()?;
 

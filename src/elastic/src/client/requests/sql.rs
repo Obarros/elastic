@@ -11,10 +11,12 @@ use futures::{
 
 use crate::client::{
     requests::{
-        empty_body,
-        endpoints::SqlQueryRequest,
+        endpoints::{
+            empty_body,
+            DefaultBody,
+            SqlQueryRequest,
+        },
         raw::RawRequestInner,
-        DefaultBody,
         RequestBuilder,
     },
     responses::SqlResponse,
@@ -26,10 +28,7 @@ use crate::client::{
     Client,
 };
 
-use crate::error::{
-    Error,
-    Result,
-};
+use crate::error::Error;
 
 use serde_json::json;
 
@@ -231,7 +230,7 @@ where
     [SyncClient]: ../../type.SyncClient.html
     [docs-querystring]: https://www.elastic.co/guide/en/elasticsearch/reference/current/sql-commands.html
      */
-    pub fn send(self) -> Result<SqlResponse> {
+    pub fn send(self) -> Result<SqlResponse, Error> {
         let req = self.inner.into_request();
 
         RequestBuilder::new(self.client, self.params_builder, RawRequestInner::new(req))

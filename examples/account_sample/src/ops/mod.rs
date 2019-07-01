@@ -6,7 +6,7 @@ use elastic::{
         SyncClient,
         SyncClientBuilder,
     },
-    error::Result,
+    error::Error,
 };
 
 /// A wrapper over the `elastic::Client` that we can implement commands
@@ -20,7 +20,7 @@ pub struct Client {
 }
 
 impl Client {
-    pub fn new(address: &'static str) -> Result<Self> {
+    pub fn new(address: &'static str) -> Result<Self, Error> {
         let client = SyncClientBuilder::new().static_node(address).build()?;
 
         Ok(Client { io: client })

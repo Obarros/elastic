@@ -28,7 +28,7 @@ use crate::{
             async_response,
             AsyncResponseBuilder,
         },
-        requests::Endpoint,
+        requests::endpoints::Endpoint,
         sender::{
             build_reqwest_method,
             build_url,

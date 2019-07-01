@@ -132,12 +132,15 @@ mod document_delete;
 mod document_get;
 mod document_index;
 mod document_update;
-mod nodes_info;
+pub mod nodes_info;
 mod ping;
 pub mod search;
 mod sql;
 
 mod index_exists;
+
+#[cfg(test)]
+mod tests;
 
 #[doc(inline)]
 pub use self::{
@@ -151,7 +154,7 @@ pub use self::{
     document_get::*,
     document_index::*,
     document_update::*,
-    nodes_info::*,
+    nodes_info::NodesInfoResponse,
     ping::*,
     search::SearchResponse,
     sql::*,

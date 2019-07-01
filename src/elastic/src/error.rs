@@ -51,9 +51,6 @@ pub use crate::client::receiver::ApiError;
 
 use http::StatusCode;
 
-/** An alias for a result. */
-pub type Result<T> = ::std::result::Result<T, Error>;
-
 quick_error! {
     /**
     An error encountered while interacting with Elasticsearch.

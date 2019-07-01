@@ -54,7 +54,7 @@ fn hash_request(request: &mut SyncHttpRequest) -> Result<(), Box<Error + Send + 
     Ok(())
 }
 
-fn run() -> Result<(), Box<Error>> {
+fn run() -> Result<(), Box<dyn Error>> {
     // A HTTP client and request parameters
     let client = SyncClientBuilder::new()
         .pre_send_raw(hash_request)

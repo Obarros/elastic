@@ -41,7 +41,7 @@ use url::Url;
 
 use crate::{
     client::{
-        requests::{
+        requests::endpoints::{
             DefaultBody,
             NodesInfoRequest,
         },
@@ -373,6 +373,10 @@ impl NextParams for SniffedNodes<SyncSender> {
 #[cfg(test)]
 mod tests {
     use super::*;
+    use crate::client::responses::nodes_info::{
+        SniffedNode,
+        SniffedNodeHttp,
+    };
     use futures::Future;
 
     fn sender() -> SniffedNodes<()> {

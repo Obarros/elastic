@@ -25,7 +25,7 @@ use crate::{
         },
         IndexClient,
     },
-    error::*,
+    error::Error,
 };
 
 /**
@@ -122,7 +122,7 @@ impl IndexDeleteRequestBuilder<SyncSender> {
 
     [SyncClient]: ../../type.SyncClient.html
     */
-    pub fn send(self) -> Result<CommandResponse> {
+    pub fn send(self) -> Result<CommandResponse, Error> {
         let req = self.inner.into_request();
 
         RequestBuilder::new(self.client, self.params_builder, RawRequestInner::new(req))

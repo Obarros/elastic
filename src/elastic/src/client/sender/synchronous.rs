@@ -15,7 +15,7 @@ use crate::{
             sync_response,
             SyncResponseBuilder,
         },
-        requests::Endpoint,
+        requests::endpoints::Endpoint,
         sender::{
             build_reqwest_method,
             build_url,

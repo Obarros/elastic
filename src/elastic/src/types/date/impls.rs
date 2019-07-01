@@ -693,10 +693,12 @@ mod tests {
     use crate::types::prelude::*;
 
     #[derive(ElasticDateFormat, Default, Clone)]
+    #[elastic(crate_root = "crate::types")]
     #[elastic(date_format = "yyyy/MM/dd HH:mm:ss", date_format_name = "test_date_1")]
     pub struct NamedDateFormat;
 
     #[derive(ElasticDateFormat, Default, Clone, Copy)]
+    #[elastic(crate_root = "crate::types")]
     #[elastic(date_format = "yyyyMMdd")]
     pub struct UnNamedDateFormat;
 

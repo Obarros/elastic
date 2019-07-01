@@ -301,12 +301,12 @@ mod tests {
 
     #[test]
     fn serialise_mapping_default() {
-        let ser = serde_json::to_string(&field::serialize(
+        let ser = serde_json::to_value(&field::serialize(
             DefaultDateMapping::<DefaultDateFormat>::default(),
         ))
         .unwrap();
 
-        let expected = json_str!({
+        let expected = json!({
             "type": "date",
             "format": "basic_date_time"
         });
@@ -316,9 +316,9 @@ mod tests {
 
     #[test]
     fn serialise_mapping_custom() {
-        let ser = serde_json::to_string(&field::serialize(MyDateMapping)).unwrap();
+        let ser = serde_json::to_value(&field::serialize(MyDateMapping)).unwrap();
 
-        let expected = json_str!({
+        let expected = json!({
             "type": "date",
             "format": "epoch_millis",
             "boost": 1.01,

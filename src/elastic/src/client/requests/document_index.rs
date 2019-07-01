@@ -36,7 +36,6 @@ use crate::{
     error::{
         self,
         Error,
-        Result,
     },
     types::document::{
         DocumentType,
@@ -131,16 +130,12 @@ where
     where
         TDocument: Serialize + DocumentType,
     {
-        let index = doc.index().into_owned().into();
-        let ty = doc.ty().into_owned().into();
-        let id = doc.partial_id().map(Cow::into_owned).map(Into::into);
-
         RequestBuilder::initial(
             self.inner,
             IndexRequestInner {
-                index: index,
-                ty: ty,
-                id: id,
+                index: doc.index(),
+                ty: doc.ty(),
+                id: doc.partial_id(),
                 doc: doc,
             },
         )
@@ -218,7 +213,7 @@ impl<TDocument> IndexRequestInner<TDocument>
 where
     TDocument: Serialize,
 {
-    fn into_request(self) -> Result<IndexRequest<'static, Vec<u8>>> {
+    fn into_request(self) -> Result<IndexRequest<'static, Vec<u8>>, Error> {
         let body = serde_json::to_vec(&self.doc).map_err(error::request)?;
 
         let request = match self.id {
@@ -306,7 +301,7 @@ where
 
     [SyncClient]: ../../type.SyncClient.html
     */
-    pub fn send(self) -> Result<IndexResponse> {
+    pub fn send(self) -> Result<IndexResponse, Error> {
         let req = self.inner.into_request()?;
 
         RequestBuilder::new(self.client, self.params_builder, RawRequestInner::new(req))

@@ -162,7 +162,7 @@ mod tests {
 
     #[test]
     fn deserialise_elastic_geo_shape() {
-        let shape: GeoShape<DefaultGeoShapeMapping> = serde_json::from_value(&json!({
+        let shape: GeoShape<DefaultGeoShapeMapping> = serde_json::from_value(json!({
             "coordinates": [ 1, 1 ],
             "type": "Point"
         }))

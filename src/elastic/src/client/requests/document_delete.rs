@@ -30,10 +30,7 @@ use crate::{
         },
         DocumentClient,
     },
-    error::{
-        Error,
-        Result,
-    },
+    error::Error,
     types::document::{
         DocumentType,
         StaticIndex,
@@ -265,7 +262,7 @@ impl<TDocument> DeleteRequestBuilder<SyncSender, TDocument> {
     [SyncClient]: ../../type.SyncClient.html
     [documents-mod]: ../types/document/index.html
     */
-    pub fn send(self) -> Result<DeleteResponse> {
+    pub fn send(self) -> Result<DeleteResponse, Error> {
         let req = self.inner.into_request();
 
         RequestBuilder::new(self.client, self.params_builder, RawRequestInner::new(req))

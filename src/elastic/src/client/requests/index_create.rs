@@ -12,11 +12,13 @@ use futures::{
 use crate::{
     client::{
         requests::{
-            empty_body,
-            endpoints::IndicesCreateRequest,
+            endpoints::{
+                empty_body,
+                DefaultBody,
+                IndicesCreateRequest,
+            },
             params::Index,
             raw::RawRequestInner,
-            DefaultBody,
             RequestBuilder,
         },
         responses::CommandResponse,
@@ -27,7 +29,7 @@ use crate::{
         },
         IndexClient,
     },
-    error::*,
+    error::Error,
 };
 
 /**
@@ -208,7 +210,7 @@ where
 
     [SyncClient]: ../../type.SyncClient.html
     */
-    pub fn send(self) -> Result<CommandResponse> {
+    pub fn send(self) -> Result<CommandResponse, Error> {
         let req = self.inner.into_request();
 
         RequestBuilder::new(self.client, self.params_builder, RawRequestInner::new(req))

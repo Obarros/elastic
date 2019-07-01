@@ -1,16 +1,19 @@
-extern crate elastic_responses;
-extern crate serde_json;
-
-use crate::client::responses::{
+use super::load_file;
+use crate::{
+    client::{
+        receiver::{
+            parse,
+            ResponseError,
+        },
+        responses::*,
+    },
     error::*,
-    *,
 };
-use load_file;
 use serde_json::Value;
 
 #[test]
 fn success_parse_found_doc_response() {
-    let f = load_file("tests/samples/get_found.json");
+    let f = load_file("get_found.json");
     let deserialized = parse::<GetResponse<Value>>()
         .from_reader(StatusCode::OK, f)
         .unwrap();
@@ -26,7 +29,7 @@ fn success_parse_found_doc_response() {
 
 #[test]
 fn success_into_document() {
-    let f = load_file("tests/samples/get_found.json");
+    let f = load_file("get_found.json");
     let deserialized = parse::<GetResponse<Value>>()
         .from_reader(StatusCode::OK, f)
         .unwrap();
@@ -46,7 +49,7 @@ fn success_into_document() {
 
 #[test]
 fn success_parse_not_found_doc_response() {
-    let f = load_file("tests/samples/get_not_found.json");
+    let f = load_file("get_not_found.json");
     let deserialized = parse::<GetResponse<Value>>()
         .from_reader(StatusCode::NOT_FOUND, f)
         .unwrap();
@@ -57,7 +60,7 @@ fn success_parse_not_found_doc_response() {
 
 #[test]
 fn error_parse_index_not_found() {
-    let f = load_file("tests/samples/error_index_not_found.json");
+    let f = load_file("error_index_not_found.json");
     let deserialized = parse::<GetResponse<Value>>()
         .from_reader(StatusCode::NOT_FOUND, f)
         .unwrap_err();

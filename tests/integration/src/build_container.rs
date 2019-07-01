@@ -30,7 +30,7 @@ impl Names {
     }
 }
 
-pub fn start(run: &str) -> Result<(), Box<Error>> {
+pub fn start(run: &str) -> Result<(), Box<dyn Error>> {
     let names = Names::from_run(run);
     let containers_path = "tests/run/containers";
 
@@ -79,7 +79,7 @@ pub fn start(run: &str) -> Result<(), Box<Error>> {
     }
 }
 
-pub fn kill(run: &str) -> Result<(), Box<Error>> {
+pub fn kill(run: &str) -> Result<(), Box<dyn Error>> {
     let names = Names::from_run(run);
 
     // Kill the container if it's runnning

@@ -213,7 +213,7 @@ impl Read for SyncHttpResponse {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use crate::client::requests::empty_body;
+    use crate::client::requests::endpoints::empty_body;
 
     #[test]
     fn owned_string_into_body() {

@@ -7,7 +7,7 @@ use std::marker::PhantomData;
 
 use crate::client::{
     requests::{
-        Endpoint,
+        endpoints::Endpoint,
         RequestBuilder,
     },
     sender::{
@@ -196,6 +196,14 @@ where
 #[cfg(test)]
 mod tests {
     use super::*;
+    use crate::client::requests::{
+        endpoints::{
+            empty_body,
+            PingRequest,
+            SearchRequest,
+        },
+        params::Id,
+    };
     use std::thread;
 
     fn do_something_with_request<'a, I: Into<Endpoint<'a, B>>, B: AsRef<[u8]>>(_: I) {}

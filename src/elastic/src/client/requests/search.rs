@@ -14,14 +14,16 @@ use std::marker::PhantomData;
 use crate::{
     client::{
         requests::{
-            empty_body,
-            endpoints::SearchRequest,
+            endpoints::{
+                empty_body,
+                DefaultBody,
+                SearchRequest,
+            },
             params::{
                 Index,
                 Type,
             },
             raw::RawRequestInner,
-            DefaultBody,
             RequestBuilder,
         },
         responses::SearchResponse,
@@ -33,10 +35,7 @@ use crate::{
         Client,
         DocumentClient,
     },
-    error::{
-        Error,
-        Result,
-    },
+    error::Error,
     types::document::DocumentType,
 };
 
@@ -352,7 +351,7 @@ where
     [documents-mod]: ../../../types/document/index.html
     [docs-querystring]: https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-query-string-query.html
     */
-    pub fn send(self) -> Result<SearchResponse<TDocument>> {
+    pub fn send(self) -> Result<SearchResponse<TDocument>, Error> {
         let req = self.inner.into_request();
 
         RequestBuilder::new(self.client, self.params_builder, RawRequestInner::new(req))

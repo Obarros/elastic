@@ -22,10 +22,7 @@ use crate::{
         },
         Client,
     },
-    error::{
-        Error,
-        Result,
-    },
+    error::Error,
 };
 
 /**
@@ -130,7 +127,7 @@ impl PingRequestBuilder<SyncSender> {
 
     [SyncClient]: ../../type.SyncClient.html
     */
-    pub fn send(self) -> Result<PingResponse> {
+    pub fn send(self) -> Result<PingResponse, Error> {
         let req = self.inner.into_request();
 
         RequestBuilder::new(self.client, self.params_builder, RawRequestInner::new(req))

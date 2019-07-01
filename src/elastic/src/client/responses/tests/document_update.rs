@@ -1,0 +1,60 @@
+// TODO:
+// - error: action_request_validation
+// - error: document_missing_exception
+
+use super::load_file;
+use crate::{
+    client::{
+        receiver::{
+            parse,
+            ResponseError,
+        },
+        responses::*,
+    },
+    error::*,
+};
+
+#[test]
+fn success_parse_updated_doc_response() {
+    let f = load_file("update_updated.json");
+    let deserialized = parse::<UpdateResponse>()
+        .from_reader(StatusCode::OK, f)
+        .unwrap();
+
+    assert_eq!("testindex", deserialized.index());
+    assert_eq!("testtype", deserialized.ty());
+    assert_eq!("1", deserialized.id());
+    assert_eq!(Some(8), deserialized.version());
+
+    assert!(deserialized.updated());
+}
+
+#[test]
+fn success_parse_noop_doc_response() {
+    let f = load_file("update_noop.json");
+    let deserialized = parse::<UpdateResponse>()
+        .from_reader(StatusCode::OK, f)
+        .unwrap();
+
+    assert_eq!("testindex", deserialized.index());
+    assert_eq!("testtype", deserialized.ty());
+    assert_eq!("1", deserialized.id());
+    assert_eq!(Some(8), deserialized.version());
+
+    assert!(!deserialized.updated());
+}
+
+#[test]
+fn error_parse_document_missing() {
+    let f = load_file("error_document_missing.json");
+    let deserialized = parse::<UpdateResponse>()
+        .from_reader(StatusCode::NOT_FOUND, f)
+        .unwrap_err();
+
+    let valid = match deserialized {
+        ResponseError::Api(ApiError::DocumentMissing { ref index }) if index == "carrots" => true,
+        _ => false,
+    };
+
+    assert!(valid);
+}

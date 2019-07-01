@@ -13,7 +13,7 @@ use elastic::prelude::*;
 use futures::Future;
 use std::error::Error;
 
-fn run() -> Result<(), Box<Error>> {
+fn run() -> Result<(), Box<dyn Error>> {
     // An async HTTP client that will sniff node addresses from the given base address.
     let client = AsyncClientBuilder::new()
         .sniff_nodes("http://localhost:9200")

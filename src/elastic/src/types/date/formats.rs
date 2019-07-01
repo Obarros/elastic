@@ -100,12 +100,12 @@ impl DateFormat for EpochMillis {
 #[cfg(test)]
 mod tests {
     use crate::{
-        date::{
+        prelude::*,
+        types::date::{
             format,
             parse,
             ParseError,
         },
-        prelude::*,
     };
     use chrono::{
         DateTime,

@@ -8,7 +8,7 @@ use crate::{
     },
     error::{
         self,
-        Result,
+        Error,
     },
     http::{
         StatusCode,
@@ -24,7 +24,7 @@ You can also `Read` directly from the response body.
 */
 pub struct SyncResponseBuilder(StatusCode, RawResponse);
 
-pub(crate) fn sync_response(res: RawResponse) -> Result<SyncResponseBuilder> {
+pub(crate) fn sync_response(res: RawResponse) -> Result<SyncResponseBuilder, Error> {
     let status = StatusCode::from_u16(res.status().into()).map_err(error::request)?;
     Ok(SyncResponseBuilder(status, res))
 }
@@ -99,7 +99,7 @@ impl SyncResponseBuilder {
 
     [response-types]: parse/trait.IsOk.html#implementors
     */
-    pub fn into_response<T>(self) -> Result<T>
+    pub fn into_response<T>(self) -> Result<T, Error>
     where
         T: IsOk + DeserializeOwned,
     {

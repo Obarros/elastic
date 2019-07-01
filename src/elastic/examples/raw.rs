@@ -14,7 +14,7 @@ use std::{
     io::Read,
 };
 
-fn run() -> Result<(), Box<Error>> {
+fn run() -> Result<(), Box<dyn Error>> {
     // A reqwest HTTP client and default parameters.
     // The `params` includes the base node url (http://localhost:9200).
     let client = SyncClientBuilder::new()

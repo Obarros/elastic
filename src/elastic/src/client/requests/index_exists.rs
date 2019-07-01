@@ -25,7 +25,7 @@ use crate::{
         },
         IndexClient,
     },
-    error::*,
+    error::Error,
 };
 
 /**
@@ -122,7 +122,7 @@ impl IndexExistsRequestBuilder<SyncSender> {
 
     [SyncClient]: ../../type.SyncClient.html
     */
-    pub fn send(self) -> Result<IndicesExistsResponse> {
+    pub fn send(self) -> Result<IndicesExistsResponse, Error> {
         let req = self.inner.into_request();
 
         RequestBuilder::new(self.client, self.params_builder, RawRequestInner::new(req))

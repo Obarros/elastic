@@ -585,7 +585,7 @@ mod tests {
             IndexOptions::Offsets,
         ]
         .iter()
-        .map(|i| serde_json::to_value(i).unwrap())
+        .map(|i| serde_json::to_string(i).unwrap())
         .collect();
 
         let expected_opts = vec![r#""docs""#, r#""freqs""#, r#""positions""#, r#""offsets""#];
@@ -611,7 +611,7 @@ mod tests {
             TermVector::WithPositionsOffsets,
         ]
         .iter()
-        .map(|i| serde_json::to_value(i).unwrap())
+        .map(|i| serde_json::to_string(i).unwrap())
         .collect();
 
         let expected_opts = vec![

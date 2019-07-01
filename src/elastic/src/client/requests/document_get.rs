@@ -31,10 +31,7 @@ use crate::{
         },
         DocumentClient,
     },
-    error::{
-        Error,
-        Result,
-    },
+    error::Error,
     types::document::{
         DocumentType,
         StaticIndex,
@@ -261,7 +258,7 @@ where
     [SyncClient]: ../../type.SyncClient.html
     [documents-mod]: ../types/document/index.html
     */
-    pub fn send(self) -> Result<GetResponse<TDocument>> {
+    pub fn send(self) -> Result<GetResponse<TDocument>, Error> {
         let req = self.inner.into_request();
 
         RequestBuilder::new(self.client, self.params_builder, RawRequestInner::new(req))

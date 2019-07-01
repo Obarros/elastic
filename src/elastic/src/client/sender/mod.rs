@@ -44,7 +44,7 @@ use self::{
     static_nodes::StaticNodes,
 };
 use crate::{
-    client::requests::Endpoint,
+    client::requests::endpoints::Endpoint,
     private,
 };
 

@@ -234,7 +234,7 @@ fn get_doc_ty_impl_block(
 
         let (partial_static_index, static_index_block) = if index_is_static {
             let method = quote!(
-                fn partial_static_index() -> ::std::option::Option<&'static str> {
+                fn partial_static_index() -> ::std::option::Option<#crate_root::derive::Index<'static>> {
                     Some(#index)
                 }
             );
@@ -246,7 +246,7 @@ fn get_doc_ty_impl_block(
             (Some(method), Some(block))
         } else {
             let method = quote!(
-                fn partial_static_index() -> ::std::option::Option<&'static str> {
+                fn partial_static_index() -> ::std::option::Option<#crate_root::derive::Index<'static>> {
                     None
                 }
             );
@@ -256,7 +256,7 @@ fn get_doc_ty_impl_block(
 
         let (partial_static_ty, static_ty_block) = if ty_is_static {
             let method = quote!(
-                fn partial_static_ty() -> ::std::option::Option<&'static str> {
+                fn partial_static_ty() -> ::std::option::Option<#crate_root::derive::Type<'static>> {
                     Some(#ty)
                 }
             );
@@ -268,7 +268,7 @@ fn get_doc_ty_impl_block(
             (Some(method), Some(block))
         } else {
             let method = quote!(
-                fn partial_static_ty() -> ::std::option::Option<&'static str> {
+                fn partial_static_ty() -> ::std::option::Option<#crate_root::derive::Type<'static>> {
                     None
                 }
             );
@@ -277,15 +277,15 @@ fn get_doc_ty_impl_block(
         };
 
         let instance_methods = quote!(
-            fn index(&self) -> ::std::borrow::Cow<str> {
+            fn index(&self) -> #crate_root::derive::Index {
                 (#index).into()
             }
 
-            fn ty(&self) -> ::std::borrow::Cow<str> {
+            fn ty(&self) -> #crate_root::derive::Type {
                 (#ty).into()
             }
 
-            fn partial_id(&self) -> ::std::option::Option<::std::borrow::Cow<str>> {
+            fn partial_id(&self) -> ::std::option::Option<#crate_root::derive::Id> {
                 (#id).into()
             }
 

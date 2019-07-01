@@ -10,6 +10,13 @@ use std::{
     marker::PhantomData,
 };
 
+#[doc(inline)]
+pub use crate::client::requests::params::{
+    Id,
+    Index,
+    Type,
+};
+
 /**
 The default name for document types in a single document index.
 */
@@ -33,26 +40,26 @@ pub trait DocumentType: ObjectFieldType {
     }
 
     /** Get the name of the index this document belongs to. */
-    fn index(&self) -> Cow<str>;
+    fn index(&self) -> Index;
 
     /** Get the name of the type this document belongs to. */
-    fn ty(&self) -> Cow<str>;
+    fn ty(&self) -> Type;
 
     /** Try get an id for this document. */
-    fn partial_id(&self) -> Option<Cow<str>>;
+    fn partial_id(&self) -> Option<Id>;
 
     /** Try get a statically known index this document belongs to. */
-    fn partial_static_index() -> Option<&'static str>;
+    fn partial_static_index() -> Option<Index<'static>>;
 
     /** Try get a statically known type this document belongs to. */
-    fn partial_static_ty() -> Option<&'static str>;
+    fn partial_static_ty() -> Option<Type<'static>>;
 }
 
 /**
 An indexable Elasticsearch type with a static index.
 */
 pub trait StaticIndex: DocumentType {
-    fn static_index() -> &'static str {
+    fn static_index() -> Index<'static> {
         Self::partial_static_index().expect("missing static index")
     }
 }
@@ -61,7 +68,7 @@ pub trait StaticIndex: DocumentType {
 An indexable Elasticsearch type with a static document type.
 */
 pub trait StaticType: DocumentType {
-    fn static_ty() -> &'static str {
+    fn static_ty() -> Type<'static> {
         Self::partial_static_ty().expect("missing static type")
     }
 }
@@ -325,23 +332,23 @@ impl<'a, TDocument> DocumentType for &'a TDocument
 where
     TDocument: DocumentType,
 {
-    fn index(&self) -> Cow<str> {
+    fn index(&self) -> Index {
         (*self).index()
     }
 
-    fn ty(&self) -> Cow<str> {
+    fn ty(&self) -> Type {
         (*self).ty()
     }
 
-    fn partial_id(&self) -> Option<Cow<str>> {
+    fn partial_id(&self) -> Option<Id> {
         (*self).partial_id()
     }
 
-    fn partial_static_index() -> Option<&'static str> {
+    fn partial_static_index() -> Option<Index<'static>> {
         TDocument::partial_static_index()
     }
 
-    fn partial_static_ty() -> Option<&'static str> {
+    fn partial_static_ty() -> Option<Type<'static>> {
         TDocument::partial_static_ty()
     }
 }
@@ -358,23 +365,23 @@ impl<'a, TDocument> DocumentType for Cow<'a, TDocument>
 where
     TDocument: DocumentType + Clone,
 {
-    fn index(&self) -> Cow<str> {
+    fn index(&self) -> Index {
         self.as_ref().index()
     }
 
-    fn ty(&self) -> Cow<str> {
+    fn ty(&self) -> Type {
         self.as_ref().ty()
     }
 
-    fn partial_id(&self) -> Option<Cow<str>> {
+    fn partial_id(&self) -> Option<Id> {
         self.as_ref().partial_id()
     }
 
-    fn partial_static_index() -> Option<&'static str> {
+    fn partial_static_index() -> Option<Index<'static>> {
         TDocument::partial_static_index()
     }
 
-    fn partial_static_ty() -> Option<&'static str> {
+    fn partial_static_ty() -> Option<Type<'static>> {
         TDocument::partial_static_ty()
     }
 }
@@ -383,7 +390,7 @@ impl<'a, TDocument> StaticIndex for &'a TDocument
 where
     TDocument: StaticIndex,
 {
-    fn static_index() -> &'static str {
+    fn static_index() -> Index<'static> {
         TDocument::static_index()
     }
 }
@@ -392,7 +399,7 @@ impl<'a, TDocument> StaticIndex for Cow<'a, TDocument>
 where
     TDocument: StaticIndex + Clone,
 {
-    fn static_index() -> &'static str {
+    fn static_index() -> Index<'static> {
         TDocument::static_index()
     }
 }
@@ -401,7 +408,7 @@ impl<'a, TDocument> StaticType for &'a TDocument
 where
     TDocument: StaticType,
 {
-    fn static_ty() -> &'static str {
+    fn static_ty() -> Type<'static> {
         TDocument::static_ty()
     }
 }
@@ -410,7 +417,7 @@ impl<'a, TDocument> StaticType for Cow<'a, TDocument>
 where
     TDocument: StaticType + Clone,
 {
-    fn static_ty() -> &'static str {
+    fn static_ty() -> Type<'static> {
         TDocument::static_ty()
     }
 }

@@ -44,14 +44,11 @@ pub mod params {
 /// either use a `SearchRequest` with owned `String` inputs, or one that uses only
 /// `'static` inputs.
 pub mod endpoints {
-    pub use super::genned::endpoints::*;
+    pub use super::genned::{
+        endpoints::*,
+        http::*,
+    };
 }
-
-pub use self::{
-    endpoints::*,
-    genned::http::*,
-    params::*,
-};
 
 pub mod raw;
 
@@ -312,8 +309,6 @@ pub mod prelude {
     };
 
     pub use super::{
-        empty_body,
-        DefaultBody,
         DeleteRequestBuilder,
         GetRequestBuilder,
         IndexCloseRequestBuilder,

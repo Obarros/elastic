@@ -3,7 +3,7 @@ members = [
     "src/elastic",
     "src/elastic_derive",
 
-    "tools/requests_codegen",
+    "tools/generate_requests",
 
     "tests/derive_compile_test",
     "tests/integration",

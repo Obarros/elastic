@@ -39,7 +39,7 @@ fn main() {
 
     println!("This code is automatically generated");
 
-    let dir = "./spec";
+    let dir = "./tools/generate_requests/spec";
 
     // BTreeMap<String, bool> : <url param type name, is emitted>
     let mut params_to_emit = BTreeMap::new();
@@ -86,7 +86,7 @@ fn main() {
 }
 
 fn start_comment_block_for_logging() {
-    stdout().write(b"/*").unwrap();
+    stdout().write(b"/*\n").unwrap();
 }
 
 fn end_comment_block_for_logging() {
@@ -110,6 +110,9 @@ fn from_dir(path: &str) -> Result<Vec<(String, Endpoint)>, String> {
             all_parsed.push(parsed);
         }
     }
+
+    // Sort the endpoints parsed from disk so we have a stable ordering
+    all_parsed.sort_by(|&(ref a_name, _), &(ref b_name, _)| a_name.cmp(b_name));
 
     Ok(all_parsed)
 }

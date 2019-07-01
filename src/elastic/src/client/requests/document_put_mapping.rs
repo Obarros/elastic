@@ -33,7 +33,6 @@ use crate::{
     error::{
         self,
         Error,
-        Result,
     },
     types::document::{
         DocumentType,
@@ -135,7 +134,7 @@ impl<TDocument> PutMappingRequestInner<TDocument>
 where
     TDocument: DocumentType,
 {
-    fn into_request(self) -> Result<IndicesPutMappingRequest<'static, Vec<u8>>> {
+    fn into_request(self) -> Result<IndicesPutMappingRequest<'static, Vec<u8>>, Error> {
         let body = serde_json::to_vec(&TDocument::index_mapping()).map_err(error::request)?;
 
         if &self.ty[..] == DEFAULT_DOC_TYPE {
@@ -208,7 +207,7 @@ where
 
     [SyncClient]: ../../type.SyncClient.html
     */
-    pub fn send(self) -> Result<CommandResponse> {
+    pub fn send(self) -> Result<CommandResponse, Error> {
         let req = self.inner.into_request()?;
 
         RequestBuilder::new(self.client, self.params_builder, RawRequestInner::new(req))
