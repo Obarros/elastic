@@ -1,14 +1,14 @@
 #![recursion_limit = "200"]
 
-#[cfg(test)]
-#[macro_use]
-extern crate json_str;
-
 #[macro_use]
 extern crate quote;
 
 #[macro_use]
 extern crate serde_derive;
+
+#[cfg(test)]
+#[macro_use]
+extern crate serde_json;
 
 pub mod gen;
 pub mod parse;

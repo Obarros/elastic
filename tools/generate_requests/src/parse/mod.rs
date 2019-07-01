@@ -492,7 +492,7 @@ mod tests {
 
         #[test]
         fn deserialise_part_as_type() {
-            let ser = json_str!({
+            let ser = json!({
                 "type" : "list",
                 "description" : "A comma-separated list of index names to search"
             });
@@ -504,12 +504,12 @@ mod tests {
                 default: None,
             };
 
-            assert_eq!(expected, serde_json::from_str::<Type>(&ser).unwrap());
+            assert_eq!(expected, serde_json::from_value::<Type>(ser).unwrap());
         }
 
         #[test]
         fn deserialise_param_as_type() {
-            let ser = json_str!({
+            let ser = json!({
                 "type" : "enum",
                 "options" : [ "AND","OR" ],
                 "default" : "OR",
@@ -523,12 +523,12 @@ mod tests {
                 default: Some(to_value("OR").unwrap()),
             };
 
-            assert_eq!(expected, serde_json::from_str::<Type>(&ser).unwrap());
+            assert_eq!(expected, serde_json::from_value::<Type>(ser).unwrap());
         }
 
         #[test]
         fn deserialise_body_some() {
-            let ser = json_str!({
+            let ser = json!({
                 "description": "The search definition using the Query DSL"
             });
 
@@ -538,7 +538,7 @@ mod tests {
 
             assert_eq!(
                 expected,
-                serde_json::from_str::<Option<Body>>(&ser).unwrap()
+                serde_json::from_value::<Option<Body>>(ser).unwrap()
             );
         }
 
@@ -554,7 +554,7 @@ mod tests {
 
         #[test]
         fn deserialise_url() {
-            let ser = json_str!({
+            let ser = json!({
                 "path": "/_search",
                 "paths": ["/_search", "/{index}/_search", "/{index}/{type}/_search"],
                 "parts": {
@@ -626,12 +626,12 @@ mod tests {
                 },
             };
 
-            assert_eq!(expected, serde_json::from_str::<Url>(&ser).unwrap());
+            assert_eq!(expected, serde_json::from_value::<Url>(ser).unwrap());
         }
 
         #[test]
         fn deserialise_endpoint() {
-            let ser = json_str!({
+            let ser = json!({
                 "search": {
                     "documentation": "http://www.elastic.co/guide/en/elasticsearch/reference/master/search-search.html",
                     "methods": ["GET", "POST"],
@@ -665,7 +665,7 @@ mod tests {
                 },
             );
 
-            let de: BTreeMap<String, Endpoint> = serde_json::from_str(&ser).unwrap();
+            let de: BTreeMap<String, Endpoint> = serde_json::from_value(ser).unwrap();
 
             assert_eq!(expected.endpoint(), de.endpoint());
         }
